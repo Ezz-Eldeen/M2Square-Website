@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en" class="dark" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#131313",
+                        "on-tertiary": "#303034",
+                        "tertiary-fixed": "#e4e1e7",
+                        "primary-container": "#ff5708",
+                        "inverse-primary": "#aa3600",
+                        "on-tertiary-fixed": "#1b1b1f",
+                        "on-secondary-fixed-variant": "#474649",
+                        "outline": "#ac897e",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "on-primary": "#5c1900",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#919095",
+                        "secondary-fixed": "#e4e2e4",
+                        "on-secondary-container": "#b7b4b7",
+                        "surface-variant": "#353534",
+                        "on-surface-variant": "#e5beb2",
+                        "primary-fixed": "#ffdbcf",
+                        "on-primary-fixed": "#390c00",
+                        "secondary-container": "#474649",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#47464b",
+                        "primary": "#ffb59c",
+                        "tertiary": "#c8c6cb",
+                        "on-error": "#690005",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "inverse-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-tertiary-container": "#29292d",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#303032",
+                        "surface-bright": "#3a3939",
+                        "surface-dim": "#131313",
+                        "surface-tint": "#ffb59c",
+                        "surface": "#131313",
+                        "outline-variant": "#5c4037",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb59c",
+                        "tertiary-fixed-dim": "#c8c6cb",
+                        "on-primary-container": "#511500",
+                        "inverse-on-surface": "#313030",
+                        "secondary": "#c8c6c8",
+                        "on-primary-fixed-variant": "#822700",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#2a2a2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "64px",
+                        "base": "4px",
+                        "lg": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "xs": "8px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "display-lg-mobile": ["Sora"],
+                        "headline-md": ["Sora"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script></head><body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+
+    <!-- TopNavBar -->
+    <header class="bg-background dark:bg-background fixed top-0 w-full z-50 border-b border-surface-variant dark:border-surface-variant backdrop-blur-md bg-opacity-90">
+        <div class="flex justify-between items-center h-16 px-gutter max-w-7xl mx-auto">
+            <!-- Brand -->
+            <div class="font-headline-md text-headline-md font-bold text-primary-container tracking-tighter">M2-Square</div>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex gap-md items-center font-body-md text-body-md">
+                <a href="#" class="text-text-secondary dark:text-text-secondary hover:text-primary transition-colors duration-200 hover:scale-95 transition-transform">Home</a>
+                <a href="#" class="text-text-secondary dark:text-text-secondary hover:text-primary transition-colors duration-200 hover:scale-95 transition-transform">About Us</a>
+                <a href="#" class="text-text-secondary dark:text-text-secondary hover:text-primary transition-colors duration-200 hover:scale-95 transition-transform">Services and Solutions</a>
+                <!-- Active Link -->
+                <a href="#" class="text-primary font-semibold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200 hover:scale-95 transition-transform" aria-current="page">Contact Us</a>
+            </nav>
+
+            <!-- Trailing Action -->
+            <div class="hidden md:block">
+                <button class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-lg py-sm rounded-xl hover:bg-primary transition-all duration-300 font-semibold tracking-wide shadow-[0_0_15px_rgba(255,87,8,0.3)] hover:shadow-[0_0_25px_rgba(255,87,8,0.5)]">Log In</button>
+            </div>
+            
+            <!-- Mobile Menu Icon -->
+            <button class="md:hidden text-on-surface" data-icon="menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Canvas -->
+    <main class="flex-grow pt-[100px] relative overflow-hidden flex flex-col items-center w-full px-gutter md:px-margin-desktop mb-xl">
+        
+        <!-- Atmospheric Glows -->
+        <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary-container opacity-5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+        <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-inverse-primary opacity-5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        <!-- Hero Title -->
+        <div class="w-full max-w-7xl relative z-10 mb-lg mt-md">
+            <h1 class="font-display-lg text-display-lg md:font-display-lg text-primary-container mb-xs">Initialize Connection</h1>
+            <p class="font-body-lg text-body-lg max-w-2xl text-text-secondary">Secure transmission channel for technical inquiries, system integration support, and deployment assistance. Establish contact with an M2-Square operative.</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="w-full max-w-7xl relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+            
+            <!-- Left Column: Technical Contact Form -->
+            <div class="lg:col-span-8 w-full">
+                <div class="bg-surface-container-low/80 backdrop-blur-md rounded-xl border border-surface-variant p-lg relative overflow-hidden group">
+                    
+                    <!-- Card Highlight Edge -->
+                    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent"></div>
+
+                    <form action="#" method="POST" class="space-y-md relative z-10"><div class="grid grid-cols-1 md:grid-cols-2 gap-md"><div class="space-y-xs"><label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="name"><span class="material-symbols-outlined text-[16px] text-tertiary" data-weight="fill">person</span>FULL NAME</label><input class="w-full bg-surface-container-lowest border border-surface-variant rounded-DEFAULT px-sm py-xs font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-surface-variant" id="name" name="name" placeholder="Enter full name" required="" type="text"></div><div class="space-y-xs"><label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="phone"><span class="material-symbols-outlined text-[16px] text-tertiary" data-weight="fill">phone</span>PHONE NUMBER</label><input class="w-full bg-surface-container-lowest border border-surface-variant rounded-DEFAULT px-sm py-xs font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-surface-variant" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel"></div></div><div class="space-y-xs"><label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="email"><span class="material-symbols-outlined text-[16px] text-tertiary" data-weight="fill">mail</span>EMAIL ADDRESS</label><input class="w-full bg-surface-container-lowest border border-surface-variant rounded-DEFAULT px-sm py-xs font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-surface-variant" id="email" name="email" placeholder="ops@m2-square.com" required="" type="email"></div><div class="space-y-xs"><label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="subject"><span class="material-symbols-outlined text-[16px] text-tertiary" data-weight="fill">tag</span>SUBJECT</label><select class="w-full bg-surface-container-lowest border border-surface-variant rounded-DEFAULT px-sm py-xs font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all appearance-none cursor-pointer" id="subject" name="subject"><option value="technical">Technical Support</option><option value="deployment">Deployment Coordination</option><option value="security">Security Audit Request</option><option value="other">General Inquiry</option></select></div><div class="space-y-xs"><label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="message"><span class="material-symbols-outlined text-[16px] text-tertiary" data-weight="fill">terminal</span>MESSAGE</label><textarea class="w-full bg-surface-container-lowest border border-surface-variant rounded-DEFAULT px-sm py-xs font-body-md text-body-md text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none transition-all placeholder:text-surface-variant resize-y" id="message" name="message" placeholder="Detail your requirements here..." required="" rows="5"></textarea></div><div class="pt-sm flex items-center justify-between border-t border-surface-variant/50"><div class="font-label-sm text-label-sm text-surface-variant hidden md:flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">lock</span>End-to-end encrypted connection</div><button class="w-full md:w-auto bg-primary-container text-on-primary-container font-label-sm text-label-sm px-lg py-sm rounded-DEFAULT hover:bg-primary transition-all duration-300 flex items-center justify-center gap-sm relative overflow-hidden group/btn shadow-[0_0_15px_rgba(255,87,8,0.1)] hover:shadow-[0_0_20px_rgba(255,87,8,0.3)]" type="submit"><span class="relative z-10 tracking-widest uppercase">Submit Request</span><span class="material-symbols-outlined relative z-10 text-[18px]" data-weight="fill">send</span><div class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-in-out"></div></button></div></form>
+                </div>
+            </div>
+
+            <!-- Right Column: Support Node Sidebar -->
+            <div class="lg:col-span-4 w-full flex flex-col gap-md">
+                
+                <!-- Node Status Card -->
+                
+
+                <!-- Telemetry Metrics (Bento style) -->
+                
+
+                <!-- Direct Comm Channels -->
+                
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-bg-primary border-t border-border-subtle/50 py-section-sm z-10 relative">
+<div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="col-span-1 md:col-span-1">
+<a class="font-display text-headline-sm font-bold text-text-primary tracking-tight flex items-center gap-2 mb-sm" href="#">
+<div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary-container to-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]">architecture</span>
+</div>
+                    M2-Square
+                </a>
+<p class="font-display text-label-md text-text-primary/60">
+                    © 2024 M2-Square. Precision in Digital Infrastructure.
+                </p>
+</div>
+<div class="col-span-1">
+<h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Solutions</h4>
+<ul class="space-y-sm">
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Cyber Security</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Digital Transformation</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Project Management</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">E-Taxes Solutions</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Company</h4>
+<ul class="space-y-sm">
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">About Us</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Contact</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="mailto:ops@m2-square.com">ops@m2-square.com</a></li></ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Legal</h4>
+<ul class="space-y-sm">
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</footer></body></html>

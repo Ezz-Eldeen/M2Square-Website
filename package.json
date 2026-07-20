@@ -1,0 +1,13 @@
+{
+  "name": "m2-square-website",
+  "version": "1.0.0",
+  "description": "M2-Square website with unified design and interactive 3D Spline scene",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

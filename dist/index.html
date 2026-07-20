@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>M2-Square - Precision in Digital Infrastructure</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    try {
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-container-low": "#261813",
+              "on-surface": "#f7ddd5",
+              "on-primary": "#5b1b00",
+              "surface-container-high": "#362721",
+              "on-tertiary-fixed": "#001e2b",
+              "surface-bright": "#463530",
+              "on-surface-variant": "#e2bfb3",
+              "surface-tint": "#ffb59a",
+              "on-background": "#f7ddd5",
+              "primary-fixed-dim": "#ffb59a",
+              "accent-muted": "#3D2417",
+              "on-primary-fixed": "#380d00",
+              "on-tertiary-container": "#003648",
+              "secondary": "#ffb695",
+              "text-secondary": "#A3A3AA",
+              "inverse-surface": "#f7ddd5",
+              "primary-fixed": "#ffdbcf",
+              "on-tertiary-fixed-variant": "#004d66",
+              "on-secondary-container": "#ffceb9",
+              "tertiary-fixed-dim": "#71d2ff",
+              "surface-dim": "#1d100c",
+              "on-secondary": "#571f00",
+              "surface-container": "#2a1c17",
+              "outline": "#a98a7f",
+              "inverse-on-surface": "#3c2d27",
+              "error-container": "#93000a",
+              "border-strong": "#3A3A40",
+              "on-primary-container": "#5c1b00",
+              "tertiary-container": "#00a5d7",
+              "secondary-container": "#a14001",
+              "on-error": "#690005",
+              "secondary-fixed-dim": "#ffb695",
+              "secondary-fixed": "#ffdbcc",
+              "surface-container-highest": "#41312c",
+              "inverse-primary": "#a83900",
+              "tertiary-fixed": "#c0e8ff",
+              "tertiary": "#71d2ff",
+              "primary-container": "#ff6a2b",
+              "background": "#1d100c",
+              "on-secondary-fixed": "#351000",
+              "surface-container-lowest": "#170b07",
+              "success": "#3DD68C",
+              "text-tertiary": "#6B6B72",
+              "primary": "#ffb59a",
+              "surface-variant": "#41312c",
+              "on-secondary-fixed-variant": "#7b2f00",
+              "error": "#F5453D",
+              "text-primary": "#F5F5F4",
+              "outline-variant": "#5a4138",
+              "surface": "#1d100c",
+              "on-tertiary": "#003547",
+              "border-subtle": "#2A2A2E",
+              "warning": "#F5B93D",
+              "on-error-container": "#ffdad6",
+              "bg-tertiary": "#1C1C20",
+              "bg-primary": "#0A0A0B",
+              "bg-secondary": "#131316",
+              "on-primary-fixed-variant": "#812900"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "xl": "32px",
+              "section-md": "96px",
+              "xxl": "48px",
+              "md": "16px",
+              "xs": "8px",
+              "section-sm": "64px",
+              "section-lg": "128px",
+              "lg": "24px",
+              "base": "4px",
+              "sm": "12px",
+              "gutter-mobile": "16px",
+              "gutter-desktop": "24px"
+            },
+            "fontFamily": {
+              "headline-lg": ["Inter"],
+              "body-md": ["Inter"],
+              "headline-sm": ["Inter"],
+              "headline-md": ["Inter"],
+              "label-md": ["Inter"],
+              "display": ["Inter"],
+              "mono": ["JetBrains Mono"],
+              "headline-lg-mobile": ["Inter"],
+              "body-lg": ["Inter"]
+            },
+            "fontSize": {
+              "headline-lg": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "body-md": ["15px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+              "headline-sm": ["22px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }],
+              "headline-md": ["30px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "label-md": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500" }],
+              "display": ["72px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+              "mono": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+              "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+              "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+            }
+          },
+        }
+      }
+    } catch (_e) {}
+  </script>
+  <script type="module" crossorigin src="/assets/main-B5Qt9EMX.js"></script>
+</head>
+<body class="bg-bg-primary text-text-primary font-display antialiased selection:bg-primary-container selection:text-white overflow-x-hidden">
+  
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle/50 transition-all duration-300">
+    <div class="flex justify-between items-center h-16 px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto">
+      <!-- Brand Logo -->
+      <a class="font-display text-headline-sm font-bold text-text-primary tracking-tight flex items-center gap-2" href="index.html">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shadow-[0_0_15px_rgba(255,106,43,0.4)]">
+          <span class="material-symbols-outlined text-white text-[20px]">architecture</span>
+        </div>
+        M2-Square
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex space-x-lg items-center">
+        <li>
+          <a class="font-display text-body-md text-primary-container font-semibold border-b-2 border-primary-container pb-1" href="index.html">Home</a>
+        </li>
+        <li>
+          <a class="font-display text-body-md text-text-secondary hover:text-text-primary transition-colors duration-200" href="about.html">About Us</a>
+        </li>
+        <li class="relative group">
+          <button class="font-display text-body-md text-text-secondary hover:text-text-primary transition-colors duration-200 flex items-center gap-base">
+            Services and Solutions
+            <span class="material-symbols-outlined text-[16px]">expand_more</span>
+          </button>
+          <!-- Dropdown Menu -->
+          <div class="absolute left-0 top-full mt-2 w-64 bg-bg-secondary/90 backdrop-blur-lg border border-border-subtle rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+            <div class="py-sm">
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="services.html#cyber-security">Cyber Security</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="services.html#digital-transformation">Digital Transformation</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="services.html#project-management">Project Management</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="services.html#e-taxes-solutions">E-Taxes Solutions</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a class="font-display text-body-md text-text-secondary hover:text-text-primary transition-colors duration-200" href="contact.html">Contact Us</a>
+        </li>
+      </ul>
+      
+      <!-- Trailing Action -->
+      <div class="hidden md:flex items-center gap-md">
+        <a class="font-display text-label-md text-text-secondary hover:text-text-primary transition-colors duration-200" href="login.html">Log In</a>
+        <a href="contact.html" class="bg-primary-container text-white font-label-md font-semibold px-md py-xs rounded-xl hover:bg-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.3)] hover:shadow-[0_0_30px_rgba(255,106,43,0.5)]">
+          Get Started
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button aria-label="Toggle Menu" class="md:hidden text-text-primary/80 hover:text-text-primary transition-colors duration-200 select-none">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-bg-primary border-t border-border-subtle/50 px-gutter-mobile py-md space-y-sm">
+      <a class="block font-display text-body-md text-primary-container font-semibold" href="index.html">Home</a>
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="about.html">About Us</a>
+      <div class="space-y-xs pl-sm border-l border-border-subtle">
+        <span class="block font-display text-label-md text-text-tertiary uppercase tracking-wider">Services</span>
+        <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="services.html#cyber-security">Cyber Security</a>
+        <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="services.html#digital-transformation">Digital Transformation</a>
+        <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="services.html#project-management">Project Management</a>
+        <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="services.html#e-taxes-solutions">E-Taxes Solutions</a>
+      </div>
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="contact.html">Contact Us</a>
+      <div class="pt-sm border-t border-border-subtle/50 flex flex-col gap-sm">
+        <a class="text-center font-display text-body-md text-text-secondary py-xs" href="login.html">Log In</a>
+        <a class="text-center bg-primary-container text-white font-label-md font-semibold py-xs rounded-xl" href="contact.html">Get Started</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main class="pt-16 min-h-screen flex flex-col items-center justify-center relative bg-grid-pattern">
+    <!-- Ambient Light Effects -->
+    <div class="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary-container/10 rounded-full blur-[150px] pointer-events-none mix-blend-screen z-0"></div>
+    <div class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
+    
+    <!-- Hero Section -->
+    <section class="w-full max-w-none px-gutter-mobile md:px-10 lg:px-20 py-section-lg flex flex-col md:flex-row items-center gap-xxl relative z-10 min-h-[80vh]">
+      
+      <!-- Interactive Spline 3D Scene (Background Overlay) -->
+      <div class="absolute inset-0 w-full h-full z-0 pointer-events-auto overflow-hidden">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+        <spline-viewer class="w-full h-full scale-[3.5] md:scale-[5] translate-x-[10%] md:translate-x-[15%] origin-center" url="https://prod.spline.design/NMWM-i390lb8C3P3/scene.splinecode"></spline-viewer>
+      </div>
+
+      <!-- Hero Text Content -->
+      <div class="flex-grow flex-1 flex flex-col items-start text-left space-y-lg relative z-10 max-w-[650px] bg-bg-primary/70 backdrop-blur-md p-lg md:p-xl rounded-2xl border border-border-subtle/50 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+        <!-- Soft glow behind text -->
+        <div class="absolute -inset-10 bg-primary-container/5 blur-[80px] -z-10 rounded-full"></div>
+        
+        <div class="inline-flex items-center gap-xs px-sm py-base border border-border-subtle/50 rounded-full bg-bg-secondary/40 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+          <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
+          <span class="font-mono text-mono text-text-primary/90 uppercase tracking-widest">System Status: Optimal</span>
+        </div>
+        <h1 class="font-display text-headline-lg-mobile md:text-display text-text-primary font-bold tracking-tight leading-tight">
+          Precision in <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
+        </h1>
+        <p class="font-display text-body-lg text-text-secondary max-w-[600px]">
+          Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise. No fluff, just robust technical solutions.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center gap-md pt-md w-full sm:w-auto">
+          <a href="services.html" class="text-center w-full sm:w-auto bg-primary-container text-white font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:shadow-[0_0_35px_rgba(255,106,43,0.6)] transform hover:-translate-y-0.5">
+            Explore Solutions
+          </a>
+          <a href="about.html" class="text-center w-full sm:w-auto border border-border-strong/50 bg-bg-secondary/30 backdrop-blur-sm text-text-primary/90 font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-bg-tertiary/80 hover:text-text-primary hover:border-text-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-border-strong focus:ring-offset-2 focus:ring-offset-bg-primary">
+            View Documentation
+          </a>
+        </div>
+      </div>
+
+      <!-- Right spacer to push text left (keeping the split visual flow on desktop) -->
+      <div class="hidden md:block flex-1 pointer-events-none min-h-[450px]"></div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="w-full bg-bg-primary border-t border-border-subtle/50 py-section-sm z-10 relative">
+    <div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <div class="col-span-1 md:col-span-1">
+        <a class="font-display text-headline-sm font-bold text-text-primary tracking-tight flex items-center gap-2 mb-sm" href="index.html">
+          <div class="w-6 h-6 rounded-md bg-gradient-to-br from-primary-container to-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-[14px]">architecture</span>
+          </div>
+          M2-Square
+        </a>
+        <p class="font-display text-label-md text-text-primary/60">
+          © 2024 M2-Square. Precision in Digital Infrastructure.
+        </p>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Solutions</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="services.html#cyber-security">Cyber Security</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="services.html#digital-transformation">Digital Transformation</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="services.html#project-management">Project Management</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="services.html#e-taxes-solutions">E-Taxes Solutions</a></li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Company</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="about.html">About Us</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="contact.html">Contact</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="mailto:ops@m2-square.com">ops@m2-square.com</a></li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Legal</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Privacy Policy</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu toggle
+      const menuBtn = document.querySelector('button[aria-label="Toggle Menu"]');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Hide Spline Logo / Watermark from Shadow DOM via CSS injection
+      const hideSplineLogo = () => {
+        const viewer = document.querySelector('spline-viewer');
+        if (viewer && viewer.shadowRoot) {
+          if (viewer.shadowRoot.querySelector('#hide-logo-style')) return true;
+          
+          const style = document.createElement('style');
+          style.id = 'hide-logo-style';
+          style.textContent = `
+            #logo, #spline-logo, a, .logo {
+              display: none !important;
+              opacity: 0 !important;
+              pointer-events: none !important;
+              visibility: hidden !important;
+            }
+          `;
+          viewer.shadowRoot.appendChild(style);
+          return true;
+        }
+        return false;
+      };
+
+      // Poll until shadowRoot is available and style is injected
+      const logoInterval = setInterval(() => {
+        if (hideSplineLogo()) {
+          clearInterval(logoInterval);
+        }
+      }, 100);
+      setTimeout(() => clearInterval(logoInterval), 10000);
+    });
+  </script>
+</body>
+</html>
