@@ -125,7 +125,7 @@
 <body class="bg-bg-primary text-text-primary font-display antialiased selection:bg-primary-container selection:text-white overflow-x-hidden">
   
   <!-- TopNavBar -->
-  <nav class="fixed top-0 w-full z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-border-subtle/50 transition-all duration-300">
+  <nav class="fixed top-0 w-full z-50 bg-bg-primary border-b border-border-subtle/50 transition-all duration-300">
     <div class="flex justify-between items-center h-16 px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto">
       <!-- Brand Logo -->
       <a class="flex items-center gap-2 font-display text-headline-sm font-bold text-primary-container hover:text-primary transition-colors duration-200 tracking-tight" href="index.html">
@@ -203,37 +203,155 @@
     <!-- Hero Section -->
     <section class="w-full max-w-none px-gutter-mobile md:px-10 lg:px-20 py-section-lg flex flex-col md:flex-row items-center gap-xxl relative z-10 min-h-[80vh]">
       
-      <!-- Interactive Spline 3D Scene (Background Overlay) -->
-      <div class="absolute inset-0 w-full h-full z-0 pointer-events-auto overflow-hidden">
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
-        <spline-viewer class="w-full h-full scale-[1.5] md:scale-[2] translate-x-[15%] md:translate-x-[25%] origin-center" url="https://prod.spline.design/NMWM-i390lb8C3P3/scene.splinecode?v=4"></spline-viewer>
-      </div>
+<!-- Interactive Scattered Particle Field -->
+<div class="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+  <canvas id="particles-canvas" class="w-full h-full opacity-70"></canvas>
+</div>
+
+<script>
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  let particles = [];
+
+  // ==========================================
+  // CONFIGURABLE SETTINGS (Tweak these values)
+  // ==========================================
+  const PARTICLE_COUNT = 120;     // Total number of particles
+  const SPEED = 0.9;              // Default floating speed
+  const MOUSE_RADIUS = 110;      // Distance at which particles start scattering away
+  const REPEL_FORCE = 2.5;       // How fast/hard particles get pushed away by cursor
+  const CONNECT_DISTANCE = 140;  // Max distance to draw subtle connecting lines
+  const COLOR = '255, 106, 43';   // Primary orange RGB (rgba format)
+
+  function resize() {
+    width = canvas.width = canvas.offsetWidth;
+    height = canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  let mouse = { x: -1000, y: -1000 };
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * SPEED;
+      this.vy = (Math.random() - 0.5) * SPEED;
+      this.size = Math.random() * 2 + 1.2;
+    }
+
+    update() {
+      // Calculate distance to mouse for scattering effect
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < MOUSE_RADIUS) {
+        const angle = Math.atan2(dy, dx);
+        const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+        this.x += Math.cos(angle) * force * REPEL_FORCE;
+        this.y += Math.sin(angle) * force * REPEL_FORCE;
+      }
+
+      // Base floating movement
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off viewport boundaries
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${COLOR}, 0.8)`;
+      ctx.fill();
+    }
+  }
+
+  // Initialize Particle Array
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push(new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw connecting lines between nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < CONNECT_DISTANCE) {
+          const alpha = (1 - dist / CONNECT_DISTANCE) * 0.25;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${COLOR}, ${alpha})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Render & update positions
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
 
       <!-- Hero Text Content -->
-      <div class="flex-grow flex-1 flex flex-col items-start text-left space-y-lg relative z-10 max-w-[650px] bg-bg-primary/70 backdrop-blur-md p-lg md:p-xl rounded-2xl border border-border-subtle/50 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
-        <!-- Soft glow behind text -->
-        <div class="absolute -inset-10 bg-primary-container/5 blur-[80px] -z-10 rounded-full"></div>
-        
-        <div class="inline-flex items-center gap-xs px-sm py-base border border-border-subtle/50 rounded-full bg-bg-secondary/40 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-          <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
-          <span class="font-mono text-mono text-text-primary/90 uppercase tracking-widest">System Status: Optimal</span>
-        </div>
-        <h1 class="font-display text-headline-lg-mobile md:text-display text-text-primary font-bold tracking-tight leading-tight">
-          Precision in <br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
-        </h1>
-        <p class="font-display text-body-lg text-text-secondary max-w-[600px]">
-          Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise. No fluff, just robust technical solutions.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center gap-md pt-md w-full sm:w-auto">
-          <a href="services.html" class="text-center w-full sm:w-auto bg-primary-container text-white font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:shadow-[0_0_35px_rgba(255,106,43,0.6)] transform hover:-translate-y-0.5">
-            Explore Solutions
-          </a>
-          <a href="about.html" class="text-center w-full sm:w-auto border border-border-strong/50 bg-bg-secondary/30 backdrop-blur-sm text-text-primary/90 font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-bg-tertiary/80 hover:text-text-primary hover:border-text-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-border-strong focus:ring-offset-2 focus:ring-offset-bg-primary">
-            View Documentation
-          </a>
-        </div>
-      </div>
+<div class="flex-grow flex-1 flex flex-col items-start text-left space-y-lg relative z-10 max-w-[650px] bg-bg-secondary/95 p-lg md:p-xl rounded-2xl border border-border-subtle/50 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
+  
+  <div class="inline-flex items-center gap-xs px-sm py-base border border-border-subtle/50 rounded-full bg-bg-secondary shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+    <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
+    <span class="font-mono text-mono text-text-primary/90 uppercase tracking-widest">System Status: Optimal</span>
+  </div>
+  
+  <h1 class="font-display text-headline-lg-mobile md:text-display text-text-primary font-bold tracking-tight leading-tight">
+    Precision in <br>
+    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
+  </h1>
+  
+  <p class="font-display text-body-lg text-text-secondary max-w-[600px]">
+    Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise. No fluff, just robust technical solutions.
+  </p>
+  
+  <div class="flex flex-col sm:flex-row items-center gap-md pt-md w-full sm:w-auto">
+    <a href="services.html" class="text-center w-full sm:w-auto bg-primary-container text-white font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:shadow-[0_0_35px_rgba(255,106,43,0.6)] transform hover:-translate-y-0.5">
+      Explore Solutions
+    </a>
+    <a href="about.html" class="text-center w-full sm:w-auto border border-border-strong/50 bg-bg-secondary text-text-primary/90 font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-bg-tertiary/80 hover:text-text-primary hover:border-text-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-border-strong focus:ring-offset-2 focus:ring-offset-bg-primary">
+      View Documentation
+    </a>
+  </div>
+</div>
 
       <!-- Right spacer to push text left (keeping the split visual flow on desktop) -->
       <div class="hidden md:block flex-1 pointer-events-none min-h-[450px]"></div>
