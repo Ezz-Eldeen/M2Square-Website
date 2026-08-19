@@ -195,54 +195,38 @@
   </nav>
   
   <!-- Main Content -->
-  <main class="pt-16 min-h-screen flex flex-col items-center justify-center relative bg-grid-pattern">
+<main class="pt-16 min-h-screen flex flex-col relative bg-grid-pattern">
+  
+  <!-- Interactive Particle Background Layer (Fixed to screen) -->
+  <div class="fixed inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+    <canvas id="particles-canvas" class="w-full h-full opacity-70"></canvas>
+  </div>
+
     <!-- Ambient Light Effects -->
     <div class="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-primary-container/10 rounded-full blur-[150px] pointer-events-none mix-blend-screen z-0"></div>
     <div class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
     
     <!-- Hero Section -->
-    <section class="w-full max-w-none px-gutter-mobile md:px-10 lg:px-20 py-section-lg flex flex-col md:flex-row items-center gap-xxl relative z-10 min-h-[80vh]">
+    <section class="w-full max-w-none px-gutter-mobile md:px-10 lg:px-20 pt-12 md:pt-20 pb-8 flex flex-col md:flex-row items-center gap-xxl relative z-10 min-h-[110vh]">
       
-<!-- Interactive Scattered Particle Field -->
-<div class="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-  <canvas id="particles-canvas" class="w-full h-full opacity-70"></canvas>
-</div>
+      <!-- Interactive Scattered Particle Field -->
+      <div class="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+        <canvas id="particles-canvas" class="w-full h-full opacity-70"></canvas>
+      </div>
 
-<script>
+      <script>
   const canvas = document.getElementById('particles-canvas');
   const ctx = canvas.getContext('2d');
 
   let width, height;
   let particles = [];
 
-  // ==========================================
-  // CONFIGURABLE SETTINGS (Tweak these values)
-  // ==========================================
-  const PARTICLE_COUNT = 120;     // Total number of particles
-  const SPEED = 0.9;              // Default floating speed
-  const MOUSE_RADIUS = 110;      // Distance at which particles start scattering away
-  const REPEL_FORCE = 2.5;       // How fast/hard particles get pushed away by cursor
-  const CONNECT_DISTANCE = 140;  // Max distance to draw subtle connecting lines
-  const COLOR = '255, 106, 43';   // Primary orange RGB (rgba format)
+  const SPEED = 1.5;
+  const MOUSE_RADIUS = 170;
+  const REPEL_FORCE = 8.5;
+  const COLOR = '255, 106, 43';
 
-  function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  let mouse = { x: -1000, y: -1000 };
-  window.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.x = -1000;
-    mouse.y = -1000;
-  });
+  let connectDistance = 150;
 
   class Particle {
     constructor() {
@@ -254,11 +238,11 @@
       this.y = Math.random() * height;
       this.vx = (Math.random() - 0.5) * SPEED;
       this.vy = (Math.random() - 0.5) * SPEED;
-      this.size = Math.random() * 2 + 1.2;
+      // Slightly larger dots for crisp rendering on big displays
+      this.size = Math.random() * 2.2 + 1.8; 
     }
 
     update() {
-      // Calculate distance to mouse for scattering effect
       const dx = this.x - mouse.x;
       const dy = this.y - mouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
@@ -270,11 +254,9 @@
         this.y += Math.sin(angle) * force * REPEL_FORCE;
       }
 
-      // Base floating movement
       this.x += this.vx;
       this.y += this.vy;
 
-      // Bounce off viewport boundaries
       if (this.x < 0 || this.x > width) this.vx *= -1;
       if (this.y < 0 || this.y > height) this.vy *= -1;
     }
@@ -282,39 +264,69 @@
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${COLOR}, 0.8)`;
+      ctx.fillStyle = `rgba(${COLOR}, 0.85)`;
       ctx.fill();
     }
   }
 
-  // Initialize Particle Array
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push(new Particle());
+  function initParticles() {
+    // Dynamically scale particle count relative to screen area (density-based)
+    const area = width * height;
+    const targetCount = Math.min(220, Math.max(80, Math.floor(area / 9000)));
+
+    particles = [];
+    for (let i = 0; i < targetCount; i++) {
+      particles.push(new Particle());
+    }
   }
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    // Scale connection reach depending on screen width
+    connectDistance = Math.min(180, Math.max(130, width * 0.09));
+
+    initParticles();
+  }
+
+  window.addEventListener('resize', resize);
+
+  // Viewport-relative mouse tracking
+  let mouse = { x: -1000, y: -1000 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = -1000;
+    mouse.y = -1000;
+  });
+
+  resize(); // Initialize dimensions & particle grid
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw connecting lines between nearby particles
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < CONNECT_DISTANCE) {
-          const alpha = (1 - dist / CONNECT_DISTANCE) * 0.25;
+        if (dist < connectDistance) {
+          const alpha = (1 - dist / connectDistance) * 0.35; // Brighter connection lines
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.strokeStyle = `rgba(${COLOR}, ${alpha})`;
-          ctx.lineWidth = 0.8;
+          ctx.lineWidth = 1.0;
           ctx.stroke();
         }
       }
     }
 
-    // Render & update positions
     particles.forEach(p => {
       p.update();
       p.draw();
@@ -326,38 +338,61 @@
   animate();
 </script>
 
-      <!-- Hero Text Content -->
-<div class="flex-grow flex-1 flex flex-col items-start text-left space-y-lg relative z-10 max-w-[650px] bg-bg-primary/70 backdrop-blur-md p-lg md:p-xl rounded-2xl border border-border-subtle/50 shadow-[0_8px_32px_rgba(0,0,0,0.6)]">
-  
-  <div class="inline-flex items-center gap-xs px-sm py-base border border-border-subtle/50 rounded-full bg-bg-secondary shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-    <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
-    <span class="font-mono text-mono text-text-primary/90 uppercase tracking-widest">System Status: Optimal</span>
-  </div>
-  
-  <h1 class="font-display text-headline-lg-mobile md:text-display text-text-primary font-bold tracking-tight leading-tight">
-    Precision in <br>
-    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
-  </h1>
-  
-  <p class="font-display text-body-lg text-text-secondary max-w-[600px]">
-    Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise. No fluff, just robust technical solutions.
-  </p>
-  
-  <div class="flex flex-col sm:flex-row items-center gap-md pt-md w-full sm:w-auto">
-    <a href="services.html" class="text-center w-full sm:w-auto bg-primary-container text-white font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:shadow-[0_0_35px_rgba(255,106,43,0.6)] transform hover:-translate-y-0.5">
-      Explore Solutions
-    </a>
-    <a href="about.html" class="text-center w-full sm:w-auto border border-border-strong/50 bg-bg-secondary text-text-primary/90 font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-bg-tertiary/80 hover:text-text-primary hover:border-text-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-border-strong focus:ring-offset-2 focus:ring-offset-bg-primary">
-      View Documentation
-    </a>
-  </div>
-</div>
+      <!--Hero Text Content -->
+      <div class="flex-grow flex-1 flex flex-col justify-between items-start text-left relative z-10 max-w-[720px] min-h-[520px] md:min-h-[550px] bg-gradient-to-br from-[#2a1c17]/90 via-[#1d100c]/95 to-[#131316]/90 p-8 md:p-12 rounded-3xl border border-border-subtle/50 shadow-[0_12px_48px_rgba(0,0,0,0.7)]">
+        
+        <div class="space-y-6 w-full">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 border border-border-subtle/50 rounded-full bg-bg-secondary shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
+            <span class="font-mono text-xs text-text-primary/90 uppercase tracking-widest">System Status: Optimal</span>
+          </div>
+          
+          <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-text-primary font-bold tracking-tight leading-[1.08]">
+            Precision in <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-primary drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
+          </h1>
+          
+          <p class="font-display text-lg text-text-secondary max-w-[620px] pt-2 leading-relaxed">
+            Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise. No fluff, just robust technical solutions.
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-md pt-8 w-full sm:w-auto">
+          <a href="services.html" class="text-center w-full sm:w-auto bg-primary-container text-white font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-primary transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:shadow-[0_0_35px_rgba(255,106,43,0.6)] transform hover:-translate-y-0.5">
+            Explore Solutions
+          </a>
+          <a href="about.html" class="text-center w-full sm:w-auto border border-border-strong/50 bg-bg-secondary text-text-primary/90 font-display text-body-md font-semibold px-xl py-sm rounded-2xl hover:bg-bg-tertiary/80 hover:text-text-primary hover:border-text-primary/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-border-strong focus:ring-offset-2 focus:ring-offset-bg-primary">
+            View Documentation
+          </a>
+        </div>
+      </div>
 
-      <!-- Right spacer to push text left (keeping the split visual flow on desktop) -->
-      <div class="hidden md:block flex-1 pointer-events-none min-h-[450px]"></div>
+      <!-- Right spacer to push text left -->
+      <div class="hidden md:block flex-1 pointer-events-none min-h-[400px]"></div>
     </section>
+
+    <!-- CLIENTS SECTION (Positioned lower on the page) -->
+    <section class="w-full max-w-[1400px] mx-auto px-gutter-mobile md:px-8 mt-32 md:mt-48 mb-20 relative z-10">
+      <div class="bg-gradient-to-br from-[#2a1c17]/60 via-[#1d100c]/80 to-[#131316]/60 border border-border-subtle/50 rounded-2xl p-4 md:p-5 shadow-[0_16px_48px_rgba(0,0,0,0.7)] overflow-hidden relative">
+        
+        <!-- Ambient background glow -->
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center mb-3 relative z-10 select-none">
+          <p class="font-mono text-mono text-text-secondary uppercase tracking-widest text-[11px]">Trusted By Innovative Teams</p>
+        </div>
+
+        <!-- Continuous Marquee Container -->
+        <div id="marquee-container" class="relative w-full overflow-x-hidden select-none [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] z-10">
+          <div id="clients-track" class="flex gap-md py-1 items-center w-max">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+      </div>  
+    </section>
+
   </main>
-  
+
   <!-- Footer -->
   <footer class="w-full bg-bg-primary border-t border-border-subtle/50 py-section-sm z-10 relative">
     <div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
@@ -420,46 +455,62 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mobile menu toggle
-      const menuBtn = document.querySelector('button[aria-label="Toggle Menu"]');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
+  // ==========================================================================
+  // Client List & URLs
+  // ==========================================================================
+  const clients = [
+    { name: "#1", url: "#" },
+    { name: "#2", url: "#" },
+    { name: "#3", url: "#" },
+    { name: "#4", url: "#" },
+    { name: "#5", url: "#" },
+    { name: "#6", url: "#" },
+    { name: "#7", url: "#" },
+    { name: "#8", url: "#" }
+  ];
 
-      // Hide Spline Logo / Watermark from Shadow DOM via CSS injection
-      const hideSplineLogo = () => {
-        const viewer = document.querySelector('spline-viewer');
-        if (viewer && viewer.shadowRoot) {
-          if (viewer.shadowRoot.querySelector('#hide-logo-style')) return true;
-          
-          const style = document.createElement('style');
-          style.id = 'hide-logo-style';
-          style.textContent = `
-            #logo, #spline-logo, a, .logo {
-              display: none !important;
-              opacity: 0 !important;
-              pointer-events: none !important;
-              visibility: hidden !important;
-            }
-          `;
-          viewer.shadowRoot.appendChild(style);
-          return true;
-        }
-        return false;
-      };
+  const track = document.getElementById('clients-track');
 
-      // Poll until shadowRoot is available and style is injected
-      const logoInterval = setInterval(() => {
-        if (hideSplineLogo()) {
-          clearInterval(logoInterval);
-        }
-      }, 100);
-      setTimeout(() => clearInterval(logoInterval), 10000);
-    });
-  </script>
-</body>
-</html>
+  function renderClients() {
+    const clientHTML = clients.map(client => `
+      <a href="${client.url}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-md py-xs bg-bg-secondary/80 border border-border-subtle/50 rounded-xl whitespace-nowrap hover:border-primary-container/50 hover:bg-bg-tertiary transition-all duration-300 shadow-md group">
+        <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(255,106,43,0.8)] group-hover:scale-125 transition-transform duration-300"></span>
+        <span class="font-display text-text-primary font-semibold tracking-wide text-label-md group-hover:text-primary transition-colors duration-300">${client.name}</span>
+      </a>
+    `).join('');
+
+    track.innerHTML = clientHTML + clientHTML + clientHTML;
+  }
+
+  renderClients();
+
+  // Auto-Marquee Loop (Left to Right)
+  const limit = track.scrollWidth / 3;
+  let offset = -limit; // Start offset shifted left by 1 full segment
+  const speed = 0.5;
+
+  function animateMarquee() {
+    offset += speed; // Increase offset to move items right
+    
+    // Reset back to -limit once offset reaches 0 to maintain seamless loop
+    if (offset >= 0) {
+      offset = -limit;
+    }
+    
+    track.style.transform = `translateX(${offset}px)`;
+    requestAnimationFrame(animateMarquee);
+  }
+
+  animateMarquee();
+
+  // Mobile Navigation Toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('button[aria-label="Toggle Menu"]');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
