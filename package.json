@@ -7,7 +7,14 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+<<<<<<< Updated upstream
   "devDependencies": {
     "vite": "^5.0.0"
+=======
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.4",
+    "tailwindcss": "^4.3.3"
+>>>>>>> Stashed changes
   }
 }

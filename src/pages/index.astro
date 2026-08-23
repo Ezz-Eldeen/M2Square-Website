@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="M-Square - Precision in Digital Infrastructure">
+  <main class="pt-16 min-h-screen flex flex-col relative bg-[#0f0d0e]">
+    
+    <!-- Canvas for interactive dots & lines -->
+    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none">
+      <canvas id="particles-canvas" class="w-full h-full opacity-70"></canvas>
+    </div>
+
+    <!-- Background glow elements -->
+    <div class="absolute top-1/4 -left-1/4 w-[800px] h-[800px] bg-[#ff6a2b]/10 rounded-full blur-[150px] pointer-events-none mix-blend-screen z-0"></div>
+    <div class="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-[#ff8552]/10 rounded-full blur-[120px] pointer-events-none mix-blend-screen z-0"></div>
+    
+    <!-- Main Hero Card -->
+    <section class="w-full px-6 md:px-16 pt-12 md:pt-20 pb-8 flex flex-col md:flex-row items-center relative z-10 min-h-[90vh]">
+      <div class="w-full md:w-1/2 min-w-[500px] max-w-[780px] flex flex-col justify-between items-start text-left relative z-10 bg-gradient-to-br from-[#2a1c17]/90 via-[#1d100c]/95 to-[#131316]/90 p-8 md:p-12 rounded-3xl border border-[#2e282b]/60 shadow-[0_12px_48px_rgba(0,0,0,0.8)]">
+        
+        <div class="space-y-6 w-full">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 border border-[#2e282b] rounded-full bg-[#1a1618]">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ff6a2b] shadow-[0_0_10px_rgba(255,106,43,0.8)] animate-pulse"></span>
+            <span class="font-mono text-xs text-white/90 uppercase tracking-widest">System Status: Optimal</span>
+          </div>
+          
+          <h1 class="font-sans text-6xl md:text-7xl lg:text-8xl text-white font-bold tracking-tight leading-[1.05]">
+            Precision in <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a2b] to-[#ff8552] drop-shadow-[0_0_15px_rgba(255,106,43,0.3)]">Digital Infrastructure.</span>
+          </h1>
+          
+          <p class="font-sans text-xl text-[#a3a0a2] max-w-[680px] pt-3 leading-relaxed">
+            Engineer-to-engineer clarity. We architect resilient systems, secure networks, and scalable platforms for the modern enterprise.
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-4 pt-8 w-full sm:w-auto">
+          <a href="/services" class="text-center w-full sm:w-auto bg-[#ff6a2b] text-white font-sans text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#ff8552] transition-all duration-300 shadow-[0_0_20px_rgba(255,106,43,0.4)]">
+            Explore Solutions
+          </a>
+          <a href="/about" class="text-center w-full sm:w-auto border border-[#4a4246] bg-[#1a1618] text-white font-sans text-sm font-semibold px-6 py-3 rounded-xl hover:bg-[#262023] transition-all duration-300">
+            View Documentation
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infinite Scroll / Marquee Section -->
+    <section class="w-full max-w-[1400px] mx-auto px-6 md:px-16 my-16 relative z-10">
+      <div class="bg-gradient-to-br from-[#2a1c17]/60 via-[#1d100c]/80 to-[#131316]/60 border border-[#2e282b]/60 rounded-2xl p-4 shadow-[0_16px_48px_rgba(0,0,0,0.7)] overflow-hidden relative">
+        <div id="marquee-container" class="relative w-full overflow-x-hidden select-none [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+          <div id="clients-track" class="flex gap-4 py-1 items-center w-max">
+            <!-- Dynamically populated via script -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  // Canvas Particles Animation Script
+  const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+    let particles: Particle[] = [];
+    let mouse = { x: -1000, y: -1000 };
+
+    class Particle {
+      x = Math.random() * width;
+      y = Math.random() * height;
+      vx = (Math.random() - 0.5) * 1.5;
+      vy = (Math.random() - 0.5) * 1.5;
+      size = Math.random() * 2 + 1.5;
+
+      update() {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          const angle = Math.atan2(dy, dx);
+          this.x += Math.cos(angle) * 3;
+          this.y += Math.sin(angle) * 3;
+        }
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 106, 43, 0.85)';
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particles = Array.from({ length: 120 }, () => new Particle());
+    }
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      init();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    init();
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 106, 43, ${ (1 - dist / 140) * 0.35 })`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      particles.forEach((p) => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // Infinite Scroll / Marquee Script
+  const clients = [
+    { name: "#1", url: "#" },
+    { name: "#2", url: "#" },
+    { name: "#3", url: "#" },
+    { name: "#4", url: "#" },
+    { name: "#5", url: "#" },
+    { name: "#6", url: "#" },
+    { name: "#7", url: "#" },
+    { name: "#8", url: "#" }
+  ];
+
+  const track = document.getElementById('clients-track');
+  if (track) {
+    const clientHTML = clients.map(client => `
+      <a href="${client.url}" class="flex items-center gap-2 px-4 py-2 bg-[#1a1618] border border-[#2e282b] rounded-xl whitespace-nowrap hover:border-[#ff6a2b] transition-all duration-300 shadow-md group">
+        <span class="w-2 h-2 rounded-full bg-[#ff6a2b] shadow-[0_0_8px_rgba(255,106,43,0.8)]"></span>
+        <span class="font-sans text-white font-semibold text-sm group-hover:text-[#ff6a2b] transition-colors">${client.name}</span>
+      </a>
+    `).join('');
+
+    track.innerHTML = clientHTML + clientHTML + clientHTML;
+
+    const limit = track.scrollWidth / 3;
+    let offset = -limit;
+    const speed = 0.5;
+
+function animateMarquee() {
+  offset += speed;
+  if (offset >= 0) {
+    offset = -limit;
+  }
+  // Use optional chaining (track?.style) or keep it wrapped in a null-check
+  if (track) {
+    track.style.transform = `translateX(${offset}px)`;
+  }
+  requestAnimationFrame(animateMarquee);
+}
+
+    animateMarquee();
+  }
+</script>

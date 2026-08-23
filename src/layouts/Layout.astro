@@ -1,0 +1,153 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "M-Square" } = Astro.props;
+
+// Normalize path to ignore trailing slashes
+const rawPath = Astro.url.pathname;
+const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, -1) : rawPath;
+---
+
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-bg-primary text-text-primary font-display antialiased selection:bg-primary-container selection:text-white overflow-x-hidden">
+  
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 w-full z-50 bg-bg-primary/90 backdrop-blur-md border-b border-border-subtle/50 transition-all duration-300">
+    <div class="flex justify-between items-center h-16 px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto">
+      <a class="flex items-center gap-2 font-display text-headline-sm font-bold text-primary-container hover:text-primary transition-colors duration-200 tracking-tight" href="/">
+        <img src="/assets/Logo.png" alt="M-Square Logo" class="h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,106,43,0.4)]" />
+        M-Square
+      </a>
+      
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex space-x-lg items-center">
+        <li>
+          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/' ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`} href="/">
+            Home
+          </a>
+        </li>
+        <li>
+          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/about' ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`} href="/about">
+            About Us
+          </a>
+        </li>
+        <li class="relative group">
+          <a href="/services" class={`font-display text-body-md transition-colors duration-200 flex items-center gap-base ${currentPath.startsWith('/services') ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`}>
+            Services and Solutions
+            <span class="material-symbols-outlined text-[16px]">expand_more</span>
+          </a>
+          <div class="absolute left-0 top-full mt-2 w-64 bg-bg-secondary/90 backdrop-blur-lg border border-border-subtle rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+            <div class="py-sm">
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#cyber-security">Cyber Security</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#digital-transformation">Digital Transformation</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#project-management">Project Management</a>
+              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#e-taxes-solutions">E-Taxes Solutions</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/contact' ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`} href="/contact">
+            Contact Us
+          </a>
+        </li>
+      </ul>
+      
+      <div class="hidden md:flex items-center gap-md">
+        <a class="font-display text-label-md text-text-secondary hover:text-text-primary transition-colors duration-200" href="/login">Log In</a>
+        <a href="/contact" class="bg-primary-container text-white font-label-md font-semibold px-md py-xs rounded-xl hover:bg-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 focus:ring-offset-bg-primary shadow-[0_0_20px_rgba(255,106,43,0.3)] hover:shadow-[0_0_30px_rgba(255,106,43,0.5)]">
+          Get Started
+        </a>
+      </div>
+      
+      <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-text-primary/80 hover:text-text-primary transition-colors duration-200 select-none">
+        <span class="material-symbols-outlined text-[24px]">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-bg-primary border-t border-border-subtle/50 px-gutter-mobile py-md space-y-sm">
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/">Home</a>
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/about">About Us</a>
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/services">Services & Solutions</a>
+      <div class="space-y-xs pl-sm border-l border-border-subtle">
+        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#cyber-security">Cyber Security</a>
+        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#digital-transformation">Digital Transformation</a>
+        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#project-management">Project Management</a>
+        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#e-taxes-solutions">E-Taxes Solutions</a>
+      </div>
+      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/contact">Contact Us</a>
+      <div class="pt-sm border-t border-border-subtle/50 flex flex-col gap-sm">
+        <a class="text-center font-display text-body-md text-text-secondary py-xs" href="/login">Log In</a>
+        <a class="text-center bg-primary-container text-white font-label-md font-semibold py-xs rounded-xl" href="/contact">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <slot />
+
+  <!-- Footer -->
+  <footer class="w-full bg-bg-primary border-t border-border-subtle/50 py-section-sm z-10 relative">
+    <div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <div class="col-span-1 md:col-span-1">
+        <a class="flex items-center gap-2 mb-sm font-display text-headline-sm font-bold text-primary-container hover:text-primary transition-colors duration-200 tracking-tight" href="/">
+          <img src="/assets/Logo.png" alt="M-Square Logo" class="h-16 w-auto object-contain" />
+          M-Square
+        </a>
+        <p class="font-display text-label-md text-text-primary/60 mb-sm">
+          © 2021 M-Square. Precision in Digital Infrastructure.
+        </p>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Solutions</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#cyber-security">Cyber Security</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#digital-transformation">Digital Transformation</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#project-management">Project Management</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#e-taxes-solutions">E-Taxes Solutions</a></li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Company</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/about">About Us</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/contact">Contact</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="mailto:sales@m-square.com">sales@m-square.com</a></li>
+        </ul>
+      </div>
+      <div class="col-span-1">
+        <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Legal</h4>
+        <ul class="space-y-sm">
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Privacy Policy</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const setupMenu = () => {
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+      }
+    };
+    
+    // Initialize on load & Astro page transitions
+    setupMenu();
+    document.addEventListener('astro:page-load', setupMenu);
+  </script>
+</body>
+</html>

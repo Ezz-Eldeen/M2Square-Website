@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us - M2-Square">
+  <main class="pt-32 pb-24 px-6 max-w-[1440px] mx-auto relative z-10 bg-[radial-gradient(ellipse_120%_60%_at_50%_-10%,_#1a1310_0%,_#0a0a0c_55%,_#08080a_100%)] text-white overflow-hidden">
+    <!-- Atmospheric glows -->
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#ff6a2b]/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#ffb59a]/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+    <!-- Hero -->
+    <div class="max-w-3xl relative z-10 mb-12">
+      <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-4 leading-tight tracking-tight">Initialize Connection</h1>
+      <p class="text-base sm:text-lg text-[#A3A3AA] leading-relaxed max-w-2xl">
+        Secure transmission channel for technical inquiries, system integration support, and deployment assistance. Establish contact with an M2-Square operative.
+      </p>
+    </div>
+
+    <!-- Content grid -->
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Contact form -->
+      <div class="lg:col-span-8 w-full">
+        <div class="bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/30 to-transparent"></div>
+
+          <form action="#" method="POST" class="space-y-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="name">
+                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">person</span>Full Name
+                </label>
+                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="name" name="name" placeholder="Enter full name" required type="text" />
+              </div>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="phone">
+                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">phone</span>Phone Number
+                </label>
+                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="phone" name="phone" placeholder="0155 357 7554" type="tel" />
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="email">
+                <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">mail</span>Email Address
+              </label>
+              <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="email" name="email" placeholder="sales@m2-square.com" required type="email" />
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="subject">
+                <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">tag</span>Subject
+              </label>
+              <select class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all cursor-pointer" id="subject" name="subject">
+                <option value="technical">Technical Support</option>
+                <option value="deployment">Deployment Coordination</option>
+                <option value="security">Security Audit Request</option>
+                <option value="other">General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="message">
+                <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">terminal</span>Message
+              </label>
+              <textarea class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72] resize-y" id="message" name="message" placeholder="Detail your requirements here..." required rows="5"></textarea>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-white/10">
+              <div class="text-xs font-mono text-[#6B6B72] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[14px]">lock</span>Encrypted SSL connection
+              </div>
+              <button class="bg-[#ff6a2b] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#ffb59a] hover:text-[#131316] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,106,43,0.2)] hover:shadow-[0_0_20px_rgba(255,106,43,0.4)]" type="submit">
+                <span class="tracking-widest uppercase text-xs">Submit Request</span>
+                <span class="material-symbols-outlined text-[18px]">send</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Support Node Sidebar -->
+      <div class="lg:col-span-4 w-full flex flex-col gap-6">
+        <div class="bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/30 to-transparent"></div>
+          <h3 class="text-xl font-semibold text-[#F5F5F4] mb-4 flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#3DD68C] animate-pulse"></span>
+            Operational Center
+          </h3>
+          <p class="text-[#A3A3AA] mb-6 leading-relaxed">
+            Operations node is active and accepting encrypted requests. Response time SLA is under 4 hours.
+          </p>
+          <div class="space-y-2 font-mono text-[13px] text-[#A3A3AA] pl-3 border-l border-white/10">
+            <div>NODE: OPS-CENTRAL-ALX</div>
+            <div>ADDR: 8 Mustafa Kamel ST, El-Maamoura bldg</div>
+            <div>CITY: Smouha, Alexandria, Egypt</div>
+            <div>COORD: 31&deg; 12' N, 29&deg; 55' E</div>
+            <div>PHONE: +20 155 357 7554</div>
+            <div>PHONE: +20 155 136 0527 (Alt)</div>
+            <div>STATUS: ONLINE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

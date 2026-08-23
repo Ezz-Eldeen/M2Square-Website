@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="M2-Square - Login">
+  <div class="bg-bg-primary text-text-primary font-display antialiased min-h-screen flex items-center justify-center relative overflow-hidden w-full">
+    
+    <!-- Ambient Background Lighting (Subtle) -->
+    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+      <div class="absolute w-[600px] h-[600px] bg-accent-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50"></div>
+    </div>
+    
+    <!-- Login Card Container -->
+    <div class="relative w-full max-w-[420px] px-gutter-mobile md:px-0 z-10 py-12">
+      <!-- Brand Header -->
+      <div class="text-center mb-xl flex flex-col items-center">
+        <a class="flex flex-col items-center gap-2 hover:opacity-80 transition-opacity mb-sm" href="/">
+          <img src="/assets/Logo.png" alt="M-Square Logo" class="h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,106,43,0.4)]" />
+          <span class="font-display text-headline-md font-bold text-primary-container tracking-tight">M2-Square</span>
+        </a>
+        <p class="font-display text-body-md text-text-secondary">Precision in Digital Infrastructure.</p>
+      </div>
+      
+      <!-- Surface Card -->
+      <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-xl shadow-2xl relative overflow-hidden">
+        <!-- Subtle top highlight for depth -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border-strong to-transparent opacity-50"></div>
+        
+        <form action="#" class="space-y-lg" method="POST">
+          <!-- Username Input -->
+          <div class="space-y-xs">
+            <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="username">System ID</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-text-tertiary text-[18px]">badge</span>
+              </div>
+              <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary" id="username" name="username" placeholder="user@domain.ext" required type="text" />
+            </div>
+          </div>
+          
+          <!-- Password Input -->
+          <div class="space-y-xs">
+            <div class="flex justify-between items-center">
+              <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="password">Passcode</label>
+              <a class="font-label-md text-text-tertiary hover:text-primary-container transition-colors text-[11px]" href="#">Reset Key?</a>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-text-tertiary text-[18px]">lock</span>
+              </div>
+              <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary tracking-widest" id="password" name="password" placeholder="••••••••" required type="password" />
+            </div>
+          </div>
+          
+          <!-- Actions -->
+          <div class="pt-sm space-y-md">
+            <button class="w-full flex justify-center py-[10px] px-md border border-transparent rounded bg-primary-container text-white font-display text-body-md font-semibold hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-primary-container transition-colors duration-200 shadow-[0_0_15px_rgba(255,106,43,0.2)]" type="submit">
+              Authenticate
+            </button>
+            <button class="w-full flex justify-center py-[10px] px-md border border-border-strong rounded bg-transparent text-text-primary font-display text-body-md hover:bg-bg-tertiary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-border-strong transition-colors duration-200" type="button">
+              <span class="material-symbols-outlined mr-xs text-[18px]">key</span>
+              SSO Login
+            </button>
+          </div>
+        </form>
+        
+        <!-- Terminal decorative element -->
+        <div class="mt-lg pt-md border-t border-border-subtle flex items-center justify-center opacity-40">
+          <span class="material-symbols-outlined text-[14px] text-text-tertiary mr-xs">terminal</span>
+          <span class="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">Node: Auth-Server-01</span>
+        </div>
+      </div>
+      
+      <!-- Footer Links -->
+      <div class="mt-lg flex justify-center space-x-md text-center">
+        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="#">Privacy Policy</a>
+        <span class="text-border-strong text-[11px]">|</span>
+        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+</head>
+
+<style>
+  .focus-glow:focus {
+    box-shadow: 0 0 0 2px rgba(255, 106, 43, 0.2);
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>
