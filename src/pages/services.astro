@@ -3,108 +3,502 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Services and Solutions - M2-Square">
-  <main class="pt-32 pb-32 px-6 max-w-[1440px] mx-auto relative z-10 bg-[radial-gradient(ellipse_120%_60%_at_50%_-10%,_#1a1310_0%,_#0a0a0c_55%,_#08080a_100%)] text-white overflow-hidden">
-    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#ff6a2b]/5 blur-[150px] rounded-full pointer-events-none z-0"></div>
-    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#ffb59a]/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+  <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#101821_0%,_#0d1116_35%,_#0a0d10_65%,_#08080a_100%)]">
+    <!-- Ambient mesh background -->
+    <div class="mesh-bg absolute inset-0 pointer-events-none z-0"></div>
+    <div class="bg-grid-services absolute inset-0 pointer-events-none z-0"></div>
 
-    <!-- Hero -->
-    <section class="max-w-3xl mb-16 relative z-10">
-      <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-6 leading-tight tracking-tight">
-        Engineering precision across digital infrastructure.
-      </h1>
-      <p class="text-base sm:text-lg text-[#A3A3AA] max-w-2xl leading-relaxed">
-        We deliver uncompromising technical solutions across four core pillars. Built for scale, secured by design, and engineered for high-performance environments.
-      </p>
-    </section>
-
-    <!-- Services Bento Grid -->
-    <section class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Cyber Security -->
-      <div id="cyber-security" class="scroll-mt-24 group relative bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 transition-all duration-300 hover:border-[#ff6a2b]/40 hover:-translate-y-1 overflow-hidden flex flex-col h-full min-h-[320px] shadow-lg">
-        <div class="absolute top-0 left-0 w-1 h-full bg-[#ff6a2b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="mb-auto relative z-10">
-          <span class="material-symbols-outlined text-[#A3A3AA] group-hover:text-[#ff6a2b] text-4xl mb-6 transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">security</span>
-          <h2 class="text-2xl font-semibold text-[#F5F5F4] mb-3">Cyber Security</h2>
-          <p class="text-[#A3A3AA] leading-relaxed">
-            Advanced threat detection, zero-trust architecture implementation, and comprehensive vulnerability management. We secure your digital perimeter with military-grade protocols and continuous monitoring.
-          </p>
+    <!-- 1. HERO -->
+    <section class="relative z-10 pt-40 pb-28 px-6 max-w-[1440px] mx-auto">
+      <div class="reveal-card max-w-4xl">
+        <div class="inline-flex items-center gap-2 border border-white/10 bg-[#131316]/80 backdrop-blur-md px-4 py-1.5 rounded-full mb-8">
+          <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse shadow-[0_0_8px_rgba(255,106,43,0.8)]"></span>
+          <span class="font-mono text-xs text-[#A3A3AA] uppercase tracking-widest">What We Build</span>
         </div>
-        <div class="mt-6 relative z-10">
-          <a class="inline-flex items-center text-[#A3A3AA] group-hover:text-[#ff6a2b] transition-colors duration-300" href="/contact">
-            Explore Protocols <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Digital Transformation -->
-      <div id="digital-transformation" class="scroll-mt-24 group relative bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 transition-all duration-300 hover:border-[#ff6a2b]/40 hover:-translate-y-1 overflow-hidden flex flex-col h-full min-h-[320px] shadow-lg">
-        <div class="absolute top-0 left-0 w-1 h-full bg-[#ff6a2b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="mb-auto relative z-10">
-          <span class="material-symbols-outlined text-[#A3A3AA] group-hover:text-[#ff6a2b] text-4xl mb-6 transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">architecture</span>
-          <h2 class="text-2xl font-semibold text-[#F5F5F4] mb-3">Digital Transformation</h2>
-          <p class="text-[#A3A3AA] leading-relaxed">
-            Modernize legacy systems and orchestrate cloud-native migrations. We build scalable microservices and automate deployment pipelines to accelerate technical velocity.
-          </p>
-        </div>
-        <div class="mt-6 relative z-10">
-          <a class="inline-flex items-center text-[#A3A3AA] group-hover:text-[#ff6a2b] transition-colors duration-300" href="/contact">
-            View Methodologies <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Project Management -->
-      <div id="project-management" class="scroll-mt-24 group relative bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 transition-all duration-300 hover:border-[#ff6a2b]/40 hover:-translate-y-1 overflow-hidden flex flex-col h-full min-h-[320px] shadow-lg">
-        <div class="absolute top-0 left-0 w-1 h-full bg-[#ff6a2b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="mb-auto relative z-10">
-          <span class="material-symbols-outlined text-[#A3A3AA] group-hover:text-[#ff6a2b] text-4xl mb-6 transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">account_tree</span>
-          <h2 class="text-2xl font-semibold text-[#F5F5F4] mb-3">Project Management</h2>
-          <p class="text-[#A3A3AA] leading-relaxed">
-            Rigorous technical oversight for complex IT initiatives. Utilizing agile frameworks and precise resource allocation to ensure delivery on strict engineering timelines.
-          </p>
-        </div>
-        <div class="mt-6 relative z-10">
-          <a class="inline-flex items-center text-[#A3A3AA] group-hover:text-[#ff6a2b] transition-colors duration-300" href="/contact">
-            Review Frameworks <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- E-Taxes Solutions -->
-      <div id="e-taxes-solutions" class="scroll-mt-24 group relative bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 transition-all duration-300 hover:border-[#ff6a2b]/40 hover:-translate-y-1 overflow-hidden flex flex-col h-full min-h-[320px] shadow-lg">
-        <div class="absolute top-0 left-0 w-1 h-full bg-[#ff6a2b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="mb-auto relative z-10">
-          <span class="material-symbols-outlined text-[#A3A3AA] group-hover:text-[#ff6a2b] text-4xl mb-6 transition-colors duration-300" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
-          <h2 class="text-2xl font-semibold text-[#F5F5F4] mb-3">E-Taxes Solutions</h2>
-          <p class="text-[#A3A3AA] leading-relaxed">
-            Secure, compliant, and highly available fiscal infrastructure. We develop integrated e-invoicing and tax compliance platforms engineered to handle high-throughput transactional data.
-          </p>
-        </div>
-        <div class="mt-6 relative z-10">
-          <a class="inline-flex items-center text-[#A3A3AA] group-hover:text-[#ff6a2b] transition-colors duration-300" href="/contact">
-            Examine Specs <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
-          </a>
-        </div>
+        <h1 class="text-5xl sm:text-7xl md:text-8xl font-bold leading-[0.95] tracking-tight mb-8">
+          Systems built to
+          <span class="hero-gradient-text block bg-clip-text text-transparent">run without you watching them.</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-[#A3A3AA] max-w-2xl leading-relaxed">
+          Three practices, one engineering standard. We modernize infrastructure, run the projects that ship it, and build the compliance systems that keep it legal.
+        </p>
       </div>
     </section>
 
-    <!-- Technical Stats/Info Section -->
-    <section class="mt-24 relative z-10 bg-[#1C1C20]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 md:p-16 overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#ff6a2b]/5 to-transparent pointer-events-none"></div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+    <!-- Floating accent orbs behind the hero -->
+    <div class="hero-orb hero-orb-a" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
+
+    <!-- Sticky service pills -->
+    <div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-6">
+      <nav class="pointer-events-auto flex items-center gap-2 bg-[#131316]/90 border border-white/10 backdrop-blur-xl rounded-full px-2 py-2 shadow-2xl">
+        <a href="#digital-transformation" class="px-4 py-2 rounded-full text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors">01 &middot; Digital Transformation</a>
+        <a href="#project-management" class="px-4 py-2 rounded-full text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors">02 &middot; Project Management</a>
+        <a href="#e-taxes-solutions" class="px-4 py-2 rounded-full text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors">03 &middot; E-Taxes Solutions</a>
+      </nav>
+    </div>
+
+    <!-- 2. SERVICE SPOTLIGHT — DIGITAL TRANSFORMATION -->
+    <section id="digital-transformation" class="scroll-mt-40 relative z-10 px-6 max-w-[1440px] mx-auto py-24 md:py-32 overflow-hidden">
+      <div class="absolute top-10 -right-32 w-[500px] h-[500px] bg-[#ff6a2b]/8 rounded-full blur-[160px] pointer-events-none z-0"></div>
+      <span class="giant-number select-none" aria-hidden="true">01</span>
+      <div class="reveal-card relative grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         <div>
-          <div class="font-mono text-[#ff6a2b] mb-2 text-2xl">99.999%</div>
-          <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">SLA Uptime</div>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 01</span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-[#F5F5F4] mt-4 mb-6 leading-tight">Digital Transformation</h2>
+          <p class="text-[#A3A3AA] text-lg leading-relaxed mb-8">
+            Modernize legacy systems and orchestrate cloud-native migrations. We build scalable microservices and automate deployment pipelines to accelerate technical velocity &mdash; then wrap it all in software your team actually wants to open every morning.
+          </p>
+          <a class="inline-flex items-center gap-2 text-[#F5F5F4] font-semibold group" href="/contact">
+            Talk about your system
+            <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+          </a>
         </div>
-        <div>
-          <div class="font-mono text-[#ff6a2b] mb-2 text-2xl">ISO 27001</div>
-          <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">Certified Protocols</div>
+
+        <!-- From our work: ERP dashboard mock -->
+        <div class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/40 to-transparent"></div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-[#6B6B72]">From Our Work</span>
+            <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Deployed</span>
+          </div>
+          <h3 class="text-xl font-semibold text-[#F5F5F4] mb-1">Enterprise Resource Planning Platform</h3>
+          <p class="text-sm text-[#A3A3AA] mb-6">A custom multi-branch ERP covering finance through customer service, replacing a patchwork of spreadsheets.</p>
+          <div class="grid grid-cols-4 gap-2 mb-6">
+            {[
+              ["settings", "System Setup"],
+              ["account_balance", "General Ledger"],
+              ["groups", "HR"],
+              ["warehouse", "Warehouse"],
+              ["shopping_cart", "Purchasing"],
+              ["storefront", "Sales"],
+              ["support_agent", "Customer Service"],
+              ["query_stats", "Analytics"],
+            ].map(([icon, label]) => (
+              <div class="module-tile flex flex-col items-center justify-center gap-1.5 rounded-xl bg-[#1C1C20] border border-white/5 py-3 px-1 text-center">
+                <span class="material-symbols-outlined text-[#ff6a2b] text-lg">{icon}</span>
+                <span class="text-[9px] leading-tight text-[#A3A3AA]">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div class="border-t border-white/10 pt-4 font-mono text-[11px] text-[#6B6B72] leading-relaxed">
+            4-level chart of accounts &middot; per-branch warehouse tracking &middot; min/max stock thresholds &middot; role-based access
+          </div>
         </div>
+      </div>
+    </section>
+
+    <div class="diagonal-divider"></div>
+
+    <!-- 3. SERVICE SPOTLIGHT — PROJECT MANAGEMENT -->
+    <section id="project-management" class="scroll-mt-40 relative z-10 px-6 max-w-[1440px] mx-auto py-24 md:py-32 bg-[#0d0d10]/40 overflow-hidden">
+      <div class="absolute bottom-10 -left-32 w-[480px] h-[480px] bg-[#00a5d7]/10 rounded-full blur-[160px] pointer-events-none z-0"></div>
+      <span class="giant-number select-none" aria-hidden="true">02</span>
+      <div class="reveal-card relative grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <!-- Process timeline (order swapped on desktop) -->
+        <div class="glow-card order-2 lg:order-1 relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/40 to-transparent"></div>
+          <span class="font-mono text-[10px] uppercase tracking-widest text-[#6B6B72] block mb-6">Our Delivery Cadence</span>
+          <div class="space-y-6">
+            {[
+              ["Plan", "Scope, resourcing, and risk mapped before a single sprint opens."],
+              ["Execute", "Agile sprints with strict engineering timelines and daily visibility."],
+              ["Monitor", "Live burn-down and budget tracking &mdash; no end-of-quarter surprises."],
+              ["Deliver", "Staged rollout with sign-off gates at every environment."],
+            ].map(([step, desc], i) => (
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center">
+                  <span class="w-8 h-8 rounded-full bg-[#1C1C20] border border-[#ff6a2b]/40 text-[#ff6a2b] font-mono text-xs flex items-center justify-center shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  {i < 3 && <span class="w-px flex-1 bg-white/10 mt-1"></span>}
+                </div>
+                <div class="pb-2">
+                  <div class="text-[#F5F5F4] font-semibold mb-1">{step}</div>
+                  <p class="text-sm text-[#A3A3AA] leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 02</span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-[#F5F5F4] mt-4 mb-6 leading-tight">Project Management</h2>
+          <p class="text-[#A3A3AA] text-lg leading-relaxed mb-8">
+            Rigorous technical oversight for complex IT initiatives. Agile frameworks and precise resource allocation keep delivery on strict engineering timelines &mdash; whether we're running the whole build or embedded inside your team.
+          </p>
+          <a class="inline-flex items-center gap-2 text-[#F5F5F4] font-semibold group" href="/contact">
+            Bring us onto your project
+            <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="diagonal-divider diagonal-divider-flip"></div>
+
+    <!-- 4. SERVICE SPOTLIGHT — E-TAXES SOLUTIONS -->
+    <section id="e-taxes-solutions" class="scroll-mt-40 relative z-10 px-6 max-w-[1440px] mx-auto py-24 md:py-32 overflow-hidden">
+      <div class="absolute top-1/3 -right-40 w-[520px] h-[520px] bg-[#71d2ff]/8 rounded-full blur-[170px] pointer-events-none z-0"></div>
+      <div class="absolute bottom-0 -left-20 w-[380px] h-[380px] bg-[#ff6a2b]/7 rounded-full blur-[140px] pointer-events-none z-0"></div>
+      <span class="giant-number select-none" aria-hidden="true">03</span>
+      <div class="reveal-card relative grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         <div>
-          <div class="font-mono text-[#ff6a2b] mb-2 text-2xl">&lt; 50ms</div>
-          <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">API Latency</div>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 03</span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-[#F5F5F4] mt-4 mb-6 leading-tight">E-Taxes Solutions</h2>
+          <p class="text-[#A3A3AA] text-lg leading-relaxed mb-8">
+            Secure, compliant, and highly available fiscal infrastructure. We build integrated e-invoicing platforms engineered to handle high-throughput transactional data &mdash; signed, sent, and reconciled without a human in the loop.
+          </p>
+          <a class="inline-flex items-center gap-2 text-[#F5F5F4] font-semibold group" href="/contact">
+            Get compliant
+            <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- From our work: E-Taxes pipeline -->
+        <div class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/40 to-transparent"></div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-[#6B6B72]">From Our Work</span>
+            <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Live</span>
+          </div>
+          <h3 class="text-xl font-semibold text-[#F5F5F4] mb-1">E-Taxes Signing &amp; Sending Platform</h3>
+          <p class="text-sm text-[#A3A3AA] mb-6">A direct, real-time bridge between client ERPs and the Egyptian Tax Authority.</p>
+
+          <div class="flex items-center gap-1 mb-6">
+            {["Definitions", "Register & Confirm", "Sign & Send to ETA"].map((step, i) => (
+              <>
+                <div class="flex-1 rounded-lg bg-[#1C1C20] border border-white/5 py-3 px-2 text-center">
+                  <span class="text-[10px] leading-tight text-[#A3A3AA] block">{step}</span>
+                </div>
+                {i < 2 && <span class="material-symbols-outlined text-[#ff6a2b] text-base shrink-0">arrow_forward</span>}
+              </>
+            ))}
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            {["Oracle DB", "Java", "PHP", "MySQL", "REST API", "Web Services"].map((tag) => (
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#ffb59a] bg-[#ff6a2b]/10 border border-[#ff6a2b]/20 rounded-full px-2.5 py-1">{tag}</span>
+            ))}
+          </div>
+
+          <div class="border-t border-white/10 pt-4 font-mono text-[11px] text-[#6B6B72] leading-relaxed">
+            Digital signature via Egypt Trust / Misr Clearing &middot; multi-device concurrent access &middot; available as a full platform or as a signing-only module bolted onto an existing ERP
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. STATS -->
+    <section class="reveal-card relative z-10 px-6 max-w-[1440px] mx-auto pb-24">
+      <div class="relative bg-[#1C1C20]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-10 md:p-16 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#ff6a2b]/5 to-transparent pointer-events-none"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 relative z-10">
+          <div>
+            <div class="font-mono text-[#ff6a2b] mb-2 text-4xl">99.999%</div>
+            <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">SLA Uptime</div>
+          </div>
+          <div>
+            <div class="font-mono text-[#ff6a2b] mb-2 text-4xl">ISO 27001</div>
+            <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">Certified Protocols</div>
+          </div>
+          <div>
+            <div class="font-mono text-[#ff6a2b] mb-2 text-4xl">&lt; 50ms</div>
+            <div class="text-[#A3A3AA] uppercase tracking-widest text-sm">API Latency</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
+    <section class="reveal-card relative z-10 px-6 max-w-[1440px] mx-auto pb-32">
+      <div class="cta-card relative rounded-3xl border border-[#ff6a2b]/25 overflow-hidden">
+        <!-- Rotating conic glow ring -->
+        <div class="cta-ring" aria-hidden="true"></div>
+        <!-- Sparkle field -->
+        <div class="cta-sparkles" aria-hidden="true">
+          <span style="top:12%; left:10%; --d:0s; --dur:3.4s;"></span>
+          <span style="top:20%; left:85%; --d:0.6s; --dur:4s;"></span>
+          <span style="top:75%; left:15%; --d:1.2s; --dur:3.7s;"></span>
+          <span style="top:80%; left:80%; --d:0.3s; --dur:4.3s;"></span>
+          <span style="top:45%; left:5%; --d:1.8s; --dur:3.2s;"></span>
+          <span style="top:50%; left:93%; --d:0.9s; --dur:3.9s;"></span>
+          <span style="top:10%; left:50%; --d:1.4s; --dur:3.6s;"></span>
+          <span style="top:88%; left:48%; --d:0.4s; --dur:4.1s;"></span>
+        </div>
+
+        <div class="relative z-10 text-center px-8 py-16 sm:px-16 sm:py-24">
+          <h2
+            class="cta-gradient-text text-4xl sm:text-6xl font-bold mb-6 mx-auto"
+            style="max-width: 48rem; width: 100%;"
+          >
+            Pick a practice. Start the build.
+          </h2>
+          <p
+            class="text-[#A3A3AA] text-lg leading-relaxed mx-auto"
+            style="max-width: 36rem; width: 100%; display: block;"
+          >
+            Whichever problem you&rsquo;re solving &mdash; a legacy migration, a project on the edge of scope creep, or a compliance deadline &mdash; we&rsquo;ve already shipped the version of it.
+          </p>
+          <a href="/contact" class="shine-btn relative mt-10 inline-flex items-center gap-2 px-10 py-4 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(255,106,43,0.45)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+            <span class="relative z-10">Get Started Now</span>
+            <span class="material-symbols-outlined relative z-10 text-[18px]">arrow_forward</span>
+          </a>
         </div>
       </div>
     </section>
   </main>
 </Layout>
+
+<style>
+  /* Ambient moving mesh background — orange mixed with the brand's cool accent */
+  .mesh-bg {
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255, 106, 43, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(0, 165, 215, 0.10) 0%, transparent 35%),
+      radial-gradient(circle at 30% 80%, rgba(113, 210, 255, 0.07) 0%, transparent 40%),
+      radial-gradient(circle at 80% 75%, rgba(255, 181, 154, 0.06) 0%, transparent 35%);
+    background-size: 200% 200%;
+    animation: meshDrift 24s ease-in-out infinite;
+  }
+
+  @keyframes meshDrift {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+  }
+
+  .bg-grid-services {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  /* Floating hero orbs */
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(90px);
+    z-index: 0;
+  }
+  .hero-orb-a {
+    top: 4rem;
+    right: 8%;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(0, 165, 215, 0.22) 0%, transparent 70%);
+    animation: orbFloat 9s ease-in-out infinite;
+  }
+  .hero-orb-b {
+    top: 22rem;
+    right: 22%;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(255, 106, 43, 0.18) 0%, transparent 70%);
+    animation: orbFloat 11s ease-in-out infinite reverse;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, 25px); }
+  }
+
+  /* Animated hero headline gradient — orange sweeping into the brand's blue */
+  .hero-gradient-text {
+    background-image: linear-gradient(90deg, #ff6a2b, #ffb59a, #71d2ff, #ff6a2b);
+    background-size: 300% 100%;
+    animation: gradientSweep 8s ease-in-out infinite;
+  }
+  .cta-gradient-text {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(90deg, #ffffff, #ffb59a, #71d2ff, #ffffff);
+    background-size: 300% 100%;
+    animation: gradientSweep 7s ease-in-out infinite;
+  }
+  @keyframes gradientSweep {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Giant faded section numbers */
+  .giant-number {
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: clamp(6rem, 18vw, 14rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 106, 43, 0.18);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Diagonal section divider */
+  .diagonal-divider {
+    position: relative;
+    height: 80px;
+    background: #0d0d10;
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+    opacity: 0.4;
+  }
+  .diagonal-divider-flip {
+    clip-path: polygon(0 100%, 100% 0, 0 0);
+  }
+
+  /* Cursor-tracked spotlight cards */
+  .glow-card {
+    position: relative;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+  }
+  .glow-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      320px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255, 106, 43, 0.16),
+      rgba(0, 165, 215, 0.08) 45%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .glow-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 106, 43, 0.4);
+  }
+  .glow-card:hover::before {
+    opacity: 1;
+  }
+
+  .module-tile {
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  }
+  .module-tile:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 106, 43, 0.4);
+    background-color: rgba(255, 106, 43, 0.08);
+  }
+
+  /* Scroll-reveal entrance, reused pattern from about.astro */
+  .reveal-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .reveal-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* CTA card */
+  .cta-card {
+    background: linear-gradient(to bottom, #131316, #0d0d10);
+  }
+
+  .cta-ring {
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    animation: ctaRingSpin 10s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes ctaRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .cta-sparkles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .cta-sparkles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #ffb59a;
+    box-shadow: 0 0 8px 2px rgba(255, 106, 43, 0.8);
+    animation: ctaSparkle var(--dur, 3.5s) ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes ctaSparkle {
+    0%, 100% { opacity: 0; transform: scale(0.6); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+
+  /* Shine-sweep button */
+  .shine-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+    transform: translateX(-120%);
+    transition: none;
+  }
+  .shine-btn:hover::before {
+    animation: shineSweep 0.9s ease-in-out;
+  }
+  @keyframes shineSweep {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mesh-bg, .glow-card, .glow-card::before, .module-tile, .hero-orb, .hero-gradient-text,
+    .cta-gradient-text, .cta-ring, .cta-sparkles span, .shine-btn::before {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  function setupServicesReveal() {
+    const cards = Array.from(document.querySelectorAll('.reveal-card'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    cards.forEach((card) => observer.observe(card));
+  }
+  document.addEventListener('DOMContentLoaded', setupServicesReveal);
+  document.addEventListener('astro:page-load', setupServicesReveal);
+
+  function setupGlowCards() {
+    const cards = Array.from(document.querySelectorAll('.glow-card'));
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mx', `${x}%`);
+        card.style.setProperty('--my', `${y}%`);
+      });
+    });
+  }
+  document.addEventListener('DOMContentLoaded', setupGlowCards);
+  document.addEventListener('astro:page-load', setupGlowCards);
+</script>

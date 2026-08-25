@@ -3,16 +3,82 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About Us - M2-Square">
-  <main class="pt-24 pb-24 relative overflow-x-hidden bg-[radial-gradient(ellipse_120%_60%_at_50%_-10%,_#1a1310_0%,_#0a0a0c_55%,_#08080a_100%)] text-white">
-    <!-- Subtle full-page grid texture -->
-    <div class="bg-grid absolute inset-0 pointer-events-none z-0"></div>
+  <!-- Loads the icon font directly so the material-symbols-outlined spans below
+       actually render as icons instead of printing their raw ligature names -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+  />
 
-    <!-- Ambient background glows -->
-    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#ff6a2b]/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
-    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#ffb59a]/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+  <main class="pt-24 pb-24 relative overflow-x-hidden bg-black text-white">
+    <!--
+      GLOBAL AMBIENT BACKGROUND — replaces the old per-section blur blobs.
+
+      Why: the previous version had ~12 separate `blur-[140-170px]` divs
+      scattered through every section, plus a `.mesh-bg-about` layer that
+      animated `background-position` across a 7-stop gradient the size of
+      the whole page. `background-position` is a paint property, not a
+      compositor one, so that animation was repainting a full-page gradient
+      stack every frame — the single biggest source of the lag. The blur
+      blobs were each their own expensive filter layer, and because they
+      were pinned to individual sections, the color never actually blended
+      between sections — it just visually "restarted" at each boundary.
+
+      Fix: one `position: fixed` layer, mounted once, built from plain
+      radial-gradients (no `filter: blur` — a radial-gradient is already
+      soft, so blur was pure overhead here). Being fixed and singular means
+      it's behind every section continuously, so there's no seam left to
+      blend — same layer, no boundary. It never repaints on scroll since
+      nothing about it changes; the browser just composites it once.
+    -->
+    <div class="ambient-bg" aria-hidden="true"></div>
+
+    <!--
+      SCROLL-FOLLOWING SPOTLIGHT
+      Large-radius orange glow that stays with you as you scroll, instead
+      of being trapped in one section. Fixed positioning already means it
+      never leaves the viewport; the small scroll-linked drift on top of
+      that is done by writing a single `transform: translate3d(...)` per
+      animation frame (compositor-only — no layout, no paint), throttled
+      with rAF and capped so it settles rather than racing off-screen.
+    -->
+    <div id="scroll-light" class="scroll-light" aria-hidden="true"></div>
+
+    <!-- Ambient starfield — small glowing particles drifting slowly, spans the whole page -->
+    <div class="bg-starfield absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+      <span class="star" style="top:4%; left:8%; --size:2px; --delay:0s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:9%; left:34%; --size:1.5px; --delay:1.2s; --dur:9s; --drift:10px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:14%; left:62%; --size:2px; --delay:0.5s; --dur:7.5s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:6%; left:88%; --size:2.5px; --delay:2s; --dur:10s; --drift:18px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:22%; left:18%; --size:1.5px; --delay:0.8s; --dur:8.5s; --drift:12px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:26%; left:76%; --size:2px; --delay:1.6s; --dur:7s; --drift:16px; --tint:#ffffff;"></span>
+      <span class="star" style="top:31%; left:46%; --size:2.5px; --delay:0.3s; --dur:9.5s; --drift:20px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:36%; left:5%; --size:1.5px; --delay:2.4s; --dur:8s; --drift:10px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:40%; left:92%; --size:2px; --delay:1s; --dur:7.8s; --drift:14px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:45%; left:28%; --size:1.5px; --delay:1.8s; --dur:9s; --drift:12px; --tint:#ffffff;"></span>
+      <span class="star" style="top:49%; left:60%; --size:2.5px; --delay:0.6s; --dur:8.2s; --drift:18px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:53%; left:11%; --size:2px; --delay:2.2s; --dur:7.6s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:57%; left:81%; --size:1.5px; --delay:0.9s; --dur:9.2s; --drift:10px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:61%; left:38%; --size:2px; --delay:1.4s; --dur:8s; --drift:16px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:65%; left:66%; --size:2.5px; --delay:0.2s; --dur:9.6s; --drift:20px; --tint:#ffffff;"></span>
+      <span class="star" style="top:69%; left:15%; --size:1.5px; --delay:2s; --dur:7.4s; --drift:12px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:73%; left:52%; --size:2px; --delay:1.1s; --dur:8.6s; --drift:14px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:77%; left:90%; --size:1.5px; --delay:0.4s; --dur:9.4s; --drift:10px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:81%; left:24%; --size:2.5px; --delay:1.7s; --dur:8.4s; --drift:18px; --tint:#ffffff;"></span>
+      <span class="star" style="top:85%; left:70%; --size:2px; --delay:0.7s; --dur:7.2s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:89%; left:42%; --size:1.5px; --delay:2.3s; --dur:9.8s; --drift:12px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:93%; left:8%; --size:2px; --delay:1.3s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:96%; left:58%; --size:2.5px; --delay:0.1s; --dur:9s; --drift:18px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:18%; left:97%; --size:1.5px; --delay:1.9s; --dur:8.8s; --drift:10px; --tint:#ffffff;"></span>
+      <span class="star" style="top:38%; left:97%; --size:2px; --delay:0.6s; --dur:7.6s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:62%; left:2%; --size:2.5px; --delay:1.5s; --dur:9.2s; --drift:18px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:83%; left:3%; --size:1.5px; --delay:2.1s; --dur:8.4s; --drift:12px; --tint:#ff6a2b;"></span>
+    </div>
 
     <!-- 1. HERO SECTION -->
-    <section class="relative min-h-[75vh] flex flex-col items-center justify-center px-6 max-w-5xl mx-auto py-16 text-center z-10">
+    <section class="relative min-h-[75vh] flex flex-col items-center justify-center px-6 max-w-5xl mx-auto py-16 text-center z-10 perspective-1000">
       <div class="absolute top-1/3 left-1/2 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[radial-gradient(circle,_rgba(255,106,43,0.35)_0%,_rgba(255,106,43,0)_70%)] rounded-full pointer-events-none -z-10 animate-fast-breath"></div>
 
       <!-- Hero Badge -->
@@ -59,7 +125,7 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- 3-Card Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full perspective-1000">
-        <div class="pop-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:border-[#ff6a2b]/60 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
+        <div class="pop-card glow-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
           <div class="w-24 h-24 mb-8 flex items-center justify-center rounded-2xl bg-[#1C1C20] border border-white/5 group-hover:scale-110 group-hover:bg-[#ff6a2b]/10 transition-all duration-300">
             <span class="material-symbols-outlined text-4xl text-[#A3A3AA] group-hover:text-[#ff6a2b]">account_balance</span>
           </div>
@@ -69,7 +135,7 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
-        <div class="pop-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:border-[#ff6a2b]/60 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
+        <div class="pop-card glow-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
           <div class="w-24 h-24 mb-8 flex items-center justify-center rounded-2xl bg-[#1C1C20] border border-white/5 group-hover:scale-110 group-hover:bg-[#ff6a2b]/10 transition-all duration-300">
             <span class="material-symbols-outlined text-4xl text-[#A3A3AA] group-hover:text-[#ff6a2b]">inventory_2</span>
           </div>
@@ -79,7 +145,7 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
 
-        <div class="pop-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-2 hover:border-[#ff6a2b]/60 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
+        <div class="pop-card glow-card group relative p-10 rounded-3xl bg-[#131316]/60 border border-white/10 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-300 hover:shadow-[0_10px_30px_rgba(255,106,43,0.2)]">
           <div class="w-24 h-24 mb-8 flex items-center justify-center rounded-2xl bg-[#1C1C20] border border-white/5 group-hover:scale-110 group-hover:bg-[#ff6a2b]/10 transition-all duration-300">
             <span class="material-symbols-outlined text-4xl text-[#A3A3AA] group-hover:text-[#ff6a2b]">fact_check</span>
           </div>
@@ -92,7 +158,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- 3. INTERACTIVE ORBITAL NETWORK VISUAL SECTION (Module Ecosystem) -->
-    <section class="py-28 md:py-36 px-6 relative z-10 flex flex-col items-center border-t border-b border-white/5 bg-[#0d0d10]/50">
+    <section class="orbit-section py-28 md:py-36 px-6 relative z-10 flex flex-col items-center">
       <div class="w-full max-w-2xl text-center mb-12 md:mb-16">
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F5F5F4] mb-4">
           One Core. Every Department.
@@ -102,7 +168,7 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="orbit-track w-full max-w-6xl mx-auto h-[640px] sm:h-[760px] md:h-[900px] lg:h-[1060px] relative flex items-center justify-center overflow-hidden">
+      <div class="orbit-track w-full max-w-6xl mx-auto h-[520px] sm:h-[600px] md:h-[680px] lg:h-[760px] relative flex items-center justify-center overflow-hidden">
         <!-- Ambient pulsing glow field behind everything -->
         <div class="orbit-bg-glow"></div>
 
@@ -142,7 +208,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Orbiting Satellites — Inner Ring (spins with the innermost line) -->
-        <div class="orbit-ring-item orbit-inner" style="--duration:30s; --delay:0s; --dir:1;">
+        <div class="orbit-ring-item orbit-inner" style="--duration:42s; --delay:0s; --dir:1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">account_balance</span>
@@ -150,7 +216,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <div class="orbit-ring-item orbit-inner" style="--duration:30s; --delay:-10s; --dir:1;">
+        <div class="orbit-ring-item orbit-inner" style="--duration:42s; --delay:-14s; --dir:1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">inventory_2</span>
@@ -158,7 +224,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <div class="orbit-ring-item orbit-inner" style="--duration:30s; --delay:-20s; --dir:1;">
+        <div class="orbit-ring-item orbit-inner" style="--duration:42s; --delay:-28s; --dir:1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">groups</span>
@@ -168,7 +234,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Orbiting Satellites — Outer Ring (spins opposite direction) -->
-        <div class="orbit-ring-item orbit-outer" style="--duration:45s; --delay:0s; --dir:-1;">
+        <div class="orbit-ring-item orbit-outer" style="--duration:60s; --delay:0s; --dir:-1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">shopping_cart</span>
@@ -176,7 +242,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <div class="orbit-ring-item orbit-outer" style="--duration:45s; --delay:-15s; --dir:-1;">
+        <div class="orbit-ring-item orbit-outer" style="--duration:60s; --delay:-20s; --dir:-1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">point_of_sale</span>
@@ -184,7 +250,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <div class="orbit-ring-item orbit-outer" style="--duration:45s; --delay:-30s; --dir:-1;">
+        <div class="orbit-ring-item orbit-outer" style="--duration:60s; --delay:-40s; --dir:-1;">
           <div class="orbit-card">
             <div class="pop-card is-visible whitespace-nowrap p-2.5 sm:p-3 md:p-4 lg:p-5 rounded-xl bg-[#131316]/80 border border-white/10 backdrop-blur-md flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/30">
               <span class="material-symbols-outlined text-[#ff6a2b] text-base sm:text-lg md:text-xl lg:text-2xl">support_agent</span>
@@ -197,8 +263,6 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- 4. FEATURE CAPABILITIES GRID (2-COL) -->
     <section class="py-24 px-6 max-w-7xl mx-auto relative z-10 overflow-hidden">
-      <div class="absolute top-10 -left-20 w-[420px] h-[420px] bg-[#ff6a2b]/8 rounded-full blur-[150px] pointer-events-none z-0"></div>
-      <div class="absolute bottom-0 -right-20 w-[380px] h-[380px] bg-[#ffb59a]/6 rounded-full blur-[140px] pointer-events-none z-0"></div>
       <div class="text-center mb-16">
         <h2 class="text-3xl sm:text-5xl font-bold text-[#F5F5F4] mb-4">Inside the Platform</h2>
         <p class="text-[#A3A3AA] text-base sm:text-lg max-w-2xl mx-auto">
@@ -207,7 +271,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 perspective-1000">
-        <div class="pop-card p-10 rounded-3xl bg-[#131316]/40 border border-white/10 hover:border-[#ff6a2b]/40 transition-all flex gap-6">
+        <div class="pop-card glow-card relative p-10 rounded-3xl bg-[#131316]/40 border border-white/10 transition-all flex gap-6">
           <div class="p-5 bg-[#1C1C20] rounded-2xl border border-white/5 h-fit text-[#ff6a2b]">
             <span class="material-symbols-outlined text-4xl">account_balance_wallet</span>
           </div>
@@ -219,7 +283,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <div class="pop-card p-10 rounded-3xl bg-[#131316]/40 border border-white/10 hover:border-[#ff6a2b]/40 transition-all flex gap-6">
+        <div class="pop-card glow-card relative p-10 rounded-3xl bg-[#131316]/40 border border-white/10 transition-all flex gap-6">
           <div class="p-5 bg-[#1C1C20] rounded-2xl border border-white/5 h-fit text-[#ff6a2b]">
             <span class="material-symbols-outlined text-4xl">warehouse</span>
           </div>
@@ -231,7 +295,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <div class="pop-card p-10 rounded-3xl bg-[#131316]/40 border border-white/10 hover:border-[#ff6a2b]/40 transition-all flex gap-6">
+        <div class="pop-card glow-card relative p-10 rounded-3xl bg-[#131316]/40 border border-white/10 transition-all flex gap-6">
           <div class="p-5 bg-[#1C1C20] rounded-2xl border border-white/5 h-fit text-[#ff6a2b]">
             <span class="material-symbols-outlined text-4xl">local_shipping</span>
           </div>
@@ -243,7 +307,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
 
-        <div class="pop-card p-10 rounded-3xl bg-[#131316]/40 border border-white/10 hover:border-[#ff6a2b]/40 transition-all flex gap-6">
+        <div class="pop-card glow-card relative p-10 rounded-3xl bg-[#131316]/40 border border-white/10 transition-all flex gap-6">
           <div class="p-5 bg-[#1C1C20] rounded-2xl border border-white/5 h-fit text-[#ff6a2b]">
             <span class="material-symbols-outlined text-4xl">storefront</span>
           </div>
@@ -258,9 +322,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- 5. METRICS & STATS SECTION -->
-    <section class="py-16 px-6 max-w-7xl mx-auto relative z-10 mb-16 overflow-hidden">
-      <div class="absolute inset-0 bg-[#ff6a2b]/5 rounded-3xl blur-[80px] -z-10"></div>
-      <div class="absolute -top-10 left-1/3 w-[360px] h-[360px] bg-[#ff6a2b]/7 rounded-full blur-[140px] pointer-events-none z-0"></div>
+    <section class="py-16 px-6 max-w-7xl mx-auto relative z-10 mb-16">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div class="pop-card p-8 text-center bg-[#131316]/40 border border-white/5 rounded-2xl backdrop-blur-md">
           <div class="font-mono text-3xl font-semibold text-[#ff6a2b] mb-2 drop-shadow-[0_0_8px_rgba(255,106,43,0.5)]">8</div>
@@ -281,26 +343,27 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    <!-- 6. FINAL CTA BANNER -->
-<section class="py-20 px-6 max-w-5xl mx-auto relative z-10 text-center perspective-1000 overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#ff6a2b]/8 rounded-full blur-[160px] pointer-events-none z-0"></div>
-  <div class="pop-card p-12 sm:p-16 rounded-3xl bg-gradient-to-b from-[#131316] to-[#0d0d10] border border-[#ff6a2b]/30 shadow-[0_0_50px_rgba(255,106,43,0.15)] flex flex-col items-center w-full relative z-10">
-    
-    <h2 class="text-3xl sm:text-5xl font-bold text-white mb-6 w-full">
-      Ready to Unify Your Business Systems?
-    </h2>
+    <!-- 6. FINAL CTA BANNER — same ring / sparkle / shine treatment as the services page -->
+    <section class="py-20 px-6 max-w-5xl mx-auto relative z-10 text-center perspective-1000 overflow-hidden">
+      <div class="pop-card cta-card relative rounded-3xl border border-[#ff6a2b]/25 shadow-[0_0_50px_rgba(255,106,43,0.15)] overflow-hidden w-full">
+        <!-- Rotating conic glow ring -->
+        <div class="cta-ring" aria-hidden="true"></div>
 
-    <p class="text-[#A3A3AA] text-base sm:text-lg mb-8 max-w-xl w-full min-w-full sm:min-w-[500px]">
-      One platform for finance, inventory, purchasing, and sales — built for accuracy, traceability, and zero-compromise reporting.
-    </p>
+        <div class="relative z-10 w-full text-center px-8 py-16 sm:px-16 sm:py-24">
+          <h2 class="cta-gradient-text text-3xl sm:text-5xl font-bold mb-6 max-w-2xl mx-auto">
+            Ready to Unify Your Business Systems?
+          </h2>
 
-    <a href="#contact" class="px-8 py-4 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:scale-105 transition-all duration-300">
-      Get Started Now
-    </a>
-  </div>
-</section>
+          <p class="cta-desc text-[#A3A3AA] text-base sm:text-lg mb-8" style="width: 100%; max-width: 36rem; margin-left: auto; margin-right: auto;">
+            One platform for finance, inventory, purchasing, and sales — built for accuracy, traceability, and zero-compromise reporting.
+          </p>
 
-  
+          <a href="#contact" class="shine-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+            <span class="relative z-10">Get Started Now</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
 
@@ -309,19 +372,100 @@ import Layout from '../layouts/Layout.astro';
     perspective: 1000px;
   }
 
+  /* Official Google-recommended base rule for the ligature icon font —
+     without this, the font can still fail to substitute glyphs in some
+     browsers even once loaded. */
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Belt-and-suspenders fix for the CTA paragraph: something upstream of this
+     component (likely a global reset) is forcing paragraph width down to
+     min-content, which wraps one word per line. This selector — scoped by
+     Astro to this component — plus the inline style on the tag itself
+     guarantees it renders full-width regardless of what's inherited. */
+  .cta-desc {
+    display: block;
+    width: 100% !important;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /*
+    GLOBAL AMBIENT BACKGROUND
+    Fixed + built entirely from radial-gradients (no `filter: blur`).
+    A radial-gradient already fades to transparent on its own, so this gets
+    the same soft-glow look the old blurred divs had, at a fraction of the
+    compositing cost, and it never needs to repaint on scroll — the browser
+    paints it once and composites it as a static layer from then on.
+    Because there's exactly one of these behind the entire page, colors
+    read as continuous from section to section instead of restarting at
+    each section boundary.
+  */
+  .ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 55% 40% at 25% 0%, rgba(255, 106, 43, 0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 35% at 80% 15%, rgba(113, 210, 255, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 45% at 20% 55%, rgba(255, 106, 43, 0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 40% at 85% 75%, rgba(255, 181, 154, 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 45% at 30% 100%, rgba(255, 106, 43, 0.1) 0%, transparent 65%);
+  }
+
+  /*
+    SCROLL-FOLLOWING SPOTLIGHT
+    Large radius, fixed to the viewport so it's always with you as you
+    scroll. The `transform` gets a small extra offset written by the script
+    below for a gentle parallax drift — transform is compositor-only, so
+    that update is essentially free every frame.
+  */
+  .scroll-light {
+    position: fixed;
+    top: -30vh;
+    left: 50%;
+    width: 1600px;
+    height: 1600px;
+    margin-left: -800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 106, 43, 0.14) 0%, rgba(255, 106, 43, 0.05) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
   /* Pop-in Entrance Base State */
   .pop-card {
     opacity: 0;
-    transform: translateY(60px) scale(0.8) rotateX(15deg);
+    transform: translateY(60px) scale(0.85);
     transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                 transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     will-change: transform, opacity;
   }
 
+  /* Alternating tilt-in direction for a livelier, less uniform entrance */
+  .pop-card:nth-child(odd)  { transform: translateY(60px) scale(0.85) rotateY(-14deg); }
+  .pop-card:nth-child(even) { transform: translateY(60px) scale(0.85) rotateY(14deg); }
+
   /* Triggered State */
   .pop-card.is-visible {
     opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0deg);
+    transform: translateY(0) scale(1) rotateY(0deg) !important;
   }
 
   /* Keyframe Animations */
@@ -366,6 +510,33 @@ import Layout from '../layouts/Layout.astro';
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
   }
 
+  /* Card hover — lift + border highlight only (spotlight glow removed) */
+  .glow-card {
+    transition: transform 0.35s ease, border-color 0.35s ease;
+  }
+  .glow-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 106, 43, 0.5);
+  }
+
+  /* Orbit section — soft radial wash, feathered top and bottom with a mask,
+     ties it into the ambient background running behind everything so the
+     section stops reading as a pasted box. */
+  .orbit-section {
+    position: relative;
+    isolation: isolate;
+  }
+  .orbit-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(255, 106, 43, 0.05) 0%, rgba(13, 13, 16, 0.4) 45%, transparent 85%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
   /* Orbit section ambient background effects */
   .orbit-bg-glow {
     position: absolute;
@@ -387,6 +558,7 @@ import Layout from '../layouts/Layout.astro';
     animation: spinReverse 60s linear infinite;
     pointer-events: none;
     z-index: 0;
+    will-change: transform;
   }
 
   @keyframes orbitGlowPulse {
@@ -502,20 +674,19 @@ import Layout from '../layouts/Layout.astro';
   /* Orbiting Satellite System */
 
   /* Radius is set responsively here (not inline) so it can grow with the
-     hub + card sizes at each breakpoint — widened further so satellites
-     never collide with the central hub or with each other. */
+     hub + card sizes at each breakpoint. */
   .orbit-track {
-    --r-inner: 230px;
-    --r-outer: 340px;
+    --r-inner: 175px;
+    --r-outer: 255px;
   }
   @media (min-width: 640px) {
-    .orbit-track { --r-inner: 260px; --r-outer: 390px; }
+    .orbit-track { --r-inner: 195px; --r-outer: 285px; }
   }
   @media (min-width: 768px) {
-    .orbit-track { --r-inner: 300px; --r-outer: 440px; }
+    .orbit-track { --r-inner: 220px; --r-outer: 320px; }
   }
   @media (min-width: 1024px) {
-    .orbit-track { --r-inner: 340px; --r-outer: 500px; }
+    .orbit-track { --r-inner: 245px; --r-outer: 355px; }
   }
 
   .orbit-inner { --r: var(--r-inner); }
@@ -541,6 +712,14 @@ import Layout from '../layouts/Layout.astro';
     animation-delay: var(--delay);
   }
 
+  /* Smooths out the rotation — avoids sub-pixel jitter on absolutely
+     positioned, continuously-transformed elements. */
+  .orbit-ring-item,
+  .orbit-card {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
   @keyframes orbitSpin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(calc(360deg * var(--dir, 1))); }
@@ -551,15 +730,73 @@ import Layout from '../layouts/Layout.astro';
     to   { transform: translate(-50%, -50%) rotate(calc(-360deg * var(--dir, 1))); }
   }
 
+  /* CTA card — rotating conic ring + shine-sweep button. */
+  .cta-card {
+    background: linear-gradient(to bottom, #131316, #0d0d10);
+  }
+
+  .cta-ring {
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    animation: ctaRingSpin 10s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes ctaRingSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .cta-gradient-text {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(90deg, #ffffff, #ffb59a, #71d2ff, #ffffff);
+    background-size: 300% 100%;
+    animation: gradientSweep 7s ease-in-out infinite;
+  }
+  @keyframes gradientSweep {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Shine-sweep button */
+  .shine-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+    transform: translateX(-120%);
+    transition: none;
+  }
+  .shine-btn:hover::before {
+    animation: shineSweep 0.9s ease-in-out;
+  }
+  @keyframes shineSweep {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .orbit-ring-item, .orbit-card, .animate-spin-slow, .animate-spin-reverse,
-    .orbit-bg-glow, .orbit-conic-field, .particle, .core-hub-ring, .core-logo-glow, .core-logo-img {
-      animation: none;
+    .orbit-bg-glow, .orbit-conic-field, .particle, .core-hub-ring, .core-logo-glow, .core-logo-img,
+    .glow-card, .cta-ring, .cta-gradient-text, .shine-btn::before, .scroll-light {
+      animation: none !important;
+      transition: none !important;
     }
+    .scroll-light { transform: none !important; }
   }
 </style>
 
-<!-- Queued Stagger Animation Script -->
+<!-- Queued Stagger Animation Script + scroll-linked spotlight -->
 <script>
   function setupScrollObserver() {
     const cards = Array.from(document.querySelectorAll('.pop-card'));
@@ -588,6 +825,46 @@ import Layout from '../layouts/Layout.astro';
     cards.forEach((card) => observer.observe(card));
   }
 
-  document.addEventListener('DOMContentLoaded', setupScrollObserver);
-  document.addEventListener('astro:page-load', setupScrollObserver);
+  // Scroll-following spotlight: writes a single transform per animation
+  // frame, throttled to the frame rate via requestAnimationFrame and
+  // capped so the light settles into place instead of chasing scroll
+  // position indefinitely. transform is compositor-only — this never
+  // triggers layout or paint, so it stays cheap no matter how long the
+  // page is.
+  function setupScrollLight() {
+    const light = document.getElementById('scroll-light');
+    if (!light) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    const MAX_DRIFT = 260; // px — how far the light is allowed to drift down
+    const DRIFT_FACTOR = 0.12; // fraction of scroll distance it follows
+    let ticking = false;
+
+    function update() {
+      const y = Math.min(window.scrollY * DRIFT_FACTOR, MAX_DRIFT);
+      light.style.transform = `translate3d(0, ${y}px, 0)`;
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupScrollObserver();
+    setupScrollLight();
+  });
+  document.addEventListener('astro:page-load', () => {
+    setupScrollObserver();
+    setupScrollLight();
+  });
 </script>
