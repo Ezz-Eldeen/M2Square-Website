@@ -1,0 +1,223 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found - M2-Square">
+  <!-- Loads the icon font directly so the material-symbols-outlined span below
+       actually renders as an icon instead of printing its raw ligature name -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+  />
+
+  <main class="error-main relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-black text-white">
+    <!-- Ambient glow background, same treatment as the rest of the site -->
+    <div class="error-ambient" aria-hidden="true"></div>
+
+    <!-- Drifting starfield, reused pattern from the about page -->
+    <div class="error-starfield" aria-hidden="true">
+      <span class="star" style="top:12%; left:10%; --size:2px; --delay:0s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:20%; left:82%; --size:1.5px; --delay:1.2s; --dur:9s; --drift:10px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:34%; left:22%; --size:2px; --delay:0.5s; --dur:7.5s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:46%; left:68%; --size:2.5px; --delay:2s; --dur:10s; --drift:18px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:60%; left:14%; --size:1.5px; --delay:0.8s; --dur:8.5s; --drift:12px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:70%; left:88%; --size:2px; --delay:1.6s; --dur:7s; --drift:16px; --tint:#ffffff;"></span>
+      <span class="star" style="top:80%; left:40%; --size:2.5px; --delay:0.3s; --dur:9.5s; --drift:20px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:88%; left:60%; --size:1.5px; --delay:2.4s; --dur:8s; --drift:10px; --tint:#71d2ff;"></span>
+    </div>
+
+    <!-- Recolored, glowing logo standing in for the classic "404 astronaut" -->
+    <div class="error-logo-frame">
+      <div class="error-logo-glow"></div>
+      <div class="error-logo-ring"></div>
+      <div class="error-logo-ring error-logo-ring-2"></div>
+      <img src="/assets/Logo.png" alt="M2-Square" class="error-logo-img" />
+    </div>
+
+    <span class="font-mono text-xs sm:text-sm text-[#ff6a2b] uppercase tracking-widest mb-4 mt-8">
+      Error 404
+    </span>
+
+    <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-4 text-center leading-tight max-w-2xl">
+      This <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a2b] to-[#ffb59a]">page</span> isn't in the ledger.
+    </h1>
+
+    <p class="error-desc text-[#A3A3AA] text-base sm:text-lg text-center mb-10 leading-relaxed">
+  The page you're looking for doesn't exist or may have moved. Everything else is exactly where it should be.
+</p>
+
+
+    <a href="/" class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+      <span class="material-symbols-outlined text-lg relative z-10">arrow_back</span>
+      <span class="relative z-10">Back to Homepage</span>
+    </a>
+  </main>
+</Layout>
+
+<style>
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+  .error-desc {
+  display: block;
+  width: 100% !important;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.error-main {
+    isolation: isolate;
+  }
+
+  /* Same ambient-gradient technique used site-wide: plain radial-gradients,
+     no filter:blur, painted once as a fixed layer. */
+  .error-ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 20%, rgba(255, 106, 43, 0.16) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 15% 80%, rgba(113, 210, 255, 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 85%, rgba(255, 181, 154, 0.08) 0%, transparent 60%);
+  }
+
+  .error-starfield {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    width: var(--size, 2px);
+    height: var(--size, 2px);
+    border-radius: 50%;
+    background: var(--tint, #fff);
+    box-shadow: 0 0 6px 1px currentColor;
+    opacity: 0.6;
+    animation: starDrift var(--dur, 8s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  @keyframes starDrift {
+    0%, 100% { transform: translateY(0); opacity: 0.35; }
+    50% { transform: translateY(calc(-1 * var(--drift, 14px))); opacity: 0.9; }
+  }
+
+  /* Logo treatment, reusing the "core hub" language from the orbit section */
+  .error-logo-frame {
+  position: relative;
+  z-index: 1;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .error-logo-frame { width: 260px; height: 260px; }
+}
+
+  .error-logo-glow {
+    position: absolute;
+    width: 220%;
+    height: 220%;
+    background: radial-gradient(circle, rgba(255, 106, 43, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: errorBreath 3s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .error-logo-ring {
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(255, 106, 43, 0.5);
+    animation: errorSpin 18s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .error-logo-ring-2 {
+    inset: -36px;
+    border: 1px solid rgba(113, 210, 255, 0.2);
+    animation: errorSpinReverse 26s linear infinite;
+  }
+
+  .error-logo-img {
+    position: relative;
+    width: 68%;
+    height: 68%;
+    object-fit: contain;
+    z-index: 2;
+    filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 30px rgba(255, 106, 43, 0.6));
+    animation: errorLogoFloat 4s ease-in-out infinite;
+  }
+
+  .error-logo-frame::after {
+  content: '';
+  position: absolute;
+  width: 68%;
+  height: 68%;
+  background: radial-gradient(circle, rgba(255, 106, 43, 0.95) 0%, rgba(255, 181, 154, 0.55) 55%, transparent 80%);
+  mix-blend-mode: color;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+  @keyframes errorBreath {
+    0%, 100% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 0.9; transform: scale(1.15); }
+  }
+  @keyframes errorSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes errorSpinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+  @keyframes errorLogoFloat {
+    0%, 100% { transform: translateY(0); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.55)); }
+    50% { transform: translateY(-10px); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(255, 106, 43, 0.85)); }
+  }
+
+  /* Shine sweep on the button, matching the CTA button elsewhere on the site */
+  .error-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+    transform: translateX(-120%);
+  }
+  .error-btn:hover::before {
+    animation: errorShine 0.9s ease-in-out;
+  }
+  @keyframes errorShine {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .star, .error-logo-glow, .error-logo-ring, .error-logo-ring-2, .error-logo-img, .error-btn::before {
+      animation: none !important;
+    }
+  }
+</style>

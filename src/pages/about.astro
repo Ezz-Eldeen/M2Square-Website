@@ -347,7 +347,7 @@ import Layout from '../layouts/Layout.astro';
     <section class="py-20 px-6 max-w-5xl mx-auto relative z-10 text-center perspective-1000 overflow-hidden">
       <div class="pop-card cta-card relative rounded-3xl border border-[#ff6a2b]/25 shadow-[0_0_50px_rgba(255,106,43,0.15)] overflow-hidden w-full">
         <!-- Rotating conic glow ring -->
-        <div class="cta-ring" aria-hidden="true"></div>
+        <div class="cta-ring cta-ring--chase" aria-hidden="true"></div>
 
         <div class="relative z-10 w-full text-center px-8 py-16 sm:px-16 sm:py-24">
           <h2 class="cta-gradient-text text-3xl sm:text-5xl font-bold mb-6 max-w-2xl mx-auto">
@@ -736,23 +736,19 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .cta-ring {
-    position: absolute;
-    inset: -2px;
-    z-index: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0.55;
-    animation: ctaRingSpin 10s linear infinite;
-    pointer-events: none;
-  }
-  @keyframes ctaRingSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 2px;
+  overflow: hidden;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
+}
 
   .cta-gradient-text {
     color: transparent;
@@ -788,10 +784,11 @@ import Layout from '../layouts/Layout.astro';
   @media (prefers-reduced-motion: reduce) {
     .orbit-ring-item, .orbit-card, .animate-spin-slow, .animate-spin-reverse,
     .orbit-bg-glow, .orbit-conic-field, .particle, .core-hub-ring, .core-logo-glow, .core-logo-img,
-    .glow-card, .cta-ring, .cta-gradient-text, .shine-btn::before, .scroll-light {
+    .glow-card, .cta-ring, .cta-ring::before, .cta-ring::after, .cta-gradient-text, .shine-btn::before, .scroll-light {
       animation: none !important;
       transition: none !important;
     }
+    .cta-ring::before, .cta-ring::after { opacity: 1; }
     .scroll-light { transform: none !important; }
   }
 </style>
@@ -843,10 +840,11 @@ import Layout from '../layouts/Layout.astro';
     let ticking = false;
 
     function update() {
-      const y = Math.min(window.scrollY * DRIFT_FACTOR, MAX_DRIFT);
-      light.style.transform = `translate3d(0, ${y}px, 0)`;
-      ticking = false;
-    }
+  if (!light) return;
+  const y = Math.min(window.scrollY * DRIFT_FACTOR, MAX_DRIFT);
+  light.style.transform = `translate3d(0, ${y}px, 0)`;
+  ticking = false;
+}
 
     function onScroll() {
       if (!ticking) {
@@ -867,4 +865,4 @@ import Layout from '../layouts/Layout.astro';
     setupScrollObserver();
     setupScrollLight();
   });
-</script>
+</script> 
