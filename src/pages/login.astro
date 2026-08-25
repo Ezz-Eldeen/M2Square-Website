@@ -4,92 +4,409 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="M2-Square - Login">
   <div class="bg-bg-primary text-text-primary font-display antialiased min-h-screen flex items-center justify-center relative overflow-hidden w-full">
-    
-    <!-- Ambient Background Lighting (Subtle) -->
-    <div class="absolute inset-0 pointer-events-none flex items-center justify-center">
-      <div class="absolute w-[600px] h-[600px] bg-accent-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50"></div>
+
+    <!-- ============================================================
+         BACKGROUND — dense two-tier PCB circuit, fully static
+         Primary traces + a finer secondary layer of shorter traces
+         and via-dots fill the board out. No moving light, no JS, no
+         mousemove — just a handful of nodes doing a slow idle pulse
+         (plain opacity keyframe, cheap and reliable). Everything
+         else is a static vector paint, about as cheap as a
+         background image.
+    ============================================================ -->
+    <div class="login-bg absolute inset-0 pointer-events-none" aria-hidden="true">
+      <svg class="circuit-layer" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+          <path class="ctrace" d="M1600 288 L1600 288 L1600 448" />
+          <path class="ctrace" d="M256 736 L96 736 L96 832 L32 832 L32 896" />
+          <path class="ctrace" d="M736 800 L800 800 L800 576 L608 576" />
+          <path class="ctrace" d="M1568 896 L1568 900 L1376 900 L1376 740 L1600 740 L1600 900 L1376 900" />
+          <path class="ctrace" d="M224 96 L288 96 L288 288 L480 288 L480 352 L608 352" />
+          <path class="ctrace" d="M1280 800 L1376 800 L1376 608 L1152 608 L1152 448 L992 448" />
+          <path class="ctrace" d="M1408 0 L1600 0 L1600 0" />
+          <path class="ctrace" d="M768 512 L832 512 L832 352" />
+          <path class="ctrace" d="M928 288 L864 288 L864 64" />
+          <path class="ctrace" d="M864 160 L992 160 L992 256 L928 256 L928 448 L1088 448" />
+          <path class="ctrace" d="M576 96 L704 96 L704 0 L480 0" />
+          <path class="ctrace" d="M224 256 L224 480 L288 480 L288 320 L384 320 L384 224" />
+          <path class="ctrace" d="M1440 288 L1440 64 L1600 64 L1600 0 L1504 0 L1504 160 L1568 160" />
+          <path class="ctrace" d="M704 160 L704 320 L896 320" />
+          <path class="ctrace" d="M1408 96 L1408 0 L1600 0 L1600 64" />
+          <path class="ctrace" d="M1568 448 L1440 448 L1440 544" />
+          <path class="ctrace" d="M160 288 L0 288 L0 96 L96 96 L96 288" />
+          <path class="ctrace" d="M1344 608 L1280 608 L1280 544" />
+          <path class="ctrace" d="M288 736 L288 900 L96 900 L96 836 L0 836 L0 900" />
+          <path class="ctrace" d="M640 768 L832 768 L832 900 L640 900 L640 900 L480 900 L480 900" />
+          <path class="ctrace" d="M416 768 L544 768 L544 608 L608 608" />
+          <path class="ctrace" d="M320 608 L320 704 L384 704 L384 544 L544 544" />
+          <path class="ctrace" d="M1280 640 L1280 736 L1376 736 L1376 800 L1440 800 L1440 900 L1312 900" />
+          <path class="ctrace" d="M1376 896 L1376 800 L1568 800 L1568 608" />
+          <path class="ctrace" d="M1408 160 L1408 0 L1216 0" />
+          <path class="ctrace" d="M416 864 L416 900 L576 900 L576 900 L448 900" />
+          <path class="ctrace" d="M1152 160 L928 160 L928 384 L800 384" />
+          <path class="ctrace" d="M160 800 L0 800 L0 900 L128 900 L128 676 L32 676" />
+          <path class="ctrace" d="M1504 672 L1568 672 L1568 736 L1504 736 L1504 640" />
+          <path class="ctrace" d="M1056 576 L1056 416 L1216 416" />
+          <path class="ctrace" d="M1472 640 L1568 640 L1568 576 L1472 576" />
+          <path class="ctrace" d="M224 640 L224 544 L32 544 L32 608 L0 608 L0 416 L64 416" />
+          <path class="ctrace" d="M192 736 L320 736 L320 576 L224 576" />
+          <path class="ctrace" d="M192 800 L256 800 L256 576 L320 576" />
+          <path class="ctrace" d="M544 352 L768 352 L768 224 L928 224 L928 288 L1120 288" />
+          <path class="ctrace" d="M128 32 L0 32 L0 96 L0 96 L0 256" />
+          <path class="ctrace" d="M1216 640 L1216 832 L1376 832 L1376 608" />
+          <path class="ctrace" d="M608 576 L768 576 L768 352 L608 352 L608 224 L544 224" />
+          <path class="ctrace" d="M512 608 L736 608 L736 480 L640 480 L640 288 L800 288 L800 512" />
+          <path class="ctrace" d="M768 320 L704 320 L704 256" />
+          <path class="ctrace ctrace-fine" d="M896 288 L832 288 L832 416" />
+          <path class="ctrace ctrace-fine" d="M672 288 L672 160 L800 160 L800 288" />
+          <path class="ctrace ctrace-fine" d="M1024 32 L896 32 L896 128 L768 128" />
+          <path class="ctrace ctrace-fine" d="M256 480 L352 480 L352 416 L224 416" />
+          <path class="ctrace ctrace-fine" d="M1440 32 L1440 0 L1536 0 L1536 0" />
+          <path class="ctrace ctrace-fine" d="M544 256 L544 160 L672 160 L672 64" />
+          <path class="ctrace ctrace-fine" d="M224 736 L288 736 L288 800" />
+          <path class="ctrace ctrace-fine" d="M384 256 L320 256" />
+          <path class="ctrace ctrace-fine" d="M1312 704 L1312 768 L1248 768 L1248 672" />
+          <path class="ctrace ctrace-fine" d="M416 32 L288 32" />
+          <path class="ctrace ctrace-fine" d="M0 192 L0 64" />
+          <path class="ctrace ctrace-fine" d="M1056 416 L1056 320 L1120 320 L1120 256" />
+          <path class="ctrace ctrace-fine" d="M0 96 L0 96" />
+          <path class="ctrace ctrace-fine" d="M512 128 L608 128 L608 224 L480 224" />
+          <path class="ctrace ctrace-fine" d="M96 576 L192 576" />
+          <path class="ctrace ctrace-fine" d="M0 576 L0 480" />
+          <path class="ctrace ctrace-fine" d="M672 768 L576 768 L576 832" />
+          <path class="ctrace ctrace-fine" d="M1440 832 L1440 900 L1344 900 L1344 804" />
+          <path class="ctrace ctrace-fine" d="M1344 32 L1440 32" />
+          <path class="ctrace ctrace-fine" d="M1280 576 L1280 480 L1152 480 L1152 352" />
+          <path class="ctrace ctrace-fine" d="M448 192 L448 128 L352 128 L352 224" />
+          <path class="ctrace ctrace-fine" d="M160 384 L96 384 L96 288 L224 288" />
+          <path class="ctrace ctrace-fine" d="M128 736 L128 800" />
+          <path class="ctrace ctrace-fine" d="M320 896 L384 896 L384 900 L448 900" />
+          <path class="ctrace ctrace-fine" d="M64 32 L0 32 L0 0 L0 0" />
+          <path class="ctrace ctrace-fine" d="M928 32 L928 96" />
+          <path class="ctrace ctrace-fine" d="M1568 544 L1568 608" />
+          <path class="ctrace ctrace-fine" d="M704 672 L704 608 L608 608" />
+          <path class="ctrace ctrace-fine" d="M1408 320 L1408 384" />
+          <path class="ctrace ctrace-fine" d="M1152 672 L1152 544 L1088 544" />
+          <path class="ctrace ctrace-fine" d="M352 608 L256 608" />
+          <path class="ctrace ctrace-fine" d="M448 64 L352 64" />
+          <path class="ctrace ctrace-fine" d="M704 224 L704 96 L768 96 L768 0" />
+          <path class="ctrace ctrace-fine" d="M1152 256 L1152 384" />
+          <circle class="cnode" cx="480" cy="900" r="3" style="--delay:3.41s;" />
+          <circle class="cnode" cx="1344" cy="608" r="3" style="--delay:1.6s;" />
+          <circle class="cnode" cx="320" cy="576" r="3" style="--delay:2.78s;" />
+          <circle class="cnode" cx="1600" cy="900" r="3" style="--delay:1.84s;" />
+          <circle class="cnode" cx="992" cy="448" r="3" style="--delay:0.22s;" />
+          <circle class="cnode" cx="384" cy="224" r="3" style="--delay:3.75s;" />
+          <circle class="cnode cnode-pulse" cx="1152" cy="608" r="3" style="--delay:0.42s;" />
+          <circle class="cnode" cx="160" cy="288" r="3" style="--delay:0.6s;" />
+          <circle class="cnode cnode-pulse" cx="544" cy="352" r="3" style="--delay:2.42s;" />
+          <circle class="cnode cnode-pulse" cx="1568" cy="160" r="3" style="--delay:1.22s;" />
+          <circle class="cnode" cx="800" cy="384" r="3" style="--delay:0.96s;" />
+          <circle class="cnode" cx="704" cy="160" r="3" style="--delay:0.31s;" />
+          <circle class="cnode" cx="192" cy="800" r="3" style="--delay:1.27s;" />
+          <circle class="cnode" cx="1376" cy="800" r="3" style="--delay:3.57s;" />
+          <circle class="cnode" cx="1408" cy="0" r="3" style="--delay:0.12s;" />
+          <circle class="cnode" cx="320" cy="608" r="3" style="--delay:3.24s;" />
+          <circle class="cnode" cx="992" cy="160" r="3" style="--delay:3.54s;" />
+          <circle class="cnode" cx="448" cy="900" r="3" style="--delay:2.39s;" />
+          <circle class="cnode" cx="224" cy="640" r="3" style="--delay:2.88s;" />
+          <circle class="cnode" cx="32" cy="676" r="3" style="--delay:2.3s;" />
+          <circle class="cnode" cx="704" cy="96" r="3" style="--delay:0.99s;" />
+          <circle class="cnode" cx="800" cy="576" r="3" style="--delay:3.03s;" />
+          <circle class="cnode" cx="160" cy="800" r="3" style="--delay:1.02s;" />
+          <circle class="cnode" cx="544" cy="544" r="3" style="--delay:3.2s;" />
+          <circle class="cnode" cx="864" cy="288" r="3" style="--delay:3.15s;" />
+          <circle class="cnode" cx="768" cy="320" r="3" style="--delay:1.63s;" />
+          <circle class="cnode" cx="832" cy="352" r="3" style="--delay:3.5s;" />
+          <circle class="cnode" cx="928" cy="224" r="3" style="--delay:0.97s;" />
+          <circle class="cnode" cx="96" cy="836" r="3" style="--delay:2.03s;" />
+          <circle class="cnode cnode-pulse" cx="32" cy="896" r="3" style="--delay:1.11s;" />
+          <circle class="cnode cnode-pulse" cx="864" cy="64" r="3" style="--delay:2.45s;" />
+          <circle class="cnode cnode-pulse" cx="1600" cy="64" r="3" style="--delay:0.16s;" />
+          <circle class="cnode" cx="512" cy="608" r="3" style="--delay:3.8s;" />
+          <circle class="cnode" cx="800" cy="512" r="3" style="--delay:2.12s;" />
+          <circle class="cnode" cx="736" cy="608" r="3" style="--delay:1.36s;" />
+          <circle class="cnode" cx="416" cy="900" r="3" style="--delay:1.14s;" />
+          <circle class="cnode" cx="832" cy="900" r="3" style="--delay:0.87s;" />
+          <circle class="cnode" cx="0" cy="288" r="3" style="--delay:3.29s;" />
+          <circle class="cnode" cx="1152" cy="160" r="3" style="--delay:3.28s;" />
+          <circle class="cnode" cx="224" cy="256" r="3" style="--delay:3.54s;" />
+          <circle class="cnode" cx="1568" cy="736" r="3" style="--delay:3.48s;" />
+          <circle class="cnode" cx="608" cy="576" r="3" style="--delay:1.97s;" />
+          <circle class="cnode cnode-pulse" cx="1280" cy="800" r="3" style="--delay:0.68s;" />
+          <circle class="cnode" cx="864" cy="160" r="3" style="--delay:3.44s;" />
+          <circle class="cnode" cx="1376" cy="900" r="3" style="--delay:2.4s;" />
+          <circle class="cnode" cx="224" cy="576" r="3" style="--delay:3.14s;" />
+          <circle class="cnode" cx="736" cy="800" r="3" style="--delay:0.47s;" />
+          <circle class="cnode" cx="576" cy="96" r="3" style="--delay:2.77s;" />
+          <circle class="cnode" cx="768" cy="352" r="3" style="--delay:0.67s;" />
+          <circle class="cnode" cx="0" cy="96" r="3" style="--delay:0.76s;" />
+          <circle class="cnode" cx="1280" cy="544" r="3" style="--delay:1.15s;" />
+          <circle class="cnode" cx="1120" cy="288" r="3" style="--delay:2.76s;" />
+          <circle class="cnode" cx="320" cy="736" r="3" style="--delay:1.65s;" />
+          <circle class="cnode" cx="1472" cy="640" r="3" style="--delay:1.77s;" />
+          <circle class="cnode" cx="608" cy="608" r="3" style="--delay:2.02s;" />
+          <circle class="cnode" cx="1568" cy="900" r="3" style="--delay:2.3s;" />
+          <circle class="cnode" cx="0" cy="256" r="3" style="--delay:1.65s;" />
+          <circle class="cnode" cx="896" cy="320" r="3" style="--delay:3.04s;" />
+          <circle class="cnode" cx="1504" cy="160" r="3" style="--delay:1.95s;" />
+          <circle class="cnode" cx="1568" cy="896" r="3" style="--delay:1.3s;" />
+          <circle class="cnode" cx="608" cy="352" r="3" style="--delay:1.39s;" />
+          <circle class="cnode" cx="1504" cy="640" r="3" style="--delay:1.59s;" />
+          <circle class="cnode" cx="800" cy="288" r="3" style="--delay:3.9s;" />
+          <circle class="cnode" cx="1440" cy="448" r="3" style="--delay:1.04s;" />
+          <circle class="cnode" cx="928" cy="288" r="3" style="--delay:0.45s;" />
+          <circle class="cnode" cx="128" cy="32" r="3" style="--delay:1.12s;" />
+          <circle class="cnode" cx="928" cy="448" r="3" style="--delay:2.55s;" />
+          <circle class="cnode" cx="1408" cy="96" r="3" style="--delay:0.06s;" />
+          <circle class="cnode cnode-pulse" cx="1504" cy="0" r="3" style="--delay:1.26s;" />
+          <circle class="cnode cnode-pulse" cx="1280" cy="640" r="3" style="--delay:3.64s;" />
+          <circle class="cnode" cx="1472" cy="576" r="3" style="--delay:3.01s;" />
+          <circle class="cnode" cx="1600" cy="0" r="3" style="--delay:1.81s;" />
+          <circle class="cnode" cx="0" cy="900" r="3" style="--delay:2.92s;" />
+          <circle class="cnode" cx="480" cy="352" r="3" style="--delay:1.28s;" />
+          <circle class="cnode cnode-pulse" cx="0" cy="32" r="3" style="--delay:2.07s;" />
+          <circle class="cnode" cx="256" cy="736" r="3" style="--delay:1.19s;" />
+          <circle class="cnode" cx="192" cy="736" r="3" style="--delay:2.59s;" />
+          <circle class="cnode" cx="224" cy="480" r="3" style="--delay:0.65s;" />
+          <circle class="cnode" cx="1600" cy="288" r="3" style="--delay:0.37s;" />
+          <circle class="cnode" cx="1504" cy="672" r="3" style="--delay:1.72s;" />
+          <circle class="cnode" cx="224" cy="544" r="3" style="--delay:0.68s;" />
+          <circle class="cnode" cx="1376" cy="740" r="3" style="--delay:1.14s;" />
+          <circle class="cnode" cx="1376" cy="608" r="3" style="--delay:3.49s;" />
+          <circle class="cnode" cx="480" cy="288" r="3" style="--delay:0.67s;" />
+          <circle class="cnode" cx="288" cy="736" r="3" style="--delay:2.38s;" />
+          <rect class="cvia" x="830" y="414" width="4" height="4" />
+          <rect class="cvia" x="798" y="286" width="4" height="4" />
+          <rect class="cvia" x="1022" y="30" width="4" height="4" />
+          <rect class="cvia" x="318" y="254" width="4" height="4" />
+          <rect class="cvia" x="286" y="30" width="4" height="4" />
+          <rect class="cvia" x="414" y="30" width="4" height="4" />
+          <rect class="cvia" x="-2" y="62" width="4" height="4" />
+          <rect class="cvia" x="-2" y="190" width="4" height="4" />
+          <rect class="cvia" x="1118" y="254" width="4" height="4" />
+          <rect class="cvia" x="-2" y="94" width="4" height="4" />
+          <rect class="cvia" x="-2" y="94" width="4" height="4" />
+          <rect class="cvia" x="478" y="222" width="4" height="4" />
+          <rect class="cvia" x="190" y="574" width="4" height="4" />
+          <rect class="cvia" x="94" y="574" width="4" height="4" />
+          <rect class="cvia" x="-2" y="478" width="4" height="4" />
+          <rect class="cvia" x="574" y="830" width="4" height="4" />
+          <rect class="cvia" x="670" y="766" width="4" height="4" />
+          <rect class="cvia" x="1342" y="802" width="4" height="4" />
+          <rect class="cvia" x="222" y="286" width="4" height="4" />
+          <rect class="cvia" x="158" y="382" width="4" height="4" />
+          <rect class="cvia" x="318" y="894" width="4" height="4" />
+          <rect class="cvia" x="926" y="94" width="4" height="4" />
+          <rect class="cvia" x="606" y="606" width="4" height="4" />
+          <rect class="cvia" x="1406" y="382" width="4" height="4" />
+          <rect class="cvia" x="1086" y="542" width="4" height="4" />
+          <rect class="cvia" x="1150" y="670" width="4" height="4" />
+          <rect class="cvia" x="254" y="606" width="4" height="4" />
+          <rect class="cvia" x="350" y="606" width="4" height="4" />
+          <rect class="cvia" x="350" y="62" width="4" height="4" />
+          <rect class="cvia" x="766" y="-2" width="4" height="4" />
+          <rect class="cvia" x="1150" y="382" width="4" height="4" />
+          <rect class="cvia" x="1150" y="254" width="4" height="4" />
+          <rect class="cchip" x="96" y="12" width="64" height="40" rx="3" />
+          <rect class="cchip" x="1388" y="-32" width="40" height="64" rx="3" />
+          <rect class="cchip" x="1484" y="640" width="40" height="64" rx="3" />
+          <rect class="cchip" x="804" y="332" width="56" height="40" rx="3" />
+          <rect class="cchip" x="-28" y="12" width="56" height="40" rx="3" />
+          <rect class="cchip" x="204" y="544" width="40" height="64" rx="3" />
+          <rect class="cchip" x="744" y="304" width="48" height="32" rx="3" />
+      </svg>
     </div>
-    
+
     <!-- Login Card Container -->
-    <div class="relative w-full max-w-[420px] px-gutter-mobile md:px-0 z-10 py-12">
+    <div class="relative w-full max-w-[420px] px-gutter-mobile md:px-0 z-10 py-12 mt-10">
       <!-- Brand Header -->
       <div class="text-center mb-xl flex flex-col items-center">
         <a class="flex flex-col items-center gap-2 hover:opacity-80 transition-opacity mb-sm" href="/">
-          <img src="/assets/Logo.png" alt="M-Square Logo" class="h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,106,43,0.4)]" />
-          <span class="font-display text-headline-md font-bold text-primary-container tracking-tight">M2-Square</span>
+          <img src="/assets/Logo.png" alt="M-Square Logo" class="h-32 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,106,43,0.4)]" />
+          <span class="font-display text-headline-lg font-bold text-primary-container tracking-tight">M2-Square</span>
         </a>
-        <p class="font-display text-body-md text-text-secondary">Precision in Digital Infrastructure.</p>
+        <p class="font-display text-body-lg text-text-secondary">Precision in Digital Infrastructure.</p>
       </div>
-      
-      <!-- Surface Card -->
-      <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-xl shadow-2xl relative overflow-hidden">
-        <!-- Subtle top highlight for depth -->
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border-strong to-transparent opacity-50"></div>
-        
-        <form action="#" class="space-y-lg" method="POST">
-          <!-- Username Input -->
-          <div class="space-y-xs">
-            <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="username">System ID</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
-                <span class="material-symbols-outlined text-text-tertiary text-[18px]">badge</span>
+
+      <!-- Surface Card, with a ring of light chasing its edge -->
+      <div class="login-card-wrap relative">
+        <div class="login-ring" aria-hidden="true"></div>
+
+        <div class="bg-bg-secondary border border-border-subtle rounded-2xl p-xl shadow-2xl relative overflow-hidden">
+          <!-- Subtle top highlight for depth -->
+          <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border-strong to-transparent opacity-50"></div>
+
+          <form action="#" class="space-y-lg" method="POST">
+            <!-- Username Input -->
+            <div class="space-y-xs">
+              <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="username">System ID</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none text-text-tertiary">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="3" width="16" height="18" rx="2"></rect>
+                    <circle cx="12" cy="10" r="2.5"></circle>
+                    <path d="M8 17c0.7-2 2-3 4-3s3.3 1 4 3"></path>
+                    <path d="M9 3.5v2"></path>
+                    <path d="M15 3.5v2"></path>
+                  </svg>
+                </div>
+                <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary" id="username" name="username" placeholder="user@domain.ext" required type="text" />
               </div>
-              <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary" id="username" name="username" placeholder="user@domain.ext" required type="text" />
             </div>
-          </div>
-          
-          <!-- Password Input -->
-          <div class="space-y-xs">
-            <div class="flex justify-between items-center">
-              <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="password">Passcode</label>
-              <a class="font-label-md text-text-tertiary hover:text-primary-container transition-colors text-[11px]" href="#">Reset Key?</a>
-            </div>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
-                <span class="material-symbols-outlined text-text-tertiary text-[18px]">lock</span>
+
+            <!-- Password Input -->
+            <div class="space-y-xs">
+              <div class="flex justify-between items-center">
+                <label class="block font-label-md text-text-secondary uppercase tracking-widest text-[11px]" for="password">Passcode</label>
+                <a class="font-label-md text-text-tertiary hover:text-primary-container transition-colors text-[11px]" href="#">Reset Key?</a>
               </div>
-              <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary tracking-widest" id="password" name="password" placeholder="••••••••" required type="password" />
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none text-text-tertiary">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="11" width="14" height="9" rx="2"></rect>
+                    <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+                  </svg>
+                </div>
+                <input class="block w-full bg-bg-tertiary border border-border-subtle rounded text-text-primary font-mono text-mono py-[10px] pl-[38px] pr-sm focus:border-primary-container focus:ring-0 focus-glow transition-all duration-200 placeholder:text-text-tertiary tracking-widest" id="password" name="password" placeholder="" required type="password" />
+              </div>
             </div>
+
+            <!-- Actions -->
+            <div class="pt-sm space-y-md">
+              <button class="w-full flex justify-center py-[10px] px-md border border-transparent rounded bg-primary-container text-white font-display text-body-md font-semibold hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-primary-container transition-colors duration-200 shadow-[0_0_15px_rgba(255,106,43,0.2)]" type="submit">
+                Authenticate
+              </button>
+              <button class="w-full flex justify-center items-center py-[10px] px-md border border-border-strong rounded bg-transparent text-text-primary font-display text-body-md hover:bg-bg-tertiary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-border-strong transition-colors duration-200" type="button">
+                <svg class="w-[18px] h-[18px] mr-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="15" r="4"></circle>
+                  <path d="M11 12l9-9"></path>
+                  <path d="M16 7l3 3"></path>
+                  <path d="M19 4l1 1"></path>
+                </svg>
+                SSO Login
+              </button>
+            </div>
+          </form>
+
+          <!-- Terminal decorative element -->
+          <div class="mt-lg pt-md border-t border-border-subtle flex items-center justify-center opacity-40">
+            <svg class="w-[14px] h-[14px] mr-xs text-text-tertiary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <path d="M7 9l3 3-3 3"></path>
+              <path d="M13 15h4"></path>
+            </svg>
+            <span class="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">Node: Auth-Server-01</span>
           </div>
-          
-          <!-- Actions -->
-          <div class="pt-sm space-y-md">
-            <button class="w-full flex justify-center py-[10px] px-md border border-transparent rounded bg-primary-container text-white font-display text-body-md font-semibold hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-primary-container transition-colors duration-200 shadow-[0_0_15px_rgba(255,106,43,0.2)]" type="submit">
-              Authenticate
-            </button>
-            <button class="w-full flex justify-center py-[10px] px-md border border-border-strong rounded bg-transparent text-text-primary font-display text-body-md hover:bg-bg-tertiary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-secondary focus:ring-border-strong transition-colors duration-200" type="button">
-              <span class="material-symbols-outlined mr-xs text-[18px]">key</span>
-              SSO Login
-            </button>
-          </div>
-        </form>
-        
-        <!-- Terminal decorative element -->
-        <div class="mt-lg pt-md border-t border-border-subtle flex items-center justify-center opacity-40">
-          <span class="material-symbols-outlined text-[14px] text-text-tertiary mr-xs">terminal</span>
-          <span class="font-mono text-[10px] text-text-tertiary uppercase tracking-widest">Node: Auth-Server-01</span>
         </div>
       </div>
-      
+
       <!-- Footer Links -->
       <div class="mt-lg flex justify-center space-x-md text-center">
-        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="#">Privacy Policy</a>
+        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="/privacy">Privacy Policy</a>
         <span class="text-border-strong text-[11px]">|</span>
-        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="#">Terms of Service</a>
+        <a class="font-label-md text-text-tertiary hover:text-text-secondary transition-colors text-[11px] uppercase tracking-wider" href="/terms">Terms of Service</a>
       </div>
     </div>
   </div>
 </Layout>
 
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-</head>
-
 <style>
   .focus-glow:focus {
     box-shadow: 0 0 0 2px rgba(255, 106, 43, 0.2);
   }
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+
+  /* ---------- background: dense two-tier PCB circuit, fully static ---------- */
+  .login-bg {
+    z-index: 0;
+  }
+
+  .circuit-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .ctrace {
+    fill: none;
+    stroke: rgba(255, 140, 90, 0.22);
+    stroke-width: 1.4;
+  }
+  .ctrace-fine {
+    stroke: rgba(113, 210, 255, 0.14);
+    stroke-width: 1;
+  }
+  .cnode {
+    fill: rgba(255, 190, 160, 0.32);
+  }
+  .cvia {
+    fill: rgba(113, 210, 255, 0.22);
+  }
+  .cchip {
+    fill: none;
+    stroke: rgba(113, 210, 255, 0.16);
+    stroke-width: 1.2;
+  }
+
+  /* A handful of nodes idle-pulse — kept few on purpose so there's
+     no constant repaint from many simultaneous infinite animations. */
+  .cnode-pulse {
+    animation: nodeIdlePulse 4s ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  @keyframes nodeIdlePulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  /* ---------- ring of light chasing the card's edge ---------- */
+  .login-card-wrap {
+    padding: 2px;
+  }
+  .login-ring {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 18px;
+    padding: 2px;
+    overflow: hidden;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .login-ring::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 220%;
+    height: 220%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0%,
+      transparent 78%,
+      #ffb59a 90%,
+      #71d2ff 96%,
+      #ff6a2b 100%
+    );
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: loginRingSpin 3.6s linear infinite;
+    will-change: transform;
+  }
+  @keyframes loginRingSpin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  .login-card-wrap > div:last-child {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cnode-pulse, .login-ring::before {
+      animation: none !important;
+    }
   }
 </style>
