@@ -45,3 +45,23 @@
     color: #f5f5f5;
   }
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;          /* Crucial for proper width calculation */
+  width: max-content;     /* Crucial to stop the snap */
+  animation: marquee 45s linear infinite; /* Slower speed for better readability */
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}

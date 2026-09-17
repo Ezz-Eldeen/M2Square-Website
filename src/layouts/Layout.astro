@@ -46,19 +46,6 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
             About Us
           </a>
         </li>
-        <li class="relative group">
-          <a href="/services" class={`font-display text-body-md transition-colors duration-200 flex items-center gap-base ${currentPath.startsWith('/services') ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`}>
-            Services and Solutions
-            <span class="material-symbols-outlined">expand_more</span>
-          </a>
-          <div class="absolute left-0 top-full mt-2 w-64 bg-bg-secondary/90 backdrop-blur-lg border border-border-subtle rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
-            <div class="py-sm">
-              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#digital-transformation">Digital Transformation</a>
-              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#project-management">Project Management</a>
-              <a class="block px-md py-xs font-display text-body-md text-text-primary/80 hover:bg-bg-tertiary hover:text-primary-container transition-colors duration-200" href="/services#e-taxes-solutions">E-Taxes Solutions</a>
-            </div>
-          </div>
-        </li>
         <li>
           <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/contact' ? 'text-primary-container font-semibold border-b-2 border-primary-container pb-1' : 'text-text-secondary hover:text-text-primary'}`} href="/contact">
             Contact Us
@@ -82,13 +69,6 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
     <div id="mobile-menu" class="hidden md:hidden bg-bg-primary border-t border-border-subtle/50 px-gutter-mobile py-md space-y-sm">
       <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/">Home</a>
       <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/about">About Us</a>
-      <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/services">Services & Solutions</a>
-      <div class="space-y-xs pl-sm border-l border-border-subtle">
-        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#cyber-security">Cyber Security</a>
-        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#digital-transformation">Digital Transformation</a>
-        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#project-management">Project Management</a>
-        <a class="block font-display text-label-md text-text-tertiary hover:text-primary-container" href="/services#e-taxes-solutions">E-Taxes Solutions</a>
-      </div>
       <a class="block font-display text-body-md text-text-secondary hover:text-text-primary" href="/contact">Contact Us</a>
       <div class="pt-sm border-t border-border-subtle/50 flex flex-col gap-sm">
         <a class="text-center font-display text-body-md text-text-secondary py-xs" href="/login">Log In</a>
@@ -108,15 +88,17 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
           M-Square
         </a>
         <p class="font-display text-label-md text-text-primary/60 mb-sm">
-          © 2021 M-Square. Precision in Digital Infrastructure.
-        </p>
-      </div>
+  © 2021 M-Square.<br />
+   Precision in Digital Infrastructure.
+</p>
+</div>
       <div class="col-span-1">
         <h4 class="font-display text-label-md font-semibold text-text-primary mb-md">Solutions</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#digital-transformation">Digital Transformation</a></li>
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#project-management">Project Management</a></li>
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/services#e-taxes-solutions">E-Taxes Solutions</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#digital-transformation">Digital Transformation</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#project-management">Project Management</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#e-taxes-solutions">E-Taxes Solutions</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#web-engineering">Web Engineering</a></li>
         </ul>
       </div>
       <div class="col-span-1">

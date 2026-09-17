@@ -1,0 +1,184 @@
+---
+// src/components/ImageSlider.astro
+const slides = [
+  {
+    image: "/slider1.jpg", // Place your image in /public/
+    tag: "Strategy & Alignment",
+    title: "Engineering sessions built for scale.",
+    description: "We work directly with your team to set up systems that run smoothly and don't need constant fixing."
+  },
+  {
+    image: "/slider2.jpg",
+    tag: "Project Management",
+    title: "Precision tracking from blueprint to launch.",
+    description: "Clear timelines and step-by-step execution so your projects always launch on schedule."
+  },
+  {
+    image: "/slider3.jpg", // Add your third image path here
+    tag: "E-Taxes Solutions",
+    title: "Automated compliance for enterprise tax workflows.",
+    description: "Reliable tools that keep your financial reporting accurate, secure, and fully up to date with tax laws."
+  },
+    {
+    image: "/slider4.jpg",
+    tag: "Web Engineering & Architecture",
+    title: "High-performance web systems built to convert.",
+    description: "Fast, custom websites built with modern tools that look great and turn visitors into customers."
+  }
+];
+---
+
+<div id="slider-container" class="relative w-full h-[600px] sm:h-[700px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+  <!-- Slides Container -->
+  <div class="relative w-full h-full">
+    {slides.map((slide, index) => (
+      <div 
+        class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        data-slide={index}
+      >
+        <!-- Background Image with Subtle Zoom & Dark Gradient Overlays -->
+        <img 
+          src={slide.image} 
+          alt={slide.tag} 
+          class="absolute inset-0 w-full h-full object-cover scale-103 transition-transform duration-1000 ease-out pointer-events-none" 
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+
+        <!-- Text Content Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 max-w-3xl z-20 pointer-events-none">
+          
+          <!-- MASSIVE CATCHY TAG (Now the primary visual element) -->
+          <div class="mb-4 inline-block">
+            <span class="text-3xl sm:text-5xl font-black uppercase tracking-tight bg-gradient-to-r from-[#ff6a2b] via-[#ffa447] to-[#ff6a2b] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(255,106,43,0.3)]">
+              {slide.tag}
+            </span>
+          </div>
+
+          <!-- Smaller Secondary Title -->
+          <h3 class="text-lg sm:text-2xl font-semibold text-white/90 tracking-wide mb-3 flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse"></span>
+            {slide.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-base sm:text-lg text-[#A3A3AA] leading-relaxed">
+            {slide.description}
+          </p>
+
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Pagination Indicators / Dots -->
+  <div class="absolute bottom-6 right-6 z-30 flex items-center gap-2">
+    {slides.map((_, index) => (
+      <button 
+        class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#ff6a2b]' : 'w-2 bg-white/30'}`}
+        data-index={index}
+        aria-label={`Go to slide ${index + 1}`}
+      ></button>
+    ))}
+  </div>
+
+</div>
+
+<style>
+  @keyframes shine {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-shine {
+    animation: shine 5s ease infinite;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sliderContainer = document.getElementById("slider-container");
+    const slides = document.querySelectorAll("[data-slide]");
+    const dots = document.querySelectorAll(".indicator-dot");
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let slideInterval: number;
+
+    function showSlide(index: number) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove("opacity-0", "z-0");
+          slide.classList.add("opacity-100", "z-10");
+        } else {
+          slide.classList.remove("opacity-100", "z-10");
+          slide.classList.add("opacity-0", "z-0");
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.remove("w-2", "bg-white/30");
+          dot.classList.add("w-8", "bg-[#ff6a2b]");
+        } else {
+          dot.classList.remove("w-8", "bg-[#ff6a2b]");
+          dot.classList.add("w-2", "bg-white/30");
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentIndex);
+    }
+
+    // Auto-advance timer
+    slideInterval = window.setInterval(nextSlide, 6000);
+
+    // Left/Right container click handling
+    if (sliderContainer) {
+      sliderContainer.addEventListener("click", (e) => {
+        // Ignore clicks on pagination buttons so they don't double-trigger
+        if ((e.target as HTMLElement).closest("button")) return;
+
+        const rect = sliderContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+
+        // If clicked on the left half, go back. Right half, go forward.
+        if (clickX < rect.width / 2) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+
+        // Reset the auto-advance timer on manual click
+        clearInterval(slideInterval);
+        slideInterval = window.setInterval(nextSlide, 4500);
+      });
+    }
+
+    // Clickable dots for manual control
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        const indexAttr = (e.currentTarget as HTMLElement).getAttribute("data-index");
+        if (indexAttr !== null) {
+          currentIndex = parseInt(indexAttr);
+          showSlide(currentIndex);
+          clearInterval(slideInterval);
+          slideInterval = window.setInterval(nextSlide, 3500);
+        }
+      });
+    });
+  });
+</script>

@@ -3,228 +3,313 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="About Us - M2-Square">
-  <!-- Loads the icon font directly so the material-symbols-outlined spans below
-       actually render as icons instead of printing their raw ligature names -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap"
   />
 
-  <main class="pt-24 pb-24 relative overflow-x-hidden bg-black text-white">
+  <main class="about-page">
     <!--
-      GLOBAL AMBIENT BACKGROUND — replaces the old per-section blur blobs.
-
-      Why: the previous version had ~12 separate `blur-[140-170px]` divs
-      scattered through every section, plus a `.mesh-bg-about` layer that
-      animated `background-position` across a 7-stop gradient the size of
-      the whole page. `background-position` is a paint property, not a
-      compositor one, so that animation was repainting a full-page gradient
-      stack every frame — the single biggest source of the lag. The blur
-      blobs were each their own expensive filter layer, and because they
-      were pinned to individual sections, the color never actually blended
-      between sections — it just visually "restarted" at each boundary.
-
-      Fix: one `position: fixed` layer, mounted once, built from plain
-      radial-gradients (no `filter: blur` — a radial-gradient is already
-      soft, so blur was pure overhead here). Being fixed and singular means
-      it's behind every section continuously, so there's no seam left to
-      blend — same layer, no boundary. It never repaints on scroll since
-      nothing about it changes; the browser just composites it once.
+      Single, static ambient layer instead of the previous stack of four
+      (fixed gradient + scroll-following spotlight + drifting starfield +
+      breathing glow). None of those actually communicated anything about
+      the company, and stacking that much continuous motion on an ERP/
+      compliance brand reads as a game or crypto landing page rather than
+      enterprise software. Kept: one fixed, non-animated radial layer, so
+      the "no repaint on scroll" performance goal from the original still
+      holds, but there's nothing distracting fighting for attention.
     -->
-    <div class="ambient-bg" aria-hidden="true"></div>
+    <div class="ambient" aria-hidden="true"></div>
 
-    <!--
-      SCROLL-FOLLOWING SPOTLIGHT
-      Large-radius orange glow that stays with you as you scroll, instead
-      of being trapped in one section. Fixed positioning already means it
-      never leaves the viewport; the small scroll-linked drift on top of
-      that is done by writing a single `transform: translate3d(...)` per
-      animation frame (compositor-only — no layout, no paint), throttled
-      with rAF and capped so it settles rather than racing off-screen.
-    -->
-    <div id="scroll-light" class="scroll-light" aria-hidden="true"></div>
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-mark">
+          <div class="mark-frame">
+            <div class="mark-glow" aria-hidden="true"></div>
+            <img
+              src="/assets/Logo.png"
+              alt="M-Square"
+              class="mark-logo"
+            />
+          </div>
+        </div>
 
-    <!-- Ambient starfield — small glowing particles drifting slowly, spans the whole page -->
-    <div class="bg-starfield absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-      <span class="star" style="top:4%; left:8%; --size:2px; --delay:0s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:9%; left:34%; --size:1.5px; --delay:1.2s; --dur:9s; --drift:10px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:14%; left:62%; --size:2px; --delay:0.5s; --dur:7.5s; --drift:14px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:6%; left:88%; --size:2.5px; --delay:2s; --dur:10s; --drift:18px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:22%; left:18%; --size:1.5px; --delay:0.8s; --dur:8.5s; --drift:12px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:26%; left:76%; --size:2px; --delay:1.6s; --dur:7s; --drift:16px; --tint:#ffffff;"></span>
-      <span class="star" style="top:31%; left:46%; --size:2.5px; --delay:0.3s; --dur:9.5s; --drift:20px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:36%; left:5%; --size:1.5px; --delay:2.4s; --dur:8s; --drift:10px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:40%; left:92%; --size:2px; --delay:1s; --dur:7.8s; --drift:14px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:45%; left:28%; --size:1.5px; --delay:1.8s; --dur:9s; --drift:12px; --tint:#ffffff;"></span>
-      <span class="star" style="top:49%; left:60%; --size:2.5px; --delay:0.6s; --dur:8.2s; --drift:18px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:53%; left:11%; --size:2px; --delay:2.2s; --dur:7.6s; --drift:14px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:57%; left:81%; --size:1.5px; --delay:0.9s; --dur:9.2s; --drift:10px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:61%; left:38%; --size:2px; --delay:1.4s; --dur:8s; --drift:16px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:65%; left:66%; --size:2.5px; --delay:0.2s; --dur:9.6s; --drift:20px; --tint:#ffffff;"></span>
-      <span class="star" style="top:69%; left:15%; --size:1.5px; --delay:2s; --dur:7.4s; --drift:12px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:73%; left:52%; --size:2px; --delay:1.1s; --dur:8.6s; --drift:14px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:77%; left:90%; --size:1.5px; --delay:0.4s; --dur:9.4s; --drift:10px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:81%; left:24%; --size:2.5px; --delay:1.7s; --dur:8.4s; --drift:18px; --tint:#ffffff;"></span>
-      <span class="star" style="top:85%; left:70%; --size:2px; --delay:0.7s; --dur:7.2s; --drift:14px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:89%; left:42%; --size:1.5px; --delay:2.3s; --dur:9.8s; --drift:12px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:93%; left:8%; --size:2px; --delay:1.3s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:96%; left:58%; --size:2.5px; --delay:0.1s; --dur:9s; --drift:18px; --tint:#ff6a2b;"></span>
-      <span class="star" style="top:18%; left:97%; --size:1.5px; --delay:1.9s; --dur:8.8s; --drift:10px; --tint:#ffffff;"></span>
-      <span class="star" style="top:38%; left:97%; --size:2px; --delay:0.6s; --dur:7.6s; --drift:14px; --tint:#71d2ff;"></span>
-      <span class="star" style="top:62%; left:2%; --size:2.5px; --delay:1.5s; --dur:9.2s; --drift:18px; --tint:#ffb59a;"></span>
-      <span class="star" style="top:83%; left:3%; --size:1.5px; --delay:2.1s; --dur:8.4s; --drift:12px; --tint:#ff6a2b;"></span>
-    </div>
+        <div class="hero-copy">
+          <span class="eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Founded 2021
+          </span>
 
-    <!-- 1. HERO SECTION -->
-    <section class="relative min-h-[75vh] flex flex-col items-center justify-center px-6 max-w-5xl mx-auto py-16 text-center z-10 perspective-1000">
-      <div class="absolute top-1/3 left-1/2 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[radial-gradient(circle,_rgba(255,106,43,0.35)_0%,_rgba(255,106,43,0)_70%)] rounded-full pointer-events-none -z-10 animate-fast-breath"></div>
+          <h1>We build the infrastructure businesses run on.</h1>
 
-      <!-- Hero Badge -->
-      <div class="pop-card inline-flex items-center gap-2 border border-white/10 bg-[#131316]/80 backdrop-blur-md px-4 py-1.5 rounded-full mb-8 shadow-md">
-        <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse shadow-[0_0_8px_rgba(255,106,43,0.8)]"></span>
-        <span class="font-mono text-xs text-[#A3A3AA] uppercase tracking-widest">Enterprise Resource Planning</span>
-      </div>
-      
-      <!-- Animated Floating Logo -->
-      <div class="mb-8 animate-zoom-in flex flex-col items-center justify-center w-full">
-        <img
-          src="/assets/Logo.png"
-          alt="M-Square Logo"
-          class="h-[280px] sm:h-[360px] md:h-[420px] w-auto object-contain max-w-none animate-logo-combined"
-        />
-      </div>
+          <p class="lede">
+            M-Square was co-founded by Mr. Mohamed El-Fiky and Mr. Mohamed
+            Khamis, who bring a combined experience of 60+ years in the
+            field of IT and business administration.
+          </p>
 
-      <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold text-[#F5F5F4] mb-6 leading-tight tracking-tight max-w-4xl">
-        Precision in <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a2b] to-[#ffb59a] drop-shadow-[0_0_20px_rgba(255,106,43,0.3)]">Business Infrastructure</span>
-      </h1>
+          <p>
+            In 2021, they recognized the need for a modern, frictionless
+            solution for the new electronic invoice system introduced by
+            the Egyptian Tax Authority. They gathered a team of experts to
+            develop a comprehensive solution that streamlined the
+            invoicing process and ensured compliance with the latest
+            regulations. The project was a major success, and clients were
+            highly satisfied with the results — leading the company to
+            expand into customized ERP solutions and other software
+            solutions, like websites, for highly reputable clients.
+          </p>
 
-      <!-- Hero Paragraph -->
-      <div class="w-full max-w-2xl mx-auto px-4">
-        <p class="text-base sm:text-xl text-[#E5E5E5] font-medium leading-relaxed text-center">
-          M-Square was Co-founded by Mr. Mohamed El-Fiky and Mr. Mohamed Khamiss who both have a combined experience of 60+ years in the field of IT and Buisness administration. 
-          In 2021, they recognized the need for a modern, frictionless solution for the new electronic invoice system presented by the Egyptian Tax Authority. 
-          They gathered a team of experts to develop a comprehensive solution that would streamline the invoicing process and ensure compliance with the latest regulations.
-          The project was a major success and the clients were highly satisfied with the results, leading the company to expand to providing customized ERP solutions
-          and other software solutions like websites to highly reputable  clients. </p>
+          <dl class="fact-row">
+            <div class="fact">
+              <dt>Founded</dt>
+              <dd>2021</dd>
+            </div>
+            <div class="fact">
+              <dt>Combined experience</dt>
+              <dd>60+ years</dd>
+            </div>
+            <div class="fact">
+              <dt>Co-founders</dt>
+              <dd>2</dd>
+            </div>
+            <div class="fact">
+              <dt>What we build</dt>
+              <dd>ERP &amp; web</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
-
   </main>
 </Layout>
 
 <style>
-  .perspective-1000 {
-    perspective: 1000px;
+  .about-page {
+    --bg: #0d0d0e;
+    --panel: #17161a;
+    --border: rgba(255, 255, 255, 0.09);
+    --text-primary: #f5f3ef;
+    --text-secondary: #b4b2ad;
+    --text-tertiary: #817f7b;
+    --accent: #ff6a2b;
+    --accent-soft: #ffb59a;
+
+    position: relative;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    padding-block: clamp(3rem, 6vw, 6rem);
   }
 
-  /* Official Google-recommended base rule for the ligature icon font —
-     without this, the font can still fail to substitute glyphs in some
-     browsers even once loaded. */
-  .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Belt-and-suspenders fix for the CTA paragraph: something upstream of this
-     component (likely a global reset) is forcing paragraph width down to
-     min-content, which wraps one word per line. This selector — scoped by
-     Astro to this component — plus the inline style on the tag itself
-     guarantees it renders full-width regardless of what's inherited. */
-  .cta-desc {
-    display: block;
-    width: 100% !important;
-    max-width: 36rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /*
-    GLOBAL AMBIENT BACKGROUND
-    Fixed + built entirely from radial-gradients (no `filter: blur`).
-    A radial-gradient already fades to transparent on its own, so this gets
-    the same soft-glow look the old blurred divs had, at a fraction of the
-    compositing cost, and it never needs to repaint on scroll — the browser
-    paints it once and composites it as a static layer from then on.
-    Because there's exactly one of these behind the entire page, colors
-    read as continuous from section to section instead of restarting at
-    each section boundary.
-  */
-  .ambient-bg {
+  .ambient {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 55% 40% at 25% 0%, rgba(255, 106, 43, 0.16) 0%, transparent 60%),
-      radial-gradient(ellipse 45% 35% at 80% 15%, rgba(113, 210, 255, 0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 45% at 20% 55%, rgba(255, 106, 43, 0.09) 0%, transparent 65%),
-      radial-gradient(ellipse 55% 40% at 85% 75%, rgba(255, 181, 154, 0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 45% at 30% 100%, rgba(255, 106, 43, 0.1) 0%, transparent 65%);
+      radial-gradient(ellipse 50% 40% at 20% 0%, rgba(255, 106, 43, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 65%, rgba(255, 181, 154, 0.05) 0%, transparent 65%);
   }
 
-  /*
-    SCROLL-FOLLOWING SPOTLIGHT
-    Large radius, fixed to the viewport so it's always with you as you
-    scroll. The `transform` gets a small extra offset written by the script
-    below for a gentle parallax drift — transform is compositor-only, so
-    that update is essentially free every frame.
-  */
-  .scroll-light {
-    position: fixed;
-    top: -30vh;
-    left: 50%;
-    width: 1600px;
-    height: 1600px;
-    margin-left: -800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.14) 0%, rgba(255, 106, 43, 0.05) 40%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
+  .hero {
+    position: relative;
+    z-index: 1;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
   }
 
-  /* Pop-in Entrance Base State */
-  .pop-card {
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'mark' 'copy';
+    align-items: center;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  @media (min-width: 960px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.75fr);
+      grid-template-areas: 'copy mark';
+      gap: clamp(3rem, 6vw, 5rem);
+    }
+  }
+
+  /* ---- Copy column ---- */
+
+  .hero-copy {
+    grid-area: copy;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
     opacity: 0;
-    transform: translateY(60px) scale(0.85);
-    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    will-change: transform, opacity;
+    animation: rise 0.6s ease-out forwards;
+    animation-delay: 0.1s;
   }
 
-  /* Alternating tilt-in direction for a livelier, less uniform entrance */
-  .pop-card:nth-child(odd)  { transform: translateY(60px) scale(0.85) rotateY(-14deg); }
-  .pop-card:nth-child(even) { transform: translateY(60px) scale(0.85) rotateY(14deg); }
-
-  /* Triggered State */
-  .pop-card.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotateY(0deg) !important;
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulseDot 3s ease-in-out infinite;
   }
 
-  /* Keyframe Animations */
+  h1 {
+    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0 0 1.25rem;
+    max-width: 18ch;
+    opacity: 0;
+    animation: rise 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+
+  .hero-copy p {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 52ch;
+    margin: 0 0 1rem;
+    opacity: 0;
+    animation: rise 0.6s ease-out forwards;
+  }
+
+  .hero-copy p.lede {
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    animation-delay: 0.3s;
+  }
+
+  .hero-copy p:not(.lede) {
+    animation-delay: 0.4s;
+  }
+
+  .fact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 2rem 0 0;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    opacity: 0;
+    animation: rise 0.6s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  .fact {
+    flex: 1 1 7rem;
+    padding-right: 1.5rem;
+    margin-right: 1.5rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .fact:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .fact dt {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin: 0 0 0.35rem;
+  }
+
+  .fact dd {
+    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    position: relative;
+    padding-top: 0.5rem;
+  }
+
+  .fact dd::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.25rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  /* ---- Mark / logo column ---- */
+
+  .hero-mark {
+    grid-area: mark;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mark-frame {
+    position: relative;
+    width: clamp(300px, 36vw, 440px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: zoomInFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .mark-glow {
+    position: absolute;
+    inset: -30%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 106, 43, 0.35) 0%, rgba(255, 106, 43, 0) 70%);
+    animation: fastBreath 2.5s ease-in-out infinite;
+  }
+
+  .mark-logo {
+    position: relative;
+    width: 86%;
+    height: auto;
+    object-fit: contain;
+    animation: logoCombined 3s ease-in-out infinite;
+  }
+
+  /* ---- Motion ---- */
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @keyframes zoomInFade {
     0% { opacity: 0; transform: scale(0.6); }
     100% { opacity: 1; transform: scale(1); }
   }
 
   @keyframes fastBreath {
-    0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.4; }
-    50% { transform: translate(-50%, -50%) scale(1.35); opacity: 0.85; }
+    0%, 100% { transform: translate(0, 0) scale(0.85); opacity: 0.4; }
+    50% { transform: translate(0, 0) scale(1.35); opacity: 0.85; }
   }
 
   @keyframes logoCombined {
@@ -232,311 +317,19 @@ import Layout from '../layouts/Layout.astro';
     50% { filter: drop-shadow(0 0 75px rgba(255, 106, 43, 0.75)); transform: translateY(-14px); }
   }
 
-  @keyframes spinSlow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes spinReverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-  }
-
-  .animate-spin-slow { animation: spinSlow 30s linear infinite; }
-  .animate-spin-reverse { animation: spinReverse 45s linear infinite; }
-  .animate-zoom-in { animation: zoomInFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-  .animate-fast-breath { animation: fastBreath 2.5s ease-in-out infinite; }
-  .animate-logo-combined { animation: logoCombined 3s ease-in-out infinite; }
-
-  /* Full-page grid texture, faded out at top and bottom edges */
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
-  }
-
-  /* Card hover — lift + border highlight only (spotlight glow removed) */
-  .glow-card {
-    transition: transform 0.35s ease, border-color 0.35s ease;
-  }
-  .glow-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 106, 43, 0.5);
-  }
-
-  /* Orbit section — soft radial wash, feathered top and bottom with a mask,
-     ties it into the ambient background running behind everything so the
-     section stops reading as a pasted box. */
-  .orbit-section {
-    position: relative;
-    isolation: isolate;
-  }
-  .orbit-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 75% 65% at 50% 50%, rgba(255, 106, 43, 0.05) 0%, rgba(13, 13, 16, 0.4) 45%, transparent 85%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  /* Orbit section ambient background effects */
-  .orbit-bg-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 106, 43, 0.16) 0%, rgba(255, 106, 43, 0.05) 35%, transparent 70%);
-    animation: orbitGlowPulse 6s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .orbit-conic-field {
-    position: absolute;
-    width: 90%;
-    max-width: 900px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, rgba(255, 106, 43, 0.14), transparent 25%, rgba(255, 181, 154, 0.1) 50%, transparent 75%, rgba(255, 106, 43, 0.14));
-    filter: blur(60px);
-    animation: spinReverse 60s linear infinite;
-    pointer-events: none;
-    z-index: 0;
-    will-change: transform;
-  }
-
-  @keyframes orbitGlowPulse {
-    0%, 100% { opacity: 0.55; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.08); }
-  }
-
-  .orbit-particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .particle {
-    position: absolute;
-    width: var(--size, 2px);
-    height: var(--size, 2px);
-    border-radius: 50%;
-    background: #ffb59a;
-    box-shadow: 0 0 6px 1px rgba(255, 106, 43, 0.8);
-    animation: particleTwinkle var(--dur, 4s) ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
-  }
-
-  @keyframes particleTwinkle {
-    0%, 100% { opacity: 0.15; transform: translateY(0) scale(1); }
-    50% { opacity: 0.9; transform: translateY(-14px) scale(1.4); }
-  }
-
-  /* Animated, recolored logo at the center of the orbit */
-  .core-hub {
-    z-index: 10;
-  }
-
-  .core-logo-frame {
-    position: relative;
-    width: 96px;
-    height: 96px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  @media (min-width: 640px) { .core-logo-frame { width: 116px; height: 116px; } }
-  @media (min-width: 768px) { .core-logo-frame { width: 136px; height: 136px; } }
-  @media (min-width: 1024px) { .core-logo-frame { width: 156px; height: 156px; } }
-
-  .core-logo-frame::before {
-    content: '';
-    position: absolute;
-    inset: -14px;
-    background: radial-gradient(circle, rgba(19, 19, 22, 0.92) 0%, rgba(19, 19, 22, 0.5) 55%, transparent 80%);
-    border-radius: 50%;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .core-logo-glow {
-    position: absolute;
-    width: 220%;
-    height: 220%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.45) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(16px);
-    animation: fastBreath 3s ease-in-out infinite;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .core-hub-ring {
-    position: absolute;
-    inset: -16px;
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 106, 43, 0.5);
-    animation: spinSlow 18s linear infinite;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .core-hub-ring-2 {
-    inset: -32px;
-    border: 1px solid rgba(255, 181, 154, 0.25);
-    animation: spinReverse 26s linear infinite;
-  }
-
-  .core-logo-img {
-    position: relative;
-    width: 72%;
-    height: 72%;
-    object-fit: contain;
-    z-index: 3;
-    filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.6));
-    animation: logoBreathe 4s ease-in-out infinite;
-  }
-
-  .core-logo-frame::after {
-    content: '';
-    position: absolute;
-    width: 72%;
-    height: 72%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.95) 0%, rgba(255, 181, 154, 0.55) 55%, transparent 80%);
-    mix-blend-mode: color;
-    z-index: 4;
-    pointer-events: none;
-    border-radius: 50%;
-  }
-
-  @keyframes logoBreathe {
-    0%, 100% { transform: scale(1); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.55)); }
-    50% { transform: scale(1.06); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(255, 106, 43, 0.9)); }
-  }
-
-  /* Orbiting Satellite System */
-
-  /* Radius is set responsively here (not inline) so it can grow with the
-     hub + card sizes at each breakpoint. */
-  .orbit-track {
-    --r-inner: 175px;
-    --r-outer: 255px;
-  }
-  @media (min-width: 640px) {
-    .orbit-track { --r-inner: 195px; --r-outer: 285px; }
-  }
-  @media (min-width: 768px) {
-    .orbit-track { --r-inner: 220px; --r-outer: 320px; }
-  }
-  @media (min-width: 1024px) {
-    .orbit-track { --r-inner: 245px; --r-outer: 355px; }
-  }
-
-  .orbit-inner { --r: var(--r-inner); }
-  .orbit-outer { --r: var(--r-outer); }
-
-  .orbit-ring-item {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    animation: orbitSpin var(--duration) linear infinite;
-    animation-delay: var(--delay);
-  }
-
-  /* The card is pushed out to its radius, then spins the opposite way
-     of its parent so the label itself never rotates — it just travels. */
-  .orbit-card {
-    position: absolute;
-    top: calc(-1 * var(--r));
-    left: 0;
-    animation: orbitCounterSpin var(--duration) linear infinite;
-    animation-delay: var(--delay);
-  }
-
-  /* Smooths out the rotation — avoids sub-pixel jitter on absolutely
-     positioned, continuously-transformed elements. */
-  .orbit-ring-item,
-  .orbit-card {
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  @keyframes orbitSpin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(calc(360deg * var(--dir, 1))); }
-  }
-
-  @keyframes orbitCounterSpin {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to   { transform: translate(-50%, -50%) rotate(calc(-360deg * var(--dir, 1))); }
-  }
-
-  /* CTA card — rotating conic ring + shine-sweep button. */
-  .cta-card {
-    background: linear-gradient(to bottom, #131316, #0d0d10);
-  }
-
-  .cta-ring {
-  position: absolute;
-  inset: -2px;
-  z-index: 0;
-  border-radius: inherit;
-  padding: 2px;
-  overflow: hidden;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.6;
-  pointer-events: none;
-  background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
-}
-
-  .cta-gradient-text {
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    background-image: linear-gradient(90deg, #ffffff, #ffb59a, #71d2ff, #ffffff);
-    background-size: 300% 100%;
-    animation: gradientSweep 7s ease-in-out infinite;
-  }
-  @keyframes gradientSweep {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* Shine-sweep button */
-  .shine-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
-    transform: translateX(-120%);
-    transition: none;
-  }
-  .shine-btn:hover::before {
-    animation: shineSweep 0.9s ease-in-out;
-  }
-  @keyframes shineSweep {
-    from { transform: translateX(-120%); }
-    to { transform: translateX(120%); }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .orbit-ring-item, .orbit-card, .animate-spin-slow, .animate-spin-reverse,
-    .orbit-bg-glow, .orbit-conic-field, .particle, .core-hub-ring, .core-logo-glow, .core-logo-img,
-    .glow-card, .cta-ring, .cta-ring::before, .cta-ring::after, .cta-gradient-text, .shine-btn::before, .scroll-light {
+    .eyebrow, h1, .hero-copy p, .fact-row, .mark-frame {
       animation: none !important;
-      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
     }
-    .cta-ring::before, .cta-ring::after { opacity: 1; }
-    .scroll-light { transform: none !important; }
+    .status-dot, .mark-glow, .mark-logo {
+      animation: none !important;
+    }
   }
 </style>
