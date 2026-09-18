@@ -1,90 +1,106 @@
 ---
-// src/components/ImageSlider.astro
+// ==========================================
+// SLIDER CONFIGURATION CONTROLS
+// ==========================================
+
+// 1. SPEED CONTROL (in milliseconds: 6000 = 6 seconds per slide)
+const slideSpeed = 6000;
+
+// 2. SIZE CONTROL (Tailwind max-width and height classes)
+const sliderMaxWidth = "max-w-5xl"; // Try max-w-3xl, max-w-4xl, max-w-6xl
+const sliderHeight = "h-[450px] sm:h-[550px]"; // Adjust height for mobile/desktop
+
+// 3. POSITION / ALIGNMENT CONTROL (Tailwind margins/padding)
+const sliderAlignment = "mx-auto my-10"; // mx-auto keeps it centered horizontally
+
+// ==========================================
+
 const slides = [
   {
-    image: "/slider1.jpg", // Place your image in /public/
-    tag: "ERP Systems",
+    image: "/slider1.jpg",
+    tag: "ERP System",
     title: "Digitize your business with a customized ERP system",
     description: "We work directly with your team to set up a system that run smoothly"
   },
   {
-    image: "/slider5.jpg",
-    tag: "IT Project Management",
+    image: "/slider2.jpg",
+    tag: "Project Management",
     title: "Precision tracking from blueprint to launch.",
     description: "Clear timelines and step-by-step execution so your projects always launch on schedule."
   },
   {
-    image: "/slider6.jpg", // Add your third image path here
+    image: "/slider3.jpg",
     tag: "E-Taxes Solutions",
     title: "Full Integration with the Egyptian Tax Authority (ETA)",
     description: "Integrate with our financial team and enjoy a seamless workflow managed through state-of-the-art software "
   },
-    {
+  {
     image: "/slider4.jpg",
     tag: "Web Engineering & Architecture",
     title: "High-performance web systems",
-    // description: "Fast, custom websites and webapps that run smoothly on any device."
     description: "High-performance websites and web applications engineered for seamless, device-agnostic experiences."
   }
-    
-
 ];
 ---
 
-<div id="slider-container" class="relative w-full h-[600px] sm:h-[700px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-  <!-- Slides Container -->
-  <div class="relative w-full h-full">
-    {slides.map((slide, index) => (
-      <div 
-        class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-        data-slide={index}
-      >
-        <!-- Background Image with Subtle Zoom & Dark Gradient Overlays -->
-        <img 
-          src={slide.image} 
-          alt={slide.tag} 
-          class="absolute inset-0 w-full h-full object-cover scale-103 transition-transform duration-1000 ease-out pointer-events-none" 
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-transparent pointer-events-none"></div>
-        <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+<!-- Position and Size applied via variables -->
+<div class={`${sliderMaxWidth} ${sliderAlignment} px-4 sm:px-6`}>
+  <div id="slider-container" class={`relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer`}>
+    
+    <!-- Slides Container -->
+    <div class="relative w-full h-full">
+      {slides.map((slide, index) => (
+        <div 
+          class={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          data-slide={index}
+        >
+          <!-- Background Image with Subtle Zoom & Dark Gradient Overlays -->
+          <img 
+            src={slide.image} 
+            alt={slide.tag} 
+            class="absolute inset-0 w-full h-full object-cover scale-103 transition-transform duration-1000 ease-out pointer-events-none" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
 
-        <!-- Text Content Overlay -->
-        <div class="absolute bottom-0 left-0 right-0 p-8 sm:p-12 max-w-3xl z-20 pointer-events-none">
-          
-          <!-- MASSIVE CATCHY TAG (Now the primary visual element) -->
-          <div class="mb-4 inline-block">
-            <span class="text-3xl sm:text-5xl font-black uppercase tracking-tight bg-gradient-to-r from-[#ff6a2b] via-[#ffa447] to-[#ff6a2b] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(255,106,43,0.3)]">
-              {slide.tag}
-            </span>
+          <!-- Text Content Overlay -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10 max-w-3xl z-20 pointer-events-none">
+            
+            <!-- MASSIVE CATCHY TAG -->
+            <div class="mb-3 inline-block">
+              <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-[#ff6a2b] via-[#ffa447] to-[#ff6a2b] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(255,106,43,0.3)]">
+                {slide.tag}
+              </span>
+            </div>
+
+            <!-- Smaller Secondary Title -->
+            <h3 class="text-base sm:text-xl font-semibold text-white/90 tracking-wide mb-2 flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse"></span>
+              {slide.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-sm sm:text-base text-[#A3A3AA] leading-relaxed">
+              {slide.description}
+            </p>
+
           </div>
-
-          <!-- Smaller Secondary Title -->
-          <h3 class="text-lg sm:text-2xl font-semibold text-white/90 tracking-wide mb-3 flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse"></span>
-            {slide.title}
-          </h3>
-
-          <!-- Description -->
-          <p class="text-base sm:text-lg text-[#A3A3AA] leading-relaxed">
-            {slide.description}
-          </p>
-
         </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
 
-  <!-- Pagination Indicators / Dots -->
-  <div class="absolute bottom-6 right-6 z-30 flex items-center gap-2">
-    {slides.map((_, index) => (
-      <button 
-        class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#ff6a2b]' : 'w-2 bg-white/30'}`}
-        data-index={index}
-        aria-label={`Go to slide ${index + 1}`}
-      ></button>
-    ))}
-  </div>
+    <!-- Pagination Indicators / Dots -->
+    <div class="absolute bottom-6 right-6 z-30 flex items-center gap-2">
+      {slides.map((_, index) => (
+        <button 
+          class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#ff6a2b]' : 'w-2 bg-white/30'}`}
+          data-index={index}
+          aria-label={`Go to slide ${index + 1}`}
+        ></button>
+      ))}
+    </div>
 
+  </div>
 </div>
 
 <style>
@@ -105,16 +121,18 @@ const slides = [
   }
 </style>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+<!-- Pass the frontmatter slideSpeed directly into the client script using Astro -->
+<script define:vars={{ slideSpeed }}>
+  const initSlider = () => {
     const sliderContainer = document.getElementById("slider-container");
-    const slides = document.querySelectorAll("[data-slide]");
-    const dots = document.querySelectorAll(".indicator-dot");
+    if (!sliderContainer) return;
+
+    const slides = sliderContainer.querySelectorAll("[data-slide]");
+    const dots = sliderContainer.querySelectorAll(".indicator-dot");
     let currentIndex = 0;
     const totalSlides = slides.length;
-    let slideInterval: number;
 
-    function showSlide(index: number) {
+    function showSlide(index) {
       slides.forEach((slide, i) => {
         if (i === index) {
           slide.classList.remove("opacity-0", "z-0");
@@ -146,42 +164,45 @@ const slides = [
       showSlide(currentIndex);
     }
 
-    // Auto-advance timer
-    slideInterval = window.setInterval(nextSlide, 6000); //6000
+    // Clear any previous interval to prevent stacking multiple timers
+    if (window.sliderIntervalId) clearInterval(window.sliderIntervalId);
+    window.sliderIntervalId = window.setInterval(nextSlide, slideSpeed);
 
-    // Left/Right container click handling
-    if (sliderContainer) {
+    // Prevent duplicate event binding if astro:page-load fires multiple times
+    if (!sliderContainer.dataset.listenerAttached) {
+      sliderContainer.dataset.listenerAttached = "true";
+
       sliderContainer.addEventListener("click", (e) => {
-        // Ignore clicks on pagination buttons so they don't double-trigger
-        if ((e.target as HTMLElement).closest("button")) return;
+        if (e.target.closest("button")) return;
 
         const rect = sliderContainer.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
 
-        // If clicked on the left half, go back. Right half, go forward.
         if (clickX < rect.width / 2) {
           prevSlide();
         } else {
           nextSlide();
         }
 
-        // Reset the auto-advance timer on manual click
-        clearInterval(slideInterval);
-        slideInterval = window.setInterval(nextSlide, 4500); //4500
+        clearInterval(window.sliderIntervalId);
+        window.sliderIntervalId = window.setInterval(nextSlide, slideSpeed);
+      });
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", (e) => {
+          const indexAttr = e.currentTarget.getAttribute("data-index");
+          if (indexAttr !== null) {
+            currentIndex = parseInt(indexAttr);
+            showSlide(currentIndex);
+            clearInterval(window.sliderIntervalId);
+            window.sliderIntervalId = window.setInterval(nextSlide, slideSpeed);
+          }
+        });
       });
     }
+  };
 
-    // Clickable dots for manual control
-    dots.forEach((dot) => {
-      dot.addEventListener("click", (e) => {
-        const indexAttr = (e.currentTarget as HTMLElement).getAttribute("data-index");
-        if (indexAttr !== null) {
-          currentIndex = parseInt(indexAttr);
-          showSlide(currentIndex);
-          clearInterval(slideInterval);
-          slideInterval = window.setInterval(nextSlide, 3500);  //3500
-        }
-      });
-    });
-  });
+  // Run on first load and handle Astro page transitions seamlessly
+  initSlider();
+  document.addEventListener("astro:page-load", initSlider);
 </script>
