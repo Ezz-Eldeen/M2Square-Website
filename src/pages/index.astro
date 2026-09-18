@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ImageSlider from '../components/ImageSlider.astro';
 
 // Marquee Configuration & Client List
-const marqueeSpeed = '25s';
+const marqueeSpeed = '45s';
 
 const clients = [
   { name: 'Al Belal', icon: '/AlBelal.jpeg', url: 'https://bm.albelalgrp.com/' },
@@ -75,7 +75,7 @@ const clients = [
             const innerContent = (
               <>
                 {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -101,7 +101,7 @@ const clients = [
             const innerContent = (
               <>
                 {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -132,137 +132,182 @@ const clients = [
     <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
 
     <!-- Sticky service navigation -->
-    <!-- <div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-4">
-      <nav class="pointer-events-auto flex items-center gap-2 bg-[#131316]/90 border border-white/10 backdrop-blur-xl rounded-full px-2 py-2 shadow-2xl overflow-x-auto max-w-full">
-        <a href="#digital-transformation" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">01 &middot; Digital Transformation</a>
-        <a href="#project-management" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">02 &middot; Project Management</a>
-        <a href="#e-taxes-solutions" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">03 &middot; E-Taxes Solutions</a>
-        <a href="#web-engineering" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">04 &middot; Web Engineering</a>
-      </nav>
-    </div> -->
+<div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-4">
+  <nav class="pointer-events-auto flex items-center gap-2 bg-[#131316]/90 border border-white/10 backdrop-blur-xl rounded-full px-2 py-2 shadow-2xl overflow-x-auto max-w-full">
+    <a href="#digital-transformation" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">01 &middot; Digital Transformation</a>
+    <a href="#project-management" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">02 &middot; Project Management</a>
+    <a href="#e-taxes-solutions" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">03 &middot; E-Taxes Solutions</a>
+    <a href="#web-engineering" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">04 &middot; Web Engineering</a>
+    <a href="#mobile-apps" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">05 &middot; Mobile Apps</a>
+    <a href="#vps-infrastructure" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">06 &middot; IT Infrastructure</a>
+  </nav>
+</div>
 
-    <!-- COMPACT 2x2 SERVICES SECTION -->
-    <section id="services" class="relative z-10 px-6 max-w-[1440px] mx-auto py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        
-        <!-- PRACTICE 01: DIGITAL TRANSFORMATION -->
-        <div id="digital-transformation" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 01</span>
-              <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Deployed</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#F5F5F4] mb-3">Digital Transformation</h2>
-            <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
-              AI-Driven Custom-made ERP solutions to digitize legacy systems, orchestrate cloud-native migrations, and automate business operations. 
-            </p>
-            <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">Enterprise Resource Planning Platform</h3>
-            <div class="grid grid-cols-4 gap-2 mb-4">
-              {[
-                ["settings", "Setup"],
-                ["account_balance", "Ledger"],
-                ["groups", "HR"],
-                ["warehouse", "Stock"],
-              ].map(([icon, label]) => (
-                <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#1C1C20] border border-white/5 py-2 px-1 text-center">
-                  <span class="material-symbols-outlined text-[#ff6a2b] text-base">{icon}</span>
-                  <span class="text-[8px] leading-tight text-[#A3A3AA]">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-            <span class="font-mono text-[10px] text-[#6B6B72]">4-level accounts &middot; branch tracking</span>
-            <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
-              Talk <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
-            </a>
-          </div>
+<!-- SERVICES SECTION -->
+<section id="services" class="relative z-10 px-6 max-w-[1440px] mx-auto py-16">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- PRACTICE 01: DIGITAL TRANSFORMATION -->
+    <div id="digital-transformation" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 01</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Deployed</span>
         </div>
-
-        <!-- PRACTICE 02: PROJECT MANAGEMENT -->
-        <div id="project-management" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 02</span>
-              <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Agile Cadence</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Digital Transformation</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
+          AI-Driven Custom-made ERP solutions to digitize legacy systems, orchestrate cloud-native migrations, and automate business operations. 
+        </p>
+        <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">Enterprise Resource Planning Platform</h3>
+        <div class="grid grid-cols-4 gap-2 mb-4">
+          {[
+            ["settings", "Setup"],
+            ["account_balance", "Ledger"],
+            ["groups", "HR"],
+            ["warehouse", "Stock"],
+          ].map(([icon, label]) => (
+            <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#1C1C20] border border-white/5 py-2 px-1 text-center">
+              <span class="material-symbols-outlined text-[#ff6a2b] text-base">{icon}</span>
+              <span class="text-[8px] leading-tight text-[#A3A3AA]">{label}</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#F5F5F4] mb-3">Project Management</h2>
-            <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
-              Rigorous technical oversight for complex IT initiatives. Agile frameworks and precise resource allocation keep delivery on track.
-            </p>
-            <div class="grid grid-cols-2 gap-3 mb-4">
-              <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
-                <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">01. Plan & Execute</span>
-                <p class="text-[11px] text-[#A3A3AA]">Scope mapping and sprint execution with daily visibility.</p>
-              </div>
-              <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
-                <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">02. Monitor & Deliver</span>
-                <p class="text-[11px] text-[#A3A3AA]">Live burn-down tracking and staged rollout gates.</p>
-              </div>
-            </div>
-          </div>
-          <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-            <span class="font-mono text-[10px] text-[#6B6B72]">Strict timelines &middot; embedded teams</span>
-            <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
-              Join <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
-            </a>
-          </div>
+          ))}
         </div>
-
-        <!-- PRACTICE 03: E-TAXES SOLUTIONS -->
-        <div id="e-taxes-solutions" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 03</span>
-              <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Live Bridge</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#F5F5F4] mb-3">E-Taxes Solutions</h2>
-            <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
-              Get a comprehensive E-Taxes software solution that is overseen by our legal experts to seamlessly manage 
-              and submit E-Invoices and E-reciepts to the Egyptian Tax Authority's portal (ETA) in compliance with the latest regulations. 
-            </p>
-            <!-- <div class="flex flex-wrap gap-1.5 mb-4">
-              {["Oracle", "Java", "PHP", "MySQL", "REST API"].map((tag) => (
-                <span class="font-mono text-[9px] uppercase tracking-wider text-[#ffb59a] bg-[#ff6a2b]/10 border border-[#ff6a2b]/20 rounded-full px-2 py-0.5">{tag}</span>
-              ))}
-            </div> -->
-          </div>
-          <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-            <span class="font-mono text-[10px] text-[#6B6B72]">Digital signatures via Egypt Trust</span>
-            <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
-              Comply <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- PRACTICE 04: WEB ENGINEERING -->
-        <div id="web-engineering" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 04</span>
-              <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Optimized</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-[#F5F5F4] mb-3">Create a Website</h2>
-            <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
-                Make your business stand out with a high-performance website or web application. We specialize in fast, responsive, AI-driven, and scalable web solutions that deliver an exceptional user experience across all devices.
-                
-            </p>
-            <!-- <div class="flex flex-wrap gap-1.5 mb-4">
-              {["Astro", "TypeScript", "Tailwind", "Vite", "Git"].map((tag) => (
-                <span class="font-mono text-[9px] uppercase tracking-wider text-[#ffb59a] bg-[#ff6a2b]/10 border border-[#ff6a2b]/20 rounded-full px-2 py-0.5">{tag}</span>
-              ))}
-            </div> -->
-          </div>
-          <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-            <span class="font-mono text-[10px] text-[#6B6B72]">Zero-runtime component islands</span>
-            <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
-              Build <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-
       </div>
-    </section>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">4-level accounts &middot; branch tracking</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Talk <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRACTICE 02: PROJECT MANAGEMENT -->
+    <div id="project-management" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 02</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Agile Cadence</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Project Management</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
+          Rigorous technical oversight for complex IT initiatives. Agile frameworks and precise resource allocation keep delivery on track.
+        </p>
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
+            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">01. Plan & Execute</span>
+            <p class="text-[11px] text-[#A3A3AA]">Scope mapping and sprint execution with daily visibility.</p>
+          </div>
+          <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
+            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">02. Monitor & Deliver</span>
+            <p class="text-[11px] text-[#A3A3AA]">Live burn-down tracking and staged rollout gates.</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">Strict timelines &middot; embedded teams</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Join <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRACTICE 03: E-TAXES SOLUTIONS -->
+    <div id="e-taxes-solutions" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 03</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Live Bridge</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">E-Taxes Solutions</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+          Get a comprehensive E-Taxes software solution that is overseen by our legal experts to seamlessly manage 
+          and submit E-Invoices and E-reciepts to the Egyptian Tax Authority's portal (ETA) in compliance with the latest regulations. 
+        </p>
+      </div>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">Digital signatures via Egypt Trust</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Comply <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRACTICE 04: WEB ENGINEERING -->
+    <div id="web-engineering" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 04</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Optimized</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Create a Website</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+          Make your business stand out with a high-performance website or web application. We specialize in fast, responsive, AI-driven, and scalable web solutions that deliver an exceptional user experience across all devices.
+        </p>
+      </div>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">Zero-runtime component islands</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Build <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRACTICE 05: MOBILE APP DEVELOPMENT -->
+    <div id="mobile-apps" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 05</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Cross-Platform</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Mobile App Development</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+          We design and build custom mobile applications for smartphones and tablets that are fast, intuitive, and easy for your customers to use. From smooth navigation to user accounts, we bring your business ideas to life on both iPhone and Android.
+        </p>
+      </div>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">iOS &middot; Android &middot; Native performance</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Launch <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PRACTICE 06: VPS SERVICES & IT INFRASTRUCTURE -->
+    <div id="vps-infrastructure" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 06</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Secure Cloud & Hardware</span>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">VPS & IT Infrastructure</h2>
+        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+          Complete physical and virtual infrastructure solutions to keep your business connected, secure, and fully operational around the clock.
+        </p>
+        <div class="grid grid-cols-2 gap-2 mb-4">
+          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">CCTV & Access</span>
+            <p class="text-[10px] text-[#A3A3AA]">Secure premises monitoring & access control.</p>
+          </div>
+          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">Control Rooms</span>
+            <p class="text-[10px] text-[#A3A3AA]">Advanced monitoring command centers.</p>
+          </div>
+          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5 col-span-2">
+            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">Networking Solutions</span>
+            <p class="text-[10px] text-[#A3A3AA]">High-speed enterprise networks, routing, and reliable VPS hosting.</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-3 flex items-center justify-between">
+        <span class="font-mono text-[10px] text-[#6B6B72]">Hardware setups &middot; Secure cloud</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+          Deploy <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <!-- 6. STATS -->
     <!-- <section class="reveal-card relative z-10 px-6 max-w-[1440px] mx-auto pb-12">
