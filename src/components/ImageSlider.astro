@@ -3,9 +3,9 @@
 const slides = [
   {
     image: "/slider1.jpg", // Place your image in /public/
-    tag: "Strategy & Alignment",
-    title: "Engineering sessions built for scale.",
-    description: "We work directly with your team to set up systems that run smoothly and don't need constant fixing."
+    tag: "ERP System",
+    title: "Digitize your business with a customized ERP system",
+    description: "We work directly with your team to set up a system that run smoothly"
   },
   {
     image: "/slider2.jpg",
@@ -16,14 +16,15 @@ const slides = [
   {
     image: "/slider3.jpg", // Add your third image path here
     tag: "E-Taxes Solutions",
-    title: "Automated compliance for enterprise tax workflows.",
-    description: "Reliable tools that keep your financial reporting accurate, secure, and fully up to date with tax laws."
+    title: "Full Integration with the Egyptian Tax Authority (ETA)",
+    description: "Integrate with our financial team and enjoy a seamless workflow managed through state-of-the-art software "
   },
     {
     image: "/slider4.jpg",
     tag: "Web Engineering & Architecture",
-    title: "High-performance web systems built to convert.",
-    description: "Fast, custom websites built with modern tools that look great and turn visitors into customers."
+    title: "High-performance web systems",
+    // description: "Fast, custom websites and webapps that run smoothly on any device."
+    description: "High-performance websites and web applications engineered for seamless, device-agnostic experiences."
   }
 ];
 ---
@@ -144,7 +145,7 @@ const slides = [
     }
 
     // Auto-advance timer
-    slideInterval = window.setInterval(nextSlide, 6000);
+    slideInterval = window.setInterval(nextSlide, 900000); //6000
 
     // Left/Right container click handling
     if (sliderContainer) {
@@ -164,7 +165,7 @@ const slides = [
 
         // Reset the auto-advance timer on manual click
         clearInterval(slideInterval);
-        slideInterval = window.setInterval(nextSlide, 4500);
+        slideInterval = window.setInterval(nextSlide, 900000); //4500
       });
     }
 
@@ -176,7 +177,7 @@ const slides = [
           currentIndex = parseInt(indexAttr);
           showSlide(currentIndex);
           clearInterval(slideInterval);
-          slideInterval = window.setInterval(nextSlide, 3500);
+          slideInterval = window.setInterval(nextSlide, 900000);  //3500
         }
       });
     });
