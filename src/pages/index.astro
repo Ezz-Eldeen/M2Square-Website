@@ -3,14 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import ImageSlider from '../components/ImageSlider.astro';
 
 // Marquee Configuration & Client List
-const marqueeSpeed = '60s';
+const marqueeSpeed = '45s';
 
 const clients = [
-  { name: 'Client 1', icon: 'domain', url: '/clients/client-1' },
-  { name: 'Client 2', icon: 'hub', url: '/clients/client-2' },
-  { name: 'Client 3', icon: 'shield', url: '/clients/client-3' },
-  { name: 'Client 4', icon: 'dns', url: '/clients/client-4' },
-  { name: 'Client 5', icon: 'developer_board', url: '/clients/client-5' },
+  { name: 'Al Belal', icon: '/AlBelal.jpeg', url: 'https://bm.albelalgrp.com/' },
+  { name: 'Geco', icon: '/Geco.png', url: 'https://generalagri.com/en/' },
+  { name: 'Al Asala', icon: '/AlAsala.png'},
+  { name: 'El Ghonemy', icon: '/ElGhonemy.png'}
 ];
 ---
 
@@ -52,28 +51,77 @@ const clients = [
       <ImageSlider />
     </section>
 
-<!-- Scrolling Track -->
-<div class="relative w-full overflow-hidden flex marquee-mask py-8">
-  <div class="flex animate-marquee whitespace-nowrap items-center" style={`animation-duration: ${marqueeSpeed};`}>
+<!-- Partners & Clients Box Container -->
+<div class="max-w-6xl mx-auto px-4 sm:px-6 my-12">
+  <div class="relative bg-[#0b0b0e] border border-white/10 rounded-2xl py-8 shadow-2xl overflow-hidden">
     
-    <!-- Set 1 (Massive spacing: gap-64 so only one client fits in view at a time) -->
-    <div class="flex items-center gap-64 shrink-0 pr-64">
-      {clients.map((client) => (
-        <a href={client.url} class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
-          <span class="material-symbols-outlined text-[#ff6a2b] text-xl group-hover:scale-110 transition-transform">{client.icon}</span>
-          <span>{client.name}</span>
-        </a>
-      ))}
+    <!-- Subtle background accent glow -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#ff6a2b]/10 blur-3xl pointer-events-none rounded-full"></div>
+
+    <!-- Section Title inside the box -->
+    <div class="text-center mb-6 px-4">
+      <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#ff6a2b] bg-[#ff6a2b]/10 px-3 py-1 rounded-full border border-[#ff6a2b]/20">
+        Our Partners & Clients
+      </span>
     </div>
 
-    <!-- Set 2 (Exact mirror duplicate for seamless looping) -->
-    <div class="flex items-center gap-64 shrink-0 pr-64" aria-hidden="true">
-      {clients.map((client) => (
-        <a href={client.url} tabindex="-1" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
-          <span class="material-symbols-outlined text-[#ff6a2b] text-xl group-hover:scale-110 transition-transform">{client.icon}</span>
-          <span>{client.name}</span>
-        </a>
-      ))}
+    <!-- Scrolling Track -->
+    <div class="relative w-full overflow-hidden flex marquee-mask py-4">
+      <div class="flex animate-marquee whitespace-nowrap items-center" style={`animation-duration: ${marqueeSpeed};`}>
+        
+        <!-- Set 1 -->
+        <div class="flex items-center gap-64 shrink-0 pr-64">
+          {clients.map((client) => {
+            const innerContent = (
+              <>
+                {client.icon.startsWith('/') ? (
+                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                ) : (
+                  <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                )}
+                <span>{client.name}</span>
+              </>
+            );
+
+            return client.url ? (
+              <a href={client.url} target="_blank" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+                {innerContent}
+              </a>
+            ) : (
+              <div class="flex items-center gap-3 text-[#A3A3AA] font-mono text-base tracking-wider uppercase group">
+                {innerContent}
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Set 2 (Exact mirror duplicate) -->
+        <div class="flex items-center gap-64 shrink-0 pr-64" aria-hidden="true">
+          {clients.map((client) => {
+            const innerContent = (
+              <>
+                {client.icon.startsWith('/') ? (
+                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                ) : (
+                  <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                )}
+                <span>{client.name}</span>
+              </>
+            );
+
+            return client.url ? (
+              <a href={client.url} tabindex="-1" target="_blank" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+                {innerContent}
+              </a>
+            ) : (
+              <div class="flex items-center gap-3 text-[#A3A3AA] font-mono text-base tracking-wider uppercase group">
+                {innerContent}
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
     </div>
 
   </div>
