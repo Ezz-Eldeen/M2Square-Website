@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ImageSlider from '../components/ImageSlider.astro';
 
 // Marquee Configuration & Client List
-const marqueeSpeed = '45s';
+const marqueeSpeed = '25s';
 
 const clients = [
   { name: 'Al Belal', icon: '/AlBelal.jpeg', url: 'https://bm.albelalgrp.com/' },
@@ -75,7 +75,7 @@ const clients = [
             const innerContent = (
               <>
                 {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -101,7 +101,7 @@ const clients = [
             const innerContent = (
               <>
                 {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-10 h-10 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -132,14 +132,14 @@ const clients = [
     <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
 
     <!-- Sticky service navigation -->
-    <div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-4">
+    <!-- <div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-4">
       <nav class="pointer-events-auto flex items-center gap-2 bg-[#131316]/90 border border-white/10 backdrop-blur-xl rounded-full px-2 py-2 shadow-2xl overflow-x-auto max-w-full">
         <a href="#digital-transformation" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">01 &middot; Digital Transformation</a>
         <a href="#project-management" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">02 &middot; Project Management</a>
         <a href="#e-taxes-solutions" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">03 &middot; E-Taxes Solutions</a>
         <a href="#web-engineering" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">04 &middot; Web Engineering</a>
       </nav>
-    </div>
+    </div> -->
 
     <!-- COMPACT 2x2 SERVICES SECTION -->
     <section id="services" class="relative z-10 px-6 max-w-[1440px] mx-auto py-16">
