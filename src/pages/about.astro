@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logoImg from '../assets/Logo.png';
 ---
 
 <Layout title="About Us - M2-Square">
@@ -11,27 +13,20 @@ import Layout from '../layouts/Layout.astro';
   />
 
   <main class="about-page">
-    <!--
-      Single, static ambient layer instead of the previous stack of four
-      (fixed gradient + scroll-following spotlight + drifting starfield +
-      breathing glow). None of those actually communicated anything about
-      the company, and stacking that much continuous motion on an ERP/
-      compliance brand reads as a game or crypto landing page rather than
-      enterprise software. Kept: one fixed, non-animated radial layer, so
-      the "no repaint on scroll" performance goal from the original still
-      holds, but there's nothing distracting fighting for attention.
-    -->
     <div class="ambient" aria-hidden="true"></div>
 
+    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-mark">
           <div class="mark-frame">
             <div class="mark-glow" aria-hidden="true"></div>
-            <img
-              src="/assets/Logo.png"
+            <Image
+              src={logoImg}
               alt="M-Square"
               class="mark-logo"
+              loading="eager"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -83,6 +78,73 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </section>
+
+    <!-- Compact Bento Section (Vision, Mission, Values & Capabilities) -->
+    <section class="bento-section">
+      <div class="bento-grid">
+        
+        <!-- Vision Card -->
+        <div class="bento-card vision-card">
+          <h2>Our Vision</h2>
+          <p>
+            To be the trusted digital backbone of ambitious businesses across Egypt and the
+            region — the partner organizations turn to when they need their operations,
+            compliance, and technology to work as one seamless system.
+          </p>
+        </div>
+
+        <!-- Mission Card -->
+        <div class="bento-card mission-card">
+          <h2>Our Mission</h2>
+          <p>
+            To design, build, and support intelligent, AI-driven software and
+            infrastructure — from ERP and e-tax compliance to websites, mobile apps, and
+            secure networks — that simplify how our clients operate, keep them fully
+            compliant, and give them the technical foundation to scale with confidence.
+          </p>
+        </div>
+
+        <!-- Core Values Header / Span Card -->
+        <div class="bento-card values-header-card">
+          <h2>Our Core Values</h2>
+          <p>The principles driving our engineering and client partnerships.</p>
+        </div>
+
+        <!-- Values List Cards -->
+        <div class="bento-card value-item">
+          <h3>Innovation with Purpose</h3>
+          <p>Adopting AI and automation where it genuinely improves outcomes.</p>
+        </div>
+
+        <div class="bento-card value-item">
+          <h3>True Partnership</h3>
+          <p>Working embedded directly with your team, not at arm's length.</p>
+        </div>
+
+        <div class="bento-card value-item">
+          <h3>Integrity</h3>
+          <p>Transparent timelines, honest scoping, and total accountability.</p>
+        </div>
+
+        <div class="bento-card value-item">
+          <h3>Precision & Reliability</h3>
+          <p>Systems built to run without surprises, backed by rigorous support.</p>
+        </div>
+
+        <div class="bento-card value-item">
+          <h3>Compliance-First</h3>
+          <p>Staying ahead of regulatory change so you never have to worry.</p>
+        </div>
+
+        <!-- What We Build Strip -->
+        <div class="bento-card build-strip">
+          <h2>What We Build</h2>
+          <span class="build-tags">ERP &bull; E-Taxes &bull; Web &bull; Mobile &bull; Infrastructure</span>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 </Layout>
 
@@ -115,12 +177,16 @@ import Layout from '../layouts/Layout.astro';
       radial-gradient(ellipse 55% 45% at 85% 65%, rgba(255, 181, 154, 0.05) 0%, transparent 65%);
   }
 
-  .hero {
+  .hero, .bento-section {
     position: relative;
     z-index: 1;
     max-width: 72rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
+  }
+
+  .bento-section {
+    margin-top: clamp(3rem, 6vw, 5rem);
   }
 
   .hero-grid {
@@ -287,6 +353,105 @@ import Layout from '../layouts/Layout.astro';
     height: auto;
     object-fit: contain;
     animation: logoCombined 3s ease-in-out infinite;
+  }
+
+  /* ---- Bento Grid Layout (Low Scroll & High Visual Appeal) ---- */
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bento-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    position: relative;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .bento-card:hover {
+    border-color: rgba(255, 106, 43, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Spanning rules for Bento layout */
+  .vision-card, .mission-card {
+    grid-column: span 1;
+  }
+  @media (min-width: 768px) {
+    .vision-card, .mission-card {
+      grid-column: span 1;
+    }
+  }
+  @media (min-width: 1024px) {
+    .vision-card, .mission-card {
+      grid-column: span 1.5;
+    }
+  }
+
+  .values-header-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255, 106, 43, 0.08) 0%, var(--panel) 100%);
+  }
+
+  .build-strip {
+    grid-column: 1 / -1;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 106, 43, 0.12) 0%, var(--panel) 100%);
+    border: 1px solid rgba(255, 106, 43, 0.25);
+    padding: 1.5rem;
+  }
+
+  .bento-card h2 {
+    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .values-header-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .bento-card h3 {
+    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.4rem;
+  }
+
+  .bento-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .build-tags {
+    display: inline-block;
+    color: var(--accent-soft);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.35rem;
+    letter-spacing: 0.02em;
   }
 
   /* ---- Motion ---- */

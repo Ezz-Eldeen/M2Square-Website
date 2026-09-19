@@ -1,4 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+
+// ==========================================
+// SLIDER IMAGES — imported from src/assets/slider
+// ==========================================
+import slider1Img from '../assets/slider/slider1.jpg';
+import slider2Img from '../assets/slider/slider2.jpg';
+import slider3Img from '../assets/slider/slider3.jpg';
+import slider4Img from '../assets/slider/slider4.jpg';
+import slider5Img from '../assets/slider/slider5.jpg';
+import slider6Img from '../assets/slider/slider6.jpg';
+import slider7Img from '../assets/slider/slider7.jpg';
+import slider8Img from '../assets/slider/slider8.jpg';
+
 // ==========================================
 // SLIDER CONFIGURATION CONTROLS
 // ==========================================
@@ -11,44 +25,43 @@ const sliderMaxWidth = "max-w-9xl"; // Try max-w-3xl, max-w-4xl, max-w-6xl
 const sliderHeight = "h-[600px] sm:h-[700px]"; // Adjust height for mobile/desktop
 
 // 3. POSITION / ALIGNMENT CONTROL (Tailwind margins/padding)
-const sliderAlignment = "mx-auto my-10"; // mx-auto keeps it centered horizontally
+const sliderAlignment = "mx-auto mt-[75px] mb-[5px]"; // shifted down another ~10%; total (75+5=80px) still unchanged from the original my-10, so no layout shift
 
 // ==========================================
 
 const slides = [
   {
-    image: "/slider1.jpg", // Place your image in /public/
+    image: slider1Img,
     tag: "ERP Systems",
     title: "Digitize your business with a customized ERP system",
     description: "We work directly with your team to set up a system that run smoothly"
   },
   {
-    image: "/slider5.jpg",
+    image: slider5Img,
     tag: "IT Project Management",
     title: "Precision tracking from blueprint to launch.",
     description: "Clear timelines and step-by-step execution so your projects always launch on schedule."
   },
   {
-    image: "/slider6.jpg",
+    image: slider6Img,
     tag: "E-Taxes Solutions",
     title: "Full Integration with the Egyptian Tax Authority (ETA)",
     description: "Integrate with our financial team and enjoy a seamless workflow managed through state-of-the-art software "
   },
-    {
-    image: "/slider4.jpg",
+  {
+    image: slider4Img,
     tag: "Website Development",
     title: "High-performance web systems",
-    // description: "Fast, custom websites and webapps that run smoothly on any device."
     description: "High-performance websites and web applications engineered for seamless, device-agnostic experiences."
   },
   {
-    image: "/slider7.jpg", 
+    image: slider7Img,
     tag: "Mobile App Development",
     title: "High-performance mobile applications",
     description: "We build custom apps for phones and tablets that look great and work smoothly on all devices."
   },
   {
-    image: "/slide8.jpg", 
+    image: slider8Img,
     tag: "IT Infrastructure",
     title: "Secure Infrastructure & Smart Networking",
     description: "Reliable virtual servers, high-speed networks, and advanced monitoring systems like CCTV and control rooms to keep your business safe and always online."
@@ -68,10 +81,13 @@ const slides = [
           data-slide={index}
         >
           <!-- Background Image with Subtle Zoom & Dark Gradient Overlays -->
-          <img 
-            src={slide.image} 
-            alt={slide.tag} 
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out pointer-events-none" 
+          <Image
+            src={slide.image}
+            alt={slide.tag}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out pointer-events-none"
+            loading={index === 0 ? "eager" : "lazy"}
+            widths={[480, 768, 1200, 1920]}
+            sizes="100vw"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-transparent pointer-events-none"></div>
           <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>

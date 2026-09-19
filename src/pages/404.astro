@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import logoImg from '../assets/Logo.png';
 ---
 
 <Layout title="Page Not Found - M2-Square">
@@ -33,7 +34,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="error-logo-glow"></div>
       <div class="error-logo-ring"></div>
       <div class="error-logo-ring error-logo-ring-2"></div>
-      <img src="/assets/Logo.png" alt="M2-Square" class="error-logo-img" />
+      <img src={logoImg.src} alt="M2-Square" class="error-logo-img" />
     </div>
 
     <span class="font-mono text-xs sm:text-sm text-[#ff6a2b] uppercase tracking-widest mb-4 mt-8">
@@ -45,9 +46,8 @@ import Layout from '../layouts/Layout.astro';
     </h1>
 
     <p class="error-desc text-[#A3A3AA] text-base sm:text-lg text-center mb-10 leading-relaxed">
-  The page you're looking for doesn't exist or may have moved. Everything else is exactly where it should be.
-</p>
-
+      The page you're looking for doesn't exist or may have moved. Everything else is exactly where it should be.
+    </p>
 
     <a href="/" class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
       <span class="material-symbols-outlined text-lg relative z-10">arrow_back</span>
@@ -57,7 +57,6 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
@@ -73,7 +72,7 @@ import Layout from '../layouts/Layout.astro';
   -webkit-font-smoothing: antialiased;
 }
 
-  .error-desc {
+.error-desc {
   display: block;
   width: 100% !important;
   max-width: 28rem;
@@ -81,46 +80,43 @@ import Layout from '../layouts/Layout.astro';
   margin-right: auto;
 }
 .error-main {
-    isolation: isolate;
-  }
+  isolation: isolate;
+}
 
-  /* Same ambient-gradient technique used site-wide: plain radial-gradients,
-     no filter:blur, painted once as a fixed layer. */
-  .error-ambient {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 20%, rgba(255, 106, 43, 0.16) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 40% at 15% 80%, rgba(113, 210, 255, 0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 85% 85%, rgba(255, 181, 154, 0.08) 0%, transparent 60%);
-  }
+.error-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 20%, rgba(255, 106, 43, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(113, 210, 255, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(255, 181, 154, 0.08) 0%, transparent 60%);
+}
 
-  .error-starfield {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .star {
-    position: absolute;
-    width: var(--size, 2px);
-    height: var(--size, 2px);
-    border-radius: 50%;
-    background: var(--tint, #fff);
-    box-shadow: 0 0 6px 1px currentColor;
-    opacity: 0.6;
-    animation: starDrift var(--dur, 8s) ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
-  }
-  @keyframes starDrift {
-    0%, 100% { transform: translateY(0); opacity: 0.35; }
-    50% { transform: translateY(calc(-1 * var(--drift, 14px))); opacity: 0.9; }
-  }
+.error-starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  width: var(--size, 2px);
+  height: var(--size, 2px);
+  border-radius: 50%;
+  background: var(--tint, #fff);
+  box-shadow: 0 0 6px 1px currentColor;
+  opacity: 0.6;
+  animation: starDrift var(--dur, 8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes starDrift {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(calc(-1 * var(--drift, 14px))); opacity: 0.9; }
+}
 
-  /* Logo treatment, reusing the "core hub" language from the orbit section */
-  .error-logo-frame {
+.error-logo-frame {
   position: relative;
   z-index: 1;
   width: 200px;
@@ -133,44 +129,44 @@ import Layout from '../layouts/Layout.astro';
   .error-logo-frame { width: 260px; height: 260px; }
 }
 
-  .error-logo-glow {
-    position: absolute;
-    width: 220%;
-    height: 220%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.4) 0%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(20px);
-    animation: errorBreath 3s ease-in-out infinite;
-    z-index: 0;
-    pointer-events: none;
-  }
+.error-logo-glow {
+  position: absolute;
+  width: 220%;
+  height: 220%;
+  background: radial-gradient(circle, rgba(255, 106, 43, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: errorBreath 3s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
 
-  .error-logo-ring {
-    position: absolute;
-    inset: -18px;
-    border-radius: 50%;
-    border: 1.5px dashed rgba(255, 106, 43, 0.5);
-    animation: errorSpin 18s linear infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .error-logo-ring-2 {
-    inset: -36px;
-    border: 1px solid rgba(113, 210, 255, 0.2);
-    animation: errorSpinReverse 26s linear infinite;
-  }
+.error-logo-ring {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 106, 43, 0.5);
+  animation: errorSpin 18s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.error-logo-ring-2 {
+  inset: -36px;
+  border: 1px solid rgba(113, 210, 255, 0.2);
+  animation: errorSpinReverse 26s linear infinite;
+}
 
-  .error-logo-img {
-    position: relative;
-    width: 68%;
-    height: 68%;
-    object-fit: contain;
-    z-index: 2;
-    filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 30px rgba(255, 106, 43, 0.6));
-    animation: errorLogoFloat 4s ease-in-out infinite;
-  }
+.error-logo-img {
+  position: relative;
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  z-index: 2;
+  filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 30px rgba(255, 106, 43, 0.6));
+  animation: errorLogoFloat 4s ease-in-out infinite;
+}
 
-  .error-logo-frame::after {
+.error-logo-frame::after {
   content: '';
   position: absolute;
   width: 68%;
@@ -182,42 +178,41 @@ import Layout from '../layouts/Layout.astro';
   border-radius: 50%;
 }
 
-  @keyframes errorBreath {
-    0%, 100% { opacity: 0.5; transform: scale(0.9); }
-    50% { opacity: 0.9; transform: scale(1.15); }
-  }
-  @keyframes errorSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  @keyframes errorSpinReverse {
-    from { transform: rotate(360deg); }
-    to { transform: rotate(0deg); }
-  }
-  @keyframes errorLogoFloat {
-    0%, 100% { transform: translateY(0); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.55)); }
-    50% { transform: translateY(-10px); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(255, 106, 43, 0.85)); }
-  }
+@keyframes errorBreath {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+@keyframes errorSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes errorSpinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes errorLogoFloat {
+  0%, 100% { transform: translateY(0); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.55)); }
+  50% { transform: translateY(-10px); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(255, 106, 43, 0.85)); }
+}
 
-  /* Shine sweep on the button, matching the CTA button elsewhere on the site */
-  .error-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
-    transform: translateX(-120%);
-  }
-  .error-btn:hover::before {
-    animation: errorShine 0.9s ease-in-out;
-  }
-  @keyframes errorShine {
-    from { transform: translateX(-120%); }
-    to { transform: translateX(120%); }
-  }
+.error-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+  transform: translateX(-120%);
+}
+.error-btn:hover::before {
+  animation: errorShine 0.9s ease-in-out;
+}
+@keyframes errorShine {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(120%); }
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    .star, .error-logo-glow, .error-logo-ring, .error-logo-ring-2, .error-logo-img, .error-btn::before {
-      animation: none !important;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .star, .error-logo-glow, .error-logo-ring, .error-logo-ring-2, .error-logo-img, .error-btn::before {
+    animation: none !important;
   }
+}
 </style>

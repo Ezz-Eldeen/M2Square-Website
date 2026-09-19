@@ -1,15 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ImageSlider from '../components/ImageSlider.astro';
+import { Image } from 'astro:assets';
+// ==========================================
+// CLIENT IMAGE IMPORTS (from src/assets)
+// ==========================================
+import alBelalImg from '../assets/AlBelal.jpeg';
+import gecoImg from '../assets/Geco.png';
+import alAsalaImg from '../assets/AlAsala.png';
+import elGhonemyImg from '../assets/ElGhonemy.png';
 
 // Marquee Configuration & Client List
 const marqueeSpeed = '25s';
 
 const clients = [
-  { name: 'Al Belal', icon: '/AlBelal.jpeg', url: 'https://bm.albelalgrp.com/' },
-  { name: 'Geco', icon: '/Geco.png', url: 'https://generalagri.com/en/' },
-  { name: 'Al Asala', icon: '/AlAsala.png'},
-  { name: 'El Ghonemy', icon: '/ElGhonemy.png'}
+  { name: 'Al Belal', icon: alBelalImg, url: 'https://bm.albelalgrp.com/' },
+  { name: 'Geco', icon: gecoImg, url: 'https://generalagri.com/en/' },
+  { name: 'Al Asala', icon: alAsalaImg },
+  { name: 'El Ghonemy', icon: elGhonemyImg }
 ];
 ---
 
@@ -20,15 +28,15 @@ const clients = [
     <div class="bg-grid-services absolute inset-0 pointer-events-none z-0"></div>
 
     <!-- 1. HERO -->
-    <section class="relative z-10 pt-28 pb-16 px-6 max-w-[1440px] mx-auto flex items-center overflow-hidden">
-      <!-- Lottie 3D Globe Background -->
-      <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-[50%] w-[500px] h-[500px] lg:w-[1000px] lg:h-[1000px] z-0 pointer-events-none opacity-40">
+    <section class="relative z-10 min-h-[85vh] pt-36 pb-24 px-6 max-w-[1440px] mx-auto flex items-center">
+      <!-- Lottie 3D Globe Background (Larger & Shifted Down) -->
+      <div class="absolute top-[63%] left-1/2 -translate-y-1/2 -translate-x-[50%] w-[600px] h-[600px] lg:w-[1200px] lg:h-[1200px] z-0 pointer-events-none opacity-45">
         <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
         <dotlottie-player
           src="/globev3.lottie"
           background="transparent"
           speed="0.5"
-          class="w-full h-full mix-blend-screen [filter:brightness(1.2)_saturate(0.3)_hue-rotate(-232deg)]"
+          class="w-full h-full [filter:brightness(1.2)_saturate(0.3)_hue-rotate(-232deg)]"
           loop
           autoplay
         ></dotlottie-player>
@@ -65,7 +73,7 @@ const clients = [
       </span>
     </div>
 
-    <!-- Scrolling Track -->
+<!-- Scrolling Track -->
     <div class="relative w-full overflow-hidden flex marquee-mask py-4">
       <div class="flex animate-marquee whitespace-nowrap items-center" style={`animation-duration: ${marqueeSpeed};`}>
         
@@ -74,8 +82,12 @@ const clients = [
           {clients.map((client) => {
             const innerContent = (
               <>
-                {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                {typeof client.icon === 'object' ? (
+                  <Image 
+                    src={client.icon} 
+                    alt={client.name} 
+                    class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" 
+                  />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -84,7 +96,7 @@ const clients = [
             );
 
             return client.url ? (
-              <a href={client.url} target="_blank" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
@@ -100,8 +112,12 @@ const clients = [
           {clients.map((client) => {
             const innerContent = (
               <>
-                {client.icon.startsWith('/') ? (
-                  <img src={client.icon} alt={client.name} class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" />
+                {typeof client.icon === 'object' ? (
+                  <Image 
+                    src={client.icon} 
+                    alt={client.name} 
+                    class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" 
+                  />
                 ) : (
                   <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
@@ -110,7 +126,7 @@ const clients = [
             );
 
             return client.url ? (
-              <a href={client.url} tabindex="-1" target="_blank" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} tabindex="-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
@@ -131,24 +147,12 @@ const clients = [
     <div class="hero-orb hero-orb-a" aria-hidden="true"></div>
     <div class="hero-orb hero-orb-b" aria-hidden="true"></div>
 
-    <!-- Sticky service navigation -->
-<!-- <div class="reveal-card sticky top-20 z-40 flex justify-center pointer-events-none py-4">
-  <nav class="pointer-events-auto flex items-center gap-2 bg-[#131316]/90 border border-white/10 backdrop-blur-xl rounded-full px-2 py-2 shadow-2xl overflow-x-auto max-w-full">
-    <a href="#digital-transformation" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">01 &middot; Digital Transformation</a>
-    <a href="#project-management" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">02 &middot; Project Management</a>
-    <a href="#e-taxes-solutions" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">03 &middot; E-Taxes Solutions</a>
-    <a href="#web-engineering" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">04 &middot; Web Engineering</a>
-    <a href="#mobile-apps" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">05 &middot; Mobile Apps</a>
-    <a href="#vps-infrastructure" class="px-3 py-1.5 rounded-full text-xs sm:text-sm text-[#A3A3AA] hover:text-white hover:bg-[#1C1C20] transition-colors whitespace-nowrap">06 &middot; IT Infrastructure</a>
-  </nav>
-</div> -->
-
 <!-- SERVICES SECTION -->
 <section id="services" class="relative z-10 px-6 max-w-[1440px] mx-auto py-16">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     
     <!-- PRACTICE 01: ERP  -->
-    <div id="digital-transformation" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="digital-transformation" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 01</span>
@@ -183,7 +187,7 @@ const clients = [
 
 
     <!-- PRACTICE 02: E-TAXES SOLUTIONS -->
-    <div id="e-taxes-solutions" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="e-taxes-solutions" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 02</span>
@@ -204,7 +208,7 @@ const clients = [
     </div>
 
     <!-- PRACTICE 03: WEB ENGINEERING -->
-    <div id="web-engineering" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="web-engineering" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 03</span>
@@ -224,7 +228,7 @@ const clients = [
     </div>
 
     <!-- PRACTICE 04: MOBILE APP DEVELOPMENT -->
-    <div id="mobile-apps" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="mobile-apps" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 04</span>
@@ -245,7 +249,7 @@ const clients = [
 
     
     <!-- PRACTICE 05: PROJECT MANAGEMENT -->
-    <div id="project-management" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="project-management" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 05</span>
@@ -253,7 +257,7 @@ const clients = [
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Project Management</h2>
         <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
-           Technical oversight for complex IT initiatives. We utilize Agile frameworks and precise resource allocation to keep delivery on track.
+            Technical oversight for complex IT initiatives. We utilize Agile frameworks and precise resource allocation to keep delivery on track.
         </p>
         <div class="grid grid-cols-2 gap-3 mb-4">
           <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
@@ -275,7 +279,7 @@ const clients = [
     </div>
 
     <!-- PRACTICE 06: VPS SERVICES & IT INFRASTRUCTURE -->
-    <div id="vps-infrastructure" class="glow-card relative bg-[#131316]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="vps-infrastructure" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
           <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 06</span>
@@ -311,27 +315,6 @@ const clients = [
   </div>
 </section>
 
-    <!-- 6. STATS -->
-    <!-- <section class="reveal-card relative z-10 px-6 max-w-[1440px] mx-auto pb-12">
-      <div class="relative bg-[#1C1C20]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-12 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#ff6a2b]/5 to-transparent pointer-events-none"></div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10 text-center md:text-left">
-          <div>
-            <div class="font-mono text-[#ff6a2b] mb-1 text-3xl md:text-4xl">99.999%</div>
-            <div class="text-[#A3A3AA] uppercase tracking-widest text-xs">SLA Uptime</div>
-          </div>
-          <div>
-            <div class="font-mono text-[#ff6a2b] mb-1 text-3xl md:text-4xl">ISO 27001</div>
-            <div class="text-[#A3A3AA] uppercase tracking-widest text-xs">Certified Protocols</div>
-          </div>
-          <div>
-            <div class="font-mono text-[#ff6a2b] mb-1 text-3xl md:text-4xl">&lt; 50ms</div>
-            <div class="text-[#A3A3AA] uppercase tracking-widest text-xs">API Latency</div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <!-- 7. CTA -->
     <section class="reveal-card relative z-10 px-6 mx-auto pb-20 max-w-[1440px]" style="width: 100%;">
       <div class="cta-card relative rounded-3xl border border-[#ff6a2b]/25 overflow-hidden" style="width: 100%; display: block;">
@@ -360,17 +343,18 @@ const clients = [
     </section>
 
 <style>
-  /* Keep all your original animations, mesh-bg, orbs, and glow effects below */
+  /*
+    Frozen instead of animated: this was cycling background-position
+    forever, forcing a full repaint of this layer every frame. It sits
+    behind the hero, the slider, and every backdrop-blur card below,
+    so an animated background here was the single biggest driver of the
+    "stuttery" feel — everything on top of it had to keep re-rendering
+    in sync with it, whether or not that element had its own animation.
+  */
   .mesh-bg {
     background:
       radial-gradient(circle at 15% 20%, rgba(255, 106, 43, 0.12) 0%, transparent 40%),
       radial-gradient(circle at 85% 15%, rgba(0, 165, 215, 0.10) 0%, transparent 35%);
-    background-size: 200% 200%;
-    animation: meshDrift 24s ease-in-out infinite;
-  }
-  @keyframes meshDrift {
-    0%, 100% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
   }
   .bg-grid-services {
     background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
@@ -380,18 +364,17 @@ const clients = [
   .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px); z-index: 0; }
   .hero-orb-a { top: 4rem; right: 8%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 165, 215, 0.22) 0%, transparent 70%); }
   .hero-orb-b { top: 18rem; right: 22%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255, 106, 43, 0.18) 0%, transparent 70%); }
+  /* Gradient sweep removed — static gradient text instead of an infinite
+     background-position animation on text sitting directly in the LCP path. */
   .hero-gradient-text {
     background-image: linear-gradient(90deg, #ff6a2b, #ffb59a, #71d2ff, #ff6a2b);
-    background-size: 300% 100%;
-    animation: gradientSweep 8s ease-in-out infinite;
+    background-size: 100% 100%;
   }
   .cta-gradient-text {
     color: transparent; background-clip: text; -webkit-background-clip: text;
     background-image: linear-gradient(90deg, #ffffff, #ffb59a, #71d2ff, #ffffff);
-    background-size: 300% 100%;
-    animation: gradientSweep 7s ease-in-out infinite;
+    background-size: 100% 100%;
   }
-  @keyframes gradientSweep { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   .glow-card {
     position: relative;
     transition: transform 0.35s ease, border-color 0.35s ease;
