@@ -6,9 +6,27 @@ import faviconImage from '../assets/favicon.png';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title = "M-Square" } = Astro.props;
+const SITE = 'https://website-one-beige-21.vercel.app';
+
+const {
+  title = "M-Square",
+  description = "M-Square builds AI-driven ERP systems, ETA e-invoicing, websites, mobile apps and IT infrastructure for businesses in Egypt. Start your project today.",
+  ogImage = `${SITE}/og-image.png`,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, SITE).href;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "M-Square",
+  url: SITE,
+  logo: `${SITE}${logoImage.src}`,
+};
 
 // Normalize path to ignore trailing slashes
 const rawPath = Astro.url.pathname;
@@ -26,6 +44,16 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
   <title>{title}</title>
+    <!-- SEO / Open Graph -->
+  <meta name="description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 </head>
 
 <body class="bg-bg-primary text-text-primary font-display antialiased selection:bg-primary-container selection:text-white overflow-x-hidden">
@@ -111,9 +139,9 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
           <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#digital-transformation">Digital Transformation</a></li>
           <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#project-management">Project Management</a></li>
           <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#e-taxes-solutions">E-Taxes Solutions</a></li>
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#web-engineering">Web Engineering</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#web-engineering">Web Development</a></li>
           <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#mobile-apps">Mobile App Development</a></li>
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#vps-infrastructure">VPS & IT Infrastructure</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/#vps-infrastructure">IT Infrastructure</a></li>
         </ul>
       </div>
       <div class="col-span-1">
@@ -121,7 +149,7 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
         <ul class="space-y-sm">
           <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="/about">About Us</a></li>
           <li><a class="font-display text-label-md text-text-text-primary transition-colors duration-200" href="/contact">Contact</a></li>
-          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="mailto:sales@m-square.com">sales@m-square.com</a></li>
+          <li><a class="font-display text-label-md text-text-primary/60 hover:text-primary-container transition-colors duration-200" href="mailto:sales@m-square.com">sales@m2-square.com</a></li>
         </ul>
       </div>
       <div class="col-span-1">
