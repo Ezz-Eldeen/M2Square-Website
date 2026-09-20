@@ -5,8 +5,8 @@ import logoImg from '../assets/Logo.png';
 ---
 
 <Layout
-  title="About Us - M2-Square"
-  description="Founded in 2021 by two IT veterans with 60+ years of combined experience, M-Square delivers ERP, e-tax compliance, web and infrastructure solutions in Egypt."
+  title="About Us - M-Square | Enterprise Software Solutions"
+  description="Learn about M-Square. We build the infrastructure businesses run on, from custom ERP platforms and e-taxes to web, mobile, and secure IT infrastructure."
 >
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,135 +16,131 @@ import logoImg from '../assets/Logo.png';
   />
 
   <main class="about-page">
-    <div class="ambient" aria-hidden="true"></div>
-
+    
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-mark">
-          <div class="mark-frame">
-            <div class="mark-glow" aria-hidden="true"></div>
-            <Image
-              src={logoImg}
-              alt="M-Square"
-              class="mark-logo"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-
-        <div class="hero-copy">
-          <span class="eyebrow">
-            <span class="status-dot" aria-hidden="true"></span>
-            Founded 2021
-          </span>
-
+    <section class="section hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="badge">About M-Square</span>
           <h1>We build the infrastructure businesses run on.</h1>
-
-          <p class="lede">
-            M-Square was co-founded by Mr. Mohamed El-Fiky and Mr. Mohamed
-            Khamis, who bring a combined experience of 60+ years in the
-            field of IT and business administration.
-          </p>
-
-          <p>
-            In 2021, they recognized the need for a modern, frictionless
-            solution for the new electronic invoice system introduced by
-            the Egyptian Tax Authority. They gathered a team of experts to
-            develop a comprehensive solution that streamlined the
-            invoicing process and ensured compliance with the latest
-            regulations. The project was a major success, and clients were
-            highly satisfied with the results — leading the company to
-            expand into customized ERP solutions and other software
-            solutions, like websites, for highly reputable clients.
-          </p>
-
-          <dl class="fact-row">
-            <div class="fact">
-              <dt>Founded</dt>
-              <dd>2021</dd>
-            </div>
-            <div class="fact">
-              <dt>Combined experience</dt>
-              <dd>60+ years</dd>
-            </div>
-            <div class="fact">
-              <dt>Co-founders</dt>
-              <dd>2</dd>
-            </div>
-            <div class="fact">
-              <dt>What we build</dt>
-              <dd>ERP &amp; web</dd>
-            </div>
-          </dl>
+        </div>
+        
+        <!-- Trust Metrics / Stats Row -->
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Years of Excellence</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Enterprise Clients</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Compliance Focus</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Dedicated Support</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Compact Bento Section (Vision, Mission, Values & Capabilities) -->
-    <section class="bento-section">
-      <div class="bento-grid">
-        
-        <!-- Vision Card -->
-        <div class="bento-card vision-card">
-          <h2>Our Vision</h2>
+    <!-- Our Story Section -->
+    <section class="section who-we-are-section">
+      <div class="container split-layout">
+        <div class="image-box">
+          <div class="logo-wrapper">
+             <Image src={logoImg} alt="M-Square Logo" class="floating-logo" />
+             <div class="glow-effect"></div>
+          </div>
+        </div>
+        <div class="text-box">
+          <h2>Our Story</h2>
           <p>
-            To be the trusted digital backbone of ambitious businesses across Egypt and the
-            region — the partner organizations turn to when they need their operations,
-            compliance, and technology to work as one seamless system.
+            In 2021, our founders identified a critical gap: businesses across Egypt needed a modern, frictionless way to comply with the newly introduced electronic invoicing system from the Egyptian Tax Authority (ETA). 
+          </p>
+          <p>
+            They assembled a team of specialists and built a solution that streamlined invoicing and guaranteed full regulatory compliance from day one. That project's success became the foundation for something larger — today, M-Square has grown into a full-spectrum digital partner, delivering custom ERP platforms, high-performance websites and mobile apps, and secure IT infrastructure for some of the region's most reputable organizations.
           </p>
         </div>
+      </div>
+    </section>
 
-        <!-- Mission Card -->
-        <div class="bento-card mission-card">
-          <h2>Our Mission</h2>
-          <p>
-            To design, build, and support intelligent, AI-driven software and
-            infrastructure — from ERP and e-tax compliance to websites, mobile apps, and
-            secure networks — that simplify how our clients operate, keep them fully
-            compliant, and give them the technical foundation to scale with confidence.
-          </p>
+    <!-- Vision & Mission Section -->
+    <section class="section vision-mission-section">
+      <div class="container">
+        <div class="grid-2">
+          <div class="card vm-card">
+            <div class="icon-wrapper">
+              <!-- Vision Icon SVG -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3>Our Vision</h3>
+            <p>
+              To be the trusted digital backbone of ambitious businesses across Egypt and the region — the partner organizations turn to when they need their operations, compliance, and technology to work as one seamless system.
+            </p>
+          </div>
+          <div class="card vm-card">
+            <div class="icon-wrapper">
+              <!-- Mission Icon SVG -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Our Mission</h3>
+            <p>
+              To design, build, and support intelligent, AI-driven software and infrastructure — from ERP and e-tax compliance to websites, mobile apps, and secure networks — that simplify how our clients operate, keep them fully compliant, and give them the technical foundation to scale with confidence.
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Core Values Header / Span Card -->
-        <div class="bento-card values-header-card">
+    <!-- Core Values Section -->
+    <section class="section values-section">
+      <div class="container">
+        <div class="section-header center">
           <h2>Our Core Values</h2>
-          <p>The principles driving our engineering and client partnerships.</p>
         </div>
-
-        <!-- Values List Cards -->
-        <div class="bento-card value-item">
-          <h3>Innovation with Purpose</h3>
-          <p>Adopting AI and automation where it genuinely improves outcomes.</p>
+        
+        <div class="grid-3 values-grid">
+          <div class="value-item">
+            <h4>Innovation with Purpose</h4>
+            <p>Adopting AI and automation where it genuinely improves outcomes, not for its own sake.</p>
+          </div>
+          <div class="value-item">
+            <h4>True Partnership</h4>
+            <p>We work embedded with your team, not at arm's length.</p>
+          </div>
+          <div class="value-item">
+            <h4>Integrity</h4>
+            <p>Transparent timelines, honest scoping, and accountability at every stage.</p>
+          </div>
+          <div class="value-item">
+            <h4>Precision & Reliability</h4>
+            <p>Systems built to run without surprises, backed by rigorous testing and support.</p>
+          </div>
+          <div class="value-item">
+            <h4>Compliance-First Thinking</h4>
+            <p>Staying ahead of regulatory change so our clients never have to worry about it.</p>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="bento-card value-item">
-          <h3>True Partnership</h3>
-          <p>Working embedded directly with your team, not at arm's length.</p>
-        </div>
-
-        <div class="bento-card value-item">
-          <h3>Integrity</h3>
-          <p>Transparent timelines, honest scoping, and total accountability.</p>
-        </div>
-
-        <div class="bento-card value-item">
-          <h3>Precision & Reliability</h3>
-          <p>Systems built to run without surprises, backed by rigorous support.</p>
-        </div>
-
-        <div class="bento-card value-item">
-          <h3>Compliance-First</h3>
-          <p>Staying ahead of regulatory change so you never have to worry.</p>
-        </div>
-
-        <!-- What We Build Strip -->
-        <div class="bento-card build-strip">
+    <!-- Capabilities / What We Build CTA -->
+    <section class="section capabilities-section">
+      <div class="container">
+        <div class="cta-box">
           <h2>What We Build</h2>
-          <span class="build-tags">ERP &bull; E-Taxes &bull; Web &bull; Mobile &bull; Infrastructure</span>
+          <div class="tags-wrapper">
+            <span class="tech-tag">ERP</span>
+            <span class="tech-tag">E-Taxes</span>
+            <span class="tech-tag">Web</span>
+            <span class="tech-tag">Mobile</span>
+            <span class="tech-tag">Infrastructure</span>
+          </div>
         </div>
-
       </div>
     </section>
 
@@ -152,352 +148,319 @@ import logoImg from '../assets/Logo.png';
 </Layout>
 
 <style>
-  .about-page {
-    --bg: #0d0d0e;
-    --panel: #17161a;
-    --border: rgba(255, 255, 255, 0.09);
-    --text-primary: #f5f3ef;
-    --text-secondary: #b4b2ad;
-    --text-tertiary: #817f7b;
+  :root {
+    --bg-dark: #0a0a0b;
+    --bg-surface: #141416;
+    --bg-surface-alt: #1a1a1d;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
     --accent: #ff6a2b;
-    --accent-soft: #ffb59a;
+    --accent-hover: #ff8552;
+    --accent-glow: rgba(255, 106, 43, 0.15);
+  }
 
-    position: relative;
-    overflow-x: hidden;
-    background: var(--bg);
+  .about-page {
+    background-color: var(--bg-dark);
     color: var(--text-primary);
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
-    padding-block: clamp(3rem, 6vw, 6rem);
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  .ambient {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(ellipse 50% 40% at 20% 0%, rgba(255, 106, 43, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 85% 65%, rgba(255, 181, 154, 0.05) 0%, transparent 65%);
+  h1, h2, h3, h4, .stat-number {
+    font-family: 'Sora', 'IBM Plex Sans', sans-serif;
+    color: var(--text-primary);
+    margin: 0;
   }
 
-  .hero, .bento-section {
-    position: relative;
-    z-index: 1;
-    max-width: 72rem;
-    margin-inline: auto;
-    padding-inline: 1.5rem;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
-  .bento-section {
-    margin-top: clamp(3rem, 6vw, 5rem);
+  .section {
+    padding: 5rem 0;
   }
 
-  .hero-grid {
+  .section-header.center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  /* --- Hero Section --- */
+  .hero-section {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    background: radial-gradient(circle at 50% 0%, var(--accent-glow) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .stat-item {
+    flex: 1 1 200px;
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* --- Our Story Section --- */
+  .who-we-are-section {
+    background-color: var(--bg-surface);
+  }
+
+  .split-layout {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'mark' 'copy';
+    gap: 4rem;
     align-items: center;
-    gap: clamp(2rem, 5vw, 3.5rem);
   }
 
-  @media (min-width: 960px) {
-    .hero-grid {
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.75fr);
-      grid-template-areas: 'copy mark';
-      gap: clamp(3rem, 6vw, 5rem);
+  @media (min-width: 992px) {
+    .split-layout {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
-  /* ---- Copy column ---- */
-
-  .hero-copy {
-    grid-area: copy;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.85rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--panel);
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: rise 0.6s ease-out forwards;
-    animation-delay: 0.1s;
-  }
-
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulseDot 3s ease-in-out infinite;
-  }
-
-  h1 {
-    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-    margin: 0 0 1.25rem;
-    max-width: 18ch;
-    opacity: 0;
-    animation: rise 0.6s ease-out forwards;
-    animation-delay: 0.2s;
-  }
-
-  .hero-copy p {
-    font-size: 1.0625rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-    max-width: 52ch;
-    margin: 0 0 1rem;
-    opacity: 0;
-    animation: rise 0.6s ease-out forwards;
-  }
-
-  .hero-copy p.lede {
-    color: var(--text-primary);
-    font-size: 1.125rem;
-    animation-delay: 0.3s;
-  }
-
-  .hero-copy p:not(.lede) {
-    animation-delay: 0.4s;
-  }
-
-  .fact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin: 2rem 0 0;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    opacity: 0;
-    animation: rise 0.6s ease-out forwards;
-    animation-delay: 0.5s;
-  }
-
-  .fact {
-    flex: 1 1 7rem;
-    padding-right: 1.5rem;
-    margin-right: 1.5rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .fact:last-child {
-    border-right: none;
-    margin-right: 0;
-    padding-right: 0;
-  }
-
-  .fact dt {
-    font-size: 0.8125rem;
-    color: var(--text-tertiary);
-    margin: 0 0 0.35rem;
-  }
-
-  .fact dd {
-    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 1.375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
+  .image-box {
     position: relative;
-    padding-top: 0.5rem;
-  }
-
-  .fact dd::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1.25rem;
-    height: 2px;
-    background: var(--accent);
-  }
-
-  /* ---- Mark / logo column ---- */
-
-  .hero-mark {
-    grid-area: mark;
     display: flex;
     justify-content: center;
-  }
-
-  .mark-frame {
-    position: relative;
-    width: clamp(300px, 36vw, 440px);
-    aspect-ratio: 1 / 1;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0;
-    animation: zoomInFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    padding: 3rem;
   }
 
-  .mark-glow {
-    position: absolute;
-    inset: -30%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.35) 0%, rgba(255, 106, 43, 0) 70%);
-    animation: fastBreath 2.5s ease-in-out infinite;
-  }
-
-  .mark-logo {
+  .logo-wrapper {
     position: relative;
-    width: 86%;
+    width: 250px;
+    height: 250px;
+  }
+
+  .glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    filter: blur(100px);
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  .floating-logo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
     height: auto;
-    object-fit: contain;
-    animation: logoCombined 3s ease-in-out infinite;
+    animation: float 6s ease-in-out infinite;
   }
 
-  /* ---- Bento Grid Layout (Low Scroll & High Visual Appeal) ---- */
+  .text-box h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-  .bento-grid {
+  .text-box p {
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  /* --- Vision & Mission Section --- */
+  .grid-2 {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 2rem;
   }
 
   @media (min-width: 768px) {
-    .bento-grid {
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .vm-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .vm-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 106, 43, 0.3);
+  }
+
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .vm-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .vm-card p {
+    color: var(--text-secondary);
+  }
+
+  /* --- Values Section --- */
+  .values-section {
+    background-color: var(--bg-surface);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-3 {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 1024px) {
-    .bento-grid {
+    .grid-3 {
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  .bento-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    padding: 1.75rem;
-    position: relative;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+  .value-item {
+    background: var(--bg-dark);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-top: 3px solid var(--accent);
   }
 
-  .bento-card:hover {
-    border-color: rgba(255, 106, 43, 0.4);
-    transform: translateY(-2px);
-  }
-
-  /* Spanning rules for Bento layout */
-  .vision-card, .mission-card {
-    grid-column: span 1;
-  }
-  @media (min-width: 768px) {
-    .vision-card, .mission-card {
-      grid-column: span 1;
-    }
-  }
-  @media (min-width: 1024px) {
-    .vision-card, .mission-card {
-      grid-column: span 1.5;
-    }
-  }
-
-  .values-header-card {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(255, 106, 43, 0.08) 0%, var(--panel) 100%);
-  }
-
-  .build-strip {
-    grid-column: 1 / -1;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(255, 106, 43, 0.12) 0%, var(--panel) 100%);
-    border: 1px solid rgba(255, 106, 43, 0.25);
-    padding: 1.5rem;
-  }
-
-  .bento-card h2 {
-    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
+  .value-item h4 {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
-  .values-header-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .bento-card h3 {
-    font-family: 'Sora', 'IBM Plex Sans', system-ui, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 0.4rem;
-  }
-
-  .bento-card p {
+  .value-item p {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    line-height: 1.6;
     margin: 0;
   }
 
-  .build-tags {
-    display: inline-block;
-    color: var(--accent-soft);
-    font-size: 1.1rem;
+  /* --- Capabilities Section --- */
+  .capabilities-section {
+    padding-bottom: 8rem;
+  }
+
+  .cta-box {
+    background: linear-gradient(145deg, var(--bg-surface) 0%, var(--bg-dark) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .cta-box h2 {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .tech-tag {
+    background: var(--bg-surface-alt);
+    border: 1px solid rgba(255, 106, 43, 0.2);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
     font-weight: 500;
-    margin-top: 0.35rem;
-    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
   }
 
-  /* ---- Motion ---- */
-
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .tech-tag:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
   }
 
-  @keyframes zoomInFade {
-    0% { opacity: 0; transform: scale(0.6); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-
-  @keyframes fastBreath {
-    0%, 100% { transform: translate(0, 0) scale(0.85); opacity: 0.4; }
-    50% { transform: translate(0, 0) scale(1.35); opacity: 0.85; }
-  }
-
-  @keyframes logoCombined {
-    0%, 100% { filter: drop-shadow(0 0 35px rgba(255, 106, 43, 0.3)); transform: translateY(0px); }
-    50% { filter: drop-shadow(0 0 75px rgba(255, 106, 43, 0.75)); transform: translateY(-14px); }
-  }
-
-  @keyframes pulseDot {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  /* --- Animations --- */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .eyebrow, h1, .hero-copy p, .fact-row, .mark-frame {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-    .status-dot, .mark-glow, .mark-logo {
-      animation: none !important;
+    .floating-logo {
+      animation: none;
     }
   }
 </style>
