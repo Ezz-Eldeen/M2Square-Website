@@ -71,7 +71,7 @@ const slides = [
 
 <!-- Position and Size applied via variables -->
 <div class={`${sliderMaxWidth} ${sliderAlignment} px-4 sm:px-6`}>
-  <div id="slider-container" class={`relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer`}>
+  <div id="slider-container" class={`relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer bg-[#03111F]`}>
     
     <!-- Slides Container -->
     <div class="relative w-full h-full">
@@ -89,27 +89,27 @@ const slides = [
             widths={[480, 768, 1200, 1920]}
             sizes="100vw"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#08080a] via-[#08080a]/60 to-transparent pointer-events-none"></div>
-          <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#03111F] via-[#03111F]/70 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-[#03111F]/30 pointer-events-none"></div>
 
           <!-- Text Content Overlay -->
           <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10 max-w-3xl z-20 pointer-events-none">
             
-            <!-- MASSIVE CATCHY TAG -->
+            <!-- MASSIVE CATCHY TAG (Branded Gold Metallic Gradient) -->
             <div class="mb-3 inline-block">
-              <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-[#ff6a2b] via-[#ffa447] to-[#ff6a2b] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(255,106,43,0.3)]">
+              <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-[#664725] via-[#D29D52] to-[#F6C973] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(210,157,82,0.35)]">
                 {slide.tag}
               </span>
             </div>
 
             <!-- Smaller Secondary Title -->
-            <h3 class="text-base sm:text-xl font-semibold text-white/90 tracking-wide mb-2 flex items-center gap-2.5">
-              <span class="w-2 h-2 rounded-full bg-[#ff6a2b] animate-pulse"></span>
+            <h3 class="text-base sm:text-xl font-semibold text-white/95 tracking-wide mb-2 flex items-center gap-2.5">
+              <span class="w-2 h-2 rounded-full bg-[#D29D52] animate-pulse"></span>
               {slide.title}
             </h3>
 
             <!-- Description -->
-            <p class="text-sm sm:text-base text-[#A3A3AA] leading-relaxed">
+            <p class="text-sm sm:text-base text-[#a9bbcd] leading-relaxed">
               {slide.description}
             </p>
 
@@ -122,7 +122,7 @@ const slides = [
     <div class="absolute bottom-6 right-6 z-30 flex items-center gap-2">
       {slides.map((_, index) => (
         <button 
-          class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#ff6a2b]' : 'w-2 bg-white/30'}`}
+          class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#D29D52]' : 'w-2 bg-white/30'}`}
           data-index={index}
           aria-label={`Go to slide ${index + 1}`}
         ></button>
@@ -175,9 +175,9 @@ const slides = [
       dots.forEach((dot, i) => {
         if (i === index) {
           dot.classList.remove("w-2", "bg-white/30");
-          dot.classList.add("w-8", "bg-[#ff6a2b]");
+          dot.classList.add("w-8", "bg-[#D29D52]");
         } else {
-          dot.classList.remove("w-8", "bg-[#ff6a2b]");
+          dot.classList.remove("w-8", "bg-[#D29D52]");
           dot.classList.add("w-2", "bg-white/30");
         }
       });
