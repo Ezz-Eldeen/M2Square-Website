@@ -25,7 +25,7 @@ const clients = [
   title="Services and Solutions - M2-Square"
   description="M-Square builds AI-driven ERP systems, ETA e-invoicing, websites, mobile apps and IT infrastructure for businesses in Egypt. Start your project today."
 >
-  <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#101821_0%,_#0d1116_35%,_#0a0d10_65%,_#08080a_100%)]">
+  <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#0a2038_0%,_#06172a_35%,_#03111F_65%,_#020a12_100%)]">
     <!-- Ambient mesh background -->
     <div class="mesh-bg absolute inset-0 pointer-events-none z-0"></div>
     <div class="bg-grid-services absolute inset-0 pointer-events-none z-0"></div>
@@ -39,7 +39,7 @@ const clients = [
           src="/globev3.lottie"
           background="transparent"
           speed="0.5"
-          class="w-full h-full [filter:brightness(1.2)_saturate(0.3)_hue-rotate(-232deg)]"
+          class="w-full h-full [filter:grayscale(1)_sepia(2)_saturate(3.3)_brightness(2.5)]"
           loop
           autoplay
         ></dotlottie-player>
@@ -51,7 +51,7 @@ const clients = [
           Systems
           <span class="hero-gradient-text block bg-clip-text text-transparent">built to last.</span>
         </h1>
-        <p class="text-base sm:text-lg text-[#A3A3AA] max-w-2xl leading-relaxed">
+        <p class="text-base sm:text-lg text-[#9FB2C6] max-w-2xl leading-relaxed">
           Digitize and future-proof your business operations, with AI-driven solutions and smart automation.
         </p>
       </div>
@@ -64,14 +64,14 @@ const clients = [
 
 <!-- Partners & Clients Box Container -->
 <div class="max-w-6xl mx-auto px-4 sm:px-6 my-12">
-  <div class="relative bg-[#0b0b0e] border border-white/10 rounded-2xl py-8 shadow-2xl overflow-hidden">
+  <div class="relative bg-[#04131f] border border-white/10 rounded-2xl py-8 shadow-2xl overflow-hidden">
     
     <!-- Subtle background accent glow -->
-    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#ff6a2b]/10 blur-3xl pointer-events-none rounded-full"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D29D52]/10 blur-3xl pointer-events-none rounded-full"></div>
 
     <!-- Section Title inside the box -->
     <div class="text-center mb-6 px-4">
-      <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#ff6a2b] bg-[#ff6a2b]/10 px-3 py-1 rounded-full border border-[#ff6a2b]/20">
+      <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#D29D52] bg-[#D29D52]/10 px-3 py-1 rounded-full border border-[#D29D52]/25">
         Our Partners & Clients
       </span>
     </div>
@@ -92,18 +92,18 @@ const clients = [
                     class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" 
                   />
                 ) : (
-                  <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                  <span class="material-symbols-outlined text-[#D29D52] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
                 <span>{client.name}</span>
               </>
             );
 
             return client.url ? (
-              <a href={client.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#9FB2C6] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
-              <div class="flex items-center gap-3 text-[#A3A3AA] font-mono text-base tracking-wider uppercase group">
+              <div class="flex items-center gap-3 text-[#9FB2C6] font-mono text-base tracking-wider uppercase group">
                 {innerContent}
               </div>
             );
@@ -122,18 +122,18 @@ const clients = [
                     class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform" 
                   />
                 ) : (
-                  <span class="material-symbols-outlined text-[#ff6a2b] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                  <span class="material-symbols-outlined text-[#D29D52] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
                 <span>{client.name}</span>
               </>
             );
 
             return client.url ? (
-              <a href={client.url} tabindex="-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#A3A3AA] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} tabindex="-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#9FB2C6] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
-              <div class="flex items-center gap-3 text-[#A3A3AA] font-mono text-base tracking-wider uppercase group">
+              <div class="flex items-center gap-3 text-[#9FB2C6] font-mono text-base tracking-wider uppercase group">
                 {innerContent}
               </div>
             );
@@ -155,14 +155,14 @@ const clients = [
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
     
     <!-- PRACTICE 01: ERP  -->
-    <div id="digital-transformation" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="digital-transformation" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 01</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 01</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Deployed</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Integrated ERP Solutions</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
           AI-Driven Custom-made ERP solutions to digitize legacy systems, orchestrate cloud-native migrations, and automate business operations. 
         </p>
         <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">Enterprise Resource Planning Platform</h3>
@@ -173,16 +173,16 @@ const clients = [
             ["groups", "HR"],
             ["warehouse", "Inventory"],
           ].map(([icon, label]) => (
-            <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#1C1C20] border border-white/5 py-2 px-1 text-center">
-              <span class="material-symbols-outlined text-[#ff6a2b] text-base">{icon}</span>
-              <span class="text-[8px] leading-tight text-[#A3A3AA]">{label}</span>
+            <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#0a2540] border border-white/5 py-2 px-1 text-center">
+              <span class="material-symbols-outlined text-[#3BAAEF] text-base">{icon}</span>
+              <span class="text-[8px] leading-tight text-[#9FB2C6]">{label}</span>
             </div>
           ))}
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">Integrate all departments</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">Integrate all departments</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Talk <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -190,61 +190,61 @@ const clients = [
 
 
     <!-- PRACTICE 02: E-TAXES SOLUTIONS -->
-    <div id="e-taxes-solutions" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="e-taxes-solutions" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 02</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 02</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Live Bridge</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">E-Taxes Solutions</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
           Get a comprehensive E-Taxes software solution to seamlessly manage 
           and submit E-Invoices and E-reciepts to the Egyptian Tax Authority's portal (ETA) in compliance with the latest regulations. 
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">Making taxes easy</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">Making taxes easy</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Comply <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 03: WEB ENGINEERING -->
-    <div id="web-engineering" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="web-engineering" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 03</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 03</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Optimized</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Create a Website</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
           Make your business stand out with a high-performance website or web application. We specialize in fast, responsive, AI-driven, and scalable web solutions that deliver an exceptional user experience across all devices.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">Highly optimized for SEO </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">Highly optimized for SEO </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Build <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 04: MOBILE APP DEVELOPMENT -->
-    <div id="mobile-apps" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="mobile-apps" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 04</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 04</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Cross-Platform</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Mobile App Development</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
           Create a comprehensive software ecosystem with a mobile application that seamlessly integrates with your website and backend systems. 
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">iOS &middot; Android </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">iOS &middot; Android </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Launch <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -252,64 +252,64 @@ const clients = [
 
     
     <!-- PRACTICE 05: PROJECT MANAGEMENT -->
-    <div id="project-management" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="project-management" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 05</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 05</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Agile Cadence</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Project Management</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-6">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
             Technical oversight for complex IT initiatives. We utilize Agile frameworks and precise resource allocation to keep delivery on track.
         </p>
         <div class="grid grid-cols-2 gap-3 mb-4">
-          <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
-            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">01. Plan & Execute</span>
-            <p class="text-[11px] text-[#A3A3AA]">Scope mapping and sprint execution with daily visibility.</p>
+          <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">01. Plan & Execute</span>
+            <p class="text-[11px] text-[#9FB2C6]">Scope mapping and sprint execution with daily visibility.</p>
           </div>
-          <div class="bg-[#1C1C20] p-3 rounded-xl border border-white/5">
-            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-1">02. Monitor & Deliver</span>
-            <p class="text-[11px] text-[#A3A3AA]">Live burn-down tracking and staged rollout gates.</p>
+          <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">02. Monitor & Deliver</span>
+            <p class="text-[11px] text-[#9FB2C6]">Live burn-down tracking and staged rollout gates.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">Strict timelines </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">Strict timelines </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Join <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 06: VPS SERVICES & IT INFRASTRUCTURE -->
-    <div id="vps-infrastructure" class="glow-card relative bg-[#131316]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="vps-infrastructure" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#ff6a2b]">Practice 06</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 06</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Secure Cloud & Hardware</span>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">IT Infrastructure</h2>
-        <p class="text-[#A3A3AA] text-sm sm:text-base leading-relaxed mb-4">
+        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
           Complete physical and virtual infrastructure solutions to keep your business connected, secure, and fully operational around the clock.
         </p>
         <div class="grid grid-cols-2 gap-2 mb-4">
-          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">CCTV & Access</span>
-            <p class="text-[10px] text-[#A3A3AA]">Secure premises monitoring & access control.</p>
+          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">CCTV & Access</span>
+            <p class="text-[10px] text-[#9FB2C6]">Secure premises monitoring & access control.</p>
           </div>
-          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">Control Rooms</span>
-            <p class="text-[10px] text-[#A3A3AA]">Advanced monitoring command centers.</p>
+          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">Control Rooms</span>
+            <p class="text-[10px] text-[#9FB2C6]">Advanced monitoring command centers.</p>
           </div>
-          <div class="bg-[#1C1C20] p-2.5 rounded-xl border border-white/5 col-span-2">
-            <span class="text-[#ff6a2b] font-mono text-xs font-bold block mb-0.5">Networking Solutions</span>
-            <p class="text-[10px] text-[#A3A3AA]">High-speed enterprise networks, routing, and reliable VPS hosting.</p>
+          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5 col-span-2">
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">Networking Solutions</span>
+            <p class="text-[10px] text-[#9FB2C6]">High-speed enterprise networks, routing, and reliable VPS hosting.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#6B6B72]">Hardware setups &middot; Physical Security </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] font-semibold group" href="/contact">
+        <span class="font-mono text-[10px] text-[#5F7891]">Hardware setups &middot; Physical Security </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
           Deploy <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -320,22 +320,21 @@ const clients = [
 
     <!-- 7. CTA -->
     <section class="reveal-card relative z-10 px-6 mx-auto pb-20 max-w-[1440px]" style="width: 100%;">
-      <div class="cta-card relative rounded-3xl border border-[#ff6a2b]/25 overflow-hidden" style="width: 100%; display: block;">
+      <div class="cta-card relative rounded-3xl border border-[#D29D52]/25 overflow-hidden" style="width: 100%; display: block;">
         <div class="cta-ring" aria-hidden="true"></div>
         
-        <!-- Forced block display and explicit 100% width -->
         <div class="relative z-10 text-center px-6 py-12 sm:px-16 sm:py-16" style="display: block; width: 100%;">
           
           <h2 class="cta-gradient-text text-3xl sm:text-5xl font-bold mb-6 mx-auto tracking-tight" style="display: block; width: 100%; max-width: 42rem;">
             Pick a practice. Start the build.
           </h2>
           
-          <p class="text-[#A3A3AA] text-base sm:text-lg leading-relaxed mx-auto mb-8" style="display: block; width: 100%; max-width: 36rem; white-space: normal;">
+          <p class="text-[#9FB2C6] text-base sm:text-lg leading-relaxed mx-auto mb-8" style="display: block; width: 100%; max-width: 36rem; white-space: normal;">
             Whichever problem you&rsquo;re solving &mdash; legacy migration, scope creep, compliance deadlines, or high-performance web platforms &mdash; we&rsquo;ve already shipped it.
           </p>
           
           <div style="display: block; width: 100%; text-align: center;">
-            <a href="/contact" class="shine-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(255,106,43,0.45)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+            <a href="/contact" class="shine-btn gold-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">Get Started Now</span>
               <span class="material-symbols-outlined relative z-10 text-[18px]">arrow_forward</span>
             </a>
@@ -346,18 +345,20 @@ const clients = [
     </section>
 
 <style>
-  /*
-    Frozen instead of animated: this was cycling background-position
-    forever, forcing a full repaint of this layer every frame. It sits
-    behind the hero, the slider, and every backdrop-blur card below,
-    so an animated background here was the single biggest driver of the
-    "stuttery" feel — everything on top of it had to keep re-rendering
-    in sync with it, whether or not that element had its own animation.
-  */
+  /* M-Square brand tokens
+     Blue #076CC7 · Gold #D29D52 · Midnight Navy #03111F */
+  :global(:root) {
+    --ms-blue: #076CC7;
+    --ms-gold: #D29D52;
+    --ms-navy: #03111F;
+    --ms-gold-metal: linear-gradient(100deg, #664725 0%, #D29D52 40%, #F6C973 65%, #D29D52 100%);
+    --ms-blue-metal: linear-gradient(100deg, #1A395C 0%, #076CC7 40%, #3BAAEF 65%, #1B4A84 100%);
+  }
+
   .mesh-bg {
     background:
-      radial-gradient(circle at 15% 20%, rgba(255, 106, 43, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 15%, rgba(0, 165, 215, 0.10) 0%, transparent 35%);
+      radial-gradient(circle at 15% 20%, rgba(210, 157, 82, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(7, 108, 199, 0.18) 0%, transparent 35%);
   }
   .bg-grid-services {
     background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
@@ -365,17 +366,17 @@ const clients = [
     mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   }
   .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px); z-index: 0; }
-  .hero-orb-a { top: 4rem; right: 8%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 165, 215, 0.22) 0%, transparent 70%); }
-  .hero-orb-b { top: 18rem; right: 22%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255, 106, 43, 0.18) 0%, transparent 70%); }
-  /* Gradient sweep removed — static gradient text instead of an infinite
-     background-position animation on text sitting directly in the LCP path. */
+  .hero-orb-a { top: 4rem; right: 8%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(7, 108, 199, 0.3) 0%, transparent 70%); }
+  .hero-orb-b { top: 18rem; right: 22%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(210, 157, 82, 0.2) 0%, transparent 70%); }
+
+  /* Static metallic gold (no animation, to keep the LCP path cheap) */
   .hero-gradient-text {
-    background-image: linear-gradient(90deg, #ff6a2b, #ffb59a, #71d2ff, #ff6a2b);
+    background-image: var(--ms-gold-metal);
     background-size: 100% 100%;
   }
   .cta-gradient-text {
     color: transparent; background-clip: text; -webkit-background-clip: text;
-    background-image: linear-gradient(90deg, #ffffff, #ffb59a, #71d2ff, #ffffff);
+    background-image: linear-gradient(90deg, #ffffff 0%, #F6C973 35%, #D29D52 60%, #3BAAEF 100%);
     background-size: 100% 100%;
   }
   .glow-card {
@@ -384,19 +385,23 @@ const clients = [
   }
   .glow-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 106, 43, 0.4);
+    border-color: rgba(210, 157, 82, 0.45);
   }
   .reveal-card {
     opacity: 0; transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
-  .cta-card { background: linear-gradient(to bottom, #131316, #0d0d10); }
+  .cta-card { background: linear-gradient(to bottom, #061a2e, #03111F); }
   .cta-ring {
     position: absolute; inset: -2px; z-index: 0; border-radius: inherit; padding: 2px;
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.6; pointer-events: none;
-    background: conic-gradient(from 0deg, #ff6a2b, #71d2ff, #ffb59a, #ff6a2b);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.7; pointer-events: none;
+    background: conic-gradient(from 0deg, #664725, #D29D52, #F6C973, #D29D52, #1A395C, #076CC7, #3BAAEF, #1B4A84, #664725);
+  }
+  /* Button: brighter slice of the gold metal so navy text stays readable */
+  .gold-btn {
+    background-image: linear-gradient(100deg, #B8853F 0%, #D29D52 35%, #F6C973 65%, #D29D52 100%);
   }
   .shine-btn::before {
     content: ''; position: absolute; inset: 0;

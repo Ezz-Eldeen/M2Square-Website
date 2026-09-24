@@ -6,9 +6,7 @@ import Layout from '../layouts/Layout.astro';
   title="Contact Us - M2-Square"
   description="Contact M-Square to discuss ERP, e-invoicing, web, mobile or IT infrastructure projects. Talk to our team in Alexandria, Egypt for a consultation or quote."
 >
-  <!-- Icon font — was missing on this page, which is why the material-symbols-outlined
-       spans below (person, phone, mail, lock, send...) were rendering as raw text
-       instead of icons. Same fix as the About page. -->
+  <!-- Icon font: needed for the material-symbols-outlined spans below -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -16,41 +14,33 @@ import Layout from '../layouts/Layout.astro';
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
   />
 
-  <main class="pt-32 pb-24 px-6 max-w-[1440px] mx-auto relative z-10 bg-black text-white overflow-hidden">
-    <!--
-      GLOBAL AMBIENT BACKGROUND — multi-color, same technique as the About page:
-      fixed layer, plain radial-gradients (no `filter: blur`), so it's soft and
-      cheap to composite instead of stacking several expensive blurred divs.
-      Colors pull from tokens already used on this page (orange accent, peach,
-      the blue used sitewide, the green already used for the "online" status
-      dot below) rather than introducing a new, off-brand palette.
-    -->
+  <main class="pt-32 pb-24 px-6 max-w-[1440px] mx-auto relative z-10 bg-[#03111F] text-white overflow-hidden">
+    <!-- Global ambient background: fixed layer of plain radial-gradients (no blur filter) -->
     <div class="ambient-bg" aria-hidden="true"></div>
 
-    <!-- Scroll-following spotlight — large radius, stays with you as you scroll,
-         same as the About page for visual consistency across the site. -->
+    <!-- Scroll-following spotlight -->
     <div id="scroll-light" class="scroll-light" aria-hidden="true"></div>
 
     <!-- 1. HERO -->
     <div class="max-w-3xl relative z-10 mb-12">
-      <div class="pop-card is-visible inline-flex items-center gap-2 border border-white/10 bg-[#131316]/80 backdrop-blur-md px-4 py-1.5 rounded-full mb-6 shadow-md">
+      <div class="pop-card is-visible inline-flex items-center gap-2 border border-[#D29D52]/25 bg-[#061a2e]/80 backdrop-blur-md px-4 py-1.5 rounded-full mb-6 shadow-md">
         <span class="w-2 h-2 rounded-full bg-[#3DD68C] animate-pulse shadow-[0_0_8px_rgba(61,214,140,0.8)]"></span>
-        <span class="font-mono text-xs text-[#A3A3AA] uppercase tracking-widest">Response SLA under 4 hours</span>
+        <span class="font-mono text-xs text-[#9FB2C6] uppercase tracking-widest">Response SLA under 4 hours</span>
       </div>
 
       <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-4 leading-tight tracking-tight">
-        Initialize <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6a2b] to-[#ffb59a] drop-shadow-[0_0_20px_rgba(255,106,43,0.3)]">Connection</span>
+        Initialize <span class="gold-text drop-shadow-[0_0_20px_rgba(210,157,82,0.3)]">Connection</span>
       </h1>
-      <p class="text-base sm:text-lg text-[#A3A3AA] leading-relaxed max-w-2xl mb-8">
+      <p class="text-base sm:text-lg text-[#9FB2C6] leading-relaxed max-w-2xl mb-8">
         Secure transmission channel for technical inquiries, system integration support, and deployment assistance. Establish contact with an M2-Square operative.
       </p>
 
       <div class="flex flex-wrap gap-4">
-        <a href="#contact-form" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#ff6a2b] text-white font-semibold text-sm tracking-wide shadow-[0_0_15px_rgba(255,106,43,0.2)] hover:shadow-[0_0_20px_rgba(255,106,43,0.4)] hover:scale-105 transition-all duration-300">
+        <a href="#contact-form" class="gold-btn inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_15px_rgba(210,157,82,0.25)] hover:shadow-[0_0_25px_rgba(210,157,82,0.5)] hover:scale-105 transition-all duration-300">
           Send a Message
           <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
         </a>
-        <a href="mailto:sales@m2-square.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/15 bg-[#131316]/60 backdrop-blur-md text-[#F5F5F4] font-semibold text-sm tracking-wide hover:border-[#ff6a2b]/50 hover:text-[#ff6a2b] transition-all duration-300">
+        <a href="mailto:sales@m2-square.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/15 bg-[#061a2e]/60 backdrop-blur-md text-[#F5F5F4] font-semibold text-sm tracking-wide hover:border-[#D29D52]/60 hover:text-[#F6C973] transition-all duration-300">
           <span class="material-symbols-outlined text-[18px]">mail</span>
           Email Direct
         </a>
@@ -59,25 +49,25 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- 2. TRUST / SERVICE STRIP -->
     <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-      <div class="pop-card p-5 text-center bg-[#131316]/40 border border-white/5 rounded-2xl backdrop-blur-md">
-        <span class="material-symbols-outlined text-2xl text-[#ff6a2b] mb-2 block">bolt</span>
+      <div class="pop-card p-5 text-center bg-[#061a2e]/50 border border-white/5 rounded-2xl backdrop-blur-md">
+        <span class="material-symbols-outlined text-2xl text-[#3BAAEF] mb-2 block">bolt</span>
         <div class="font-mono text-sm font-semibold text-[#F5F5F4]">&lt; 4h</div>
-        <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider mt-1">Response Time</div>
+        <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider mt-1">Response Time</div>
       </div>
-      <div class="pop-card p-5 text-center bg-[#131316]/40 border border-white/5 rounded-2xl backdrop-blur-md">
-        <span class="material-symbols-outlined text-2xl text-[#ff6a2b] mb-2 block">shield_lock</span>
+      <div class="pop-card p-5 text-center bg-[#061a2e]/50 border border-white/5 rounded-2xl backdrop-blur-md">
+        <span class="material-symbols-outlined text-2xl text-[#3BAAEF] mb-2 block">shield_lock</span>
         <div class="font-mono text-sm font-semibold text-[#F5F5F4]">SSL</div>
-        <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider mt-1">Encrypted Channel</div>
+        <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider mt-1">Encrypted Channel</div>
       </div>
-      <div class="pop-card p-5 text-center bg-[#131316]/40 border border-white/5 rounded-2xl backdrop-blur-md">
-        <span class="material-symbols-outlined text-2xl text-[#ff6a2b] mb-2 block">engineering</span>
+      <div class="pop-card p-5 text-center bg-[#061a2e]/50 border border-white/5 rounded-2xl backdrop-blur-md">
+        <span class="material-symbols-outlined text-2xl text-[#3BAAEF] mb-2 block">engineering</span>
         <div class="font-mono text-sm font-semibold text-[#F5F5F4]">Dedicated</div>
-        <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider mt-1">Deployment Engineer</div>
+        <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider mt-1">Deployment Engineer</div>
       </div>
-      <div class="pop-card p-5 text-center bg-[#131316]/40 border border-white/5 rounded-2xl backdrop-blur-md">
-        <span class="material-symbols-outlined text-2xl text-[#ff6a2b] mb-2 block">description</span>
+      <div class="pop-card p-5 text-center bg-[#061a2e]/50 border border-white/5 rounded-2xl backdrop-blur-md">
+        <span class="material-symbols-outlined text-2xl text-[#3BAAEF] mb-2 block">description</span>
         <div class="font-mono text-sm font-semibold text-[#F5F5F4]">On Request</div>
-        <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider mt-1">NDA Available</div>
+        <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider mt-1">NDA Available</div>
       </div>
     </div>
 
@@ -85,45 +75,45 @@ import Layout from '../layouts/Layout.astro';
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Contact form -->
       <div id="contact-form" class="pop-card lg:col-span-8 w-full scroll-mt-24">
-        <div class="bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden shadow-2xl">
-          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/30 to-transparent"></div>
+        <div class="bg-[#061a2e]/70 border border-white/10 backdrop-blur-xl rounded-3xl p-8 relative overflow-hidden shadow-2xl">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D29D52]/50 to-transparent"></div>
 
           <form action="#" method="POST" class="space-y-6 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="name">
-                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">person</span>Full Name <span class="text-[#ff6a2b]">*</span>
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="name">
+                  <span class="material-symbols-outlined text-[16px] text-[#D29D52]">person</span>Full Name <span class="text-[#D29D52]">*</span>
                 </label>
-                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="name" name="name" placeholder="Enter full name" required type="text" />
+                <input class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all placeholder:text-[#5F7891]" id="name" name="name" placeholder="Enter full name" required type="text" />
               </div>
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="company">
-                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">apartment</span>Company
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="company">
+                  <span class="material-symbols-outlined text-[16px] text-[#D29D52]">apartment</span>Company
                 </label>
-                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="company" name="company" placeholder="Company name" type="text" />
+                <input class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all placeholder:text-[#5F7891]" id="company" name="company" placeholder="Company name" type="text" />
               </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="email">
-                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">mail</span>Email Address <span class="text-[#ff6a2b]">*</span>
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="email">
+                  <span class="material-symbols-outlined text-[16px] text-[#D29D52]">mail</span>Email Address <span class="text-[#D29D52]">*</span>
                 </label>
-                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="email" name="email" placeholder="sales@m2-square.com" required type="email" />
+                <input class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all placeholder:text-[#5F7891]" id="email" name="email" placeholder="sales@m2-square.com" required type="email" />
               </div>
               <div class="space-y-2">
-                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="phone">
-                  <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">phone</span>Phone Number
+                <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="phone">
+                  <span class="material-symbols-outlined text-[16px] text-[#D29D52]">phone</span>Phone Number
                 </label>
-                <input class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72]" id="phone" name="phone" placeholder="0155 357 7554" type="tel" />
+                <input class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all placeholder:text-[#5F7891]" id="phone" name="phone" placeholder="0155 357 7554" type="tel" />
               </div>
             </div>
 
             <div class="space-y-2">
-              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="subject">
-                <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">tag</span>Subject
+              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="subject">
+                <span class="material-symbols-outlined text-[16px] text-[#D29D52]">tag</span>Subject
               </label>
-              <select class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all cursor-pointer" id="subject" name="subject">
+              <select class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all cursor-pointer" id="subject" name="subject">
                 <option value="technical">Technical Support</option>
                 <option value="deployment">Deployment Coordination</option>
                 <option value="security">Security Audit Request</option>
@@ -133,22 +123,22 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="space-y-2">
-              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#A3A3AA]" for="message">
-                <span class="material-symbols-outlined text-[16px] text-[#ff6a2b]">terminal</span>Message <span class="text-[#ff6a2b]">*</span>
+              <label class="flex items-center gap-2 text-[11px] uppercase tracking-wider text-[#9FB2C6]" for="message">
+                <span class="material-symbols-outlined text-[16px] text-[#D29D52]">terminal</span>Message <span class="text-[#D29D52]">*</span>
               </label>
-              <textarea class="w-full bg-[#1C1C20] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#ff6a2b] focus:ring-0 focus:outline-none transition-all placeholder:text-[#6B6B72] resize-y" id="message" name="message" placeholder="Detail your requirements here..." required rows="5"></textarea>
+              <textarea class="w-full bg-[#0a2540] border border-white/10 rounded-xl px-4 py-3 text-[#F5F5F4] focus:border-[#D29D52] focus:ring-0 focus:outline-none transition-all placeholder:text-[#5F7891] resize-y" id="message" name="message" placeholder="Detail your requirements here..." required rows="5"></textarea>
             </div>
 
-            <label class="flex items-start gap-3 text-xs text-[#A3A3AA] leading-relaxed cursor-pointer" for="consent">
-              <input class="mt-0.5 w-4 h-4 rounded border-white/20 bg-[#1C1C20] text-[#ff6a2b] focus:ring-0 focus:ring-offset-0" id="consent" name="consent" required type="checkbox" />
+            <label class="flex items-start gap-3 text-xs text-[#9FB2C6] leading-relaxed cursor-pointer" for="consent">
+              <input class="mt-0.5 w-4 h-4 rounded border-white/20 bg-[#0a2540] text-[#D29D52] focus:ring-0 focus:ring-offset-0" id="consent" name="consent" required type="checkbox" />
               I agree to be contacted regarding this inquiry and consent to M2-Square storing my details for that purpose.
             </label>
 
             <div class="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-white/10">
-              <div class="text-xs font-mono text-[#6B6B72] flex items-center gap-2">
+              <div class="text-xs font-mono text-[#5F7891] flex items-center gap-2">
                 <span class="material-symbols-outlined text-[14px]">lock</span>Encrypted SSL connection
               </div>
-              <button class="bg-[#ff6a2b] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#ffb59a] hover:text-[#131316] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,106,43,0.2)] hover:shadow-[0_0_20px_rgba(255,106,43,0.4)]" type="submit">
+              <button class="gold-btn text-[#03111F] font-semibold px-6 py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(210,157,82,0.25)] hover:shadow-[0_0_25px_rgba(210,157,82,0.5)]" type="submit">
                 <span class="tracking-widest uppercase text-xs">Submit Request</span>
                 <span class="material-symbols-outlined text-[18px]">send</span>
               </button>
@@ -160,32 +150,32 @@ import Layout from '../layouts/Layout.astro';
       <!-- Sidebar -->
       <div class="lg:col-span-4 w-full flex flex-col gap-6">
         <!-- Direct lines -->
-        <div class="pop-card bg-[#131316]/60 border border-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#ff6a2b]/30 to-transparent"></div>
+        <div class="pop-card bg-[#061a2e]/70 border border-white/10 backdrop-blur-xl rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D29D52]/50 to-transparent"></div>
           <h3 class="text-xl font-semibold text-[#F5F5F4] mb-4 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#3DD68C] animate-pulse"></span>
             Direct Lines
           </h3>
           <div class="flex flex-col gap-3">
-            <a href="mailto:sales@m2-square.com" class="group flex items-center gap-3 p-3 rounded-xl bg-[#1C1C20] border border-white/5 hover:border-[#ff6a2b]/40 transition-all">
-              <span class="material-symbols-outlined text-[#ff6a2b]">mail</span>
+            <a href="mailto:sales@m2-square.com" class="group flex items-center gap-3 p-3 rounded-xl bg-[#0a2540] border border-white/5 hover:border-[#D29D52]/45 transition-all">
+              <span class="material-symbols-outlined text-[#3BAAEF]">mail</span>
               <div>
-                <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider">Email</div>
-                <div class="text-sm text-[#F5F5F4] group-hover:text-[#ff6a2b] transition-colors">sales@m2-square.com</div>
+                <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider">Email</div>
+                <div class="text-sm text-[#F5F5F4] group-hover:text-[#F6C973] transition-colors">sales@m2-square.com</div>
               </div>
             </a>
-            <a href="tel:+201553577554" class="group flex items-center gap-3 p-3 rounded-xl bg-[#1C1C20] border border-white/5 hover:border-[#ff6a2b]/40 transition-all">
-              <span class="material-symbols-outlined text-[#ff6a2b]">phone</span>
+            <a href="tel:+201553577554" class="group flex items-center gap-3 p-3 rounded-xl bg-[#0a2540] border border-white/5 hover:border-[#D29D52]/45 transition-all">
+              <span class="material-symbols-outlined text-[#3BAAEF]">phone</span>
               <div>
-                <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider">Phone</div>
-                <div class="text-sm text-[#F5F5F4] group-hover:text-[#ff6a2b] transition-colors">+20 155 357 7554</div>
+                <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider">Phone</div>
+                <div class="text-sm text-[#F5F5F4] group-hover:text-[#F6C973] transition-colors">+20 155 357 7554</div>
               </div>
             </a>
-            <a href="tel:+201551360527" class="group flex items-center gap-3 p-3 rounded-xl bg-[#1C1C20] border border-white/5 hover:border-[#ff6a2b]/40 transition-all">
-              <span class="material-symbols-outlined text-[#ff6a2b]">phone_in_talk</span>
+            <a href="tel:+201551360527" class="group flex items-center gap-3 p-3 rounded-xl bg-[#0a2540] border border-white/5 hover:border-[#D29D52]/45 transition-all">
+              <span class="material-symbols-outlined text-[#3BAAEF]">phone_in_talk</span>
               <div>
-                <div class="text-[11px] text-[#A3A3AA] uppercase tracking-wider">Phone (Alt)</div>
-                <div class="text-sm text-[#F5F5F4] group-hover:text-[#ff6a2b] transition-colors">+20 155 136 0527</div>
+                <div class="text-[11px] text-[#9FB2C6] uppercase tracking-wider">Phone (Alt)</div>
+                <div class="text-sm text-[#F5F5F4] group-hover:text-[#F6C973] transition-colors">+20 155 136 0527</div>
               </div>
             </a>
           </div>
@@ -196,27 +186,20 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  /*
-    GLOBAL AMBIENT BACKGROUND — multi-color version of the About page's
-    fixed layer. Same reasoning: plain radial-gradients (no `filter: blur`)
-    stay soft without the heavy compositing cost, and one fixed layer
-    behind the whole page reads as continuous instead of resetting at
-    section edges.
-  */
+  /* M-Square brand: Blue #076CC7 · Gold #D29D52 · Midnight Navy #03111F */
   .ambient-bg {
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 50% 40% at 10% 5%, rgba(255, 106, 43, 0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 45% 40% at 90% 10%, rgba(113, 210, 255, 0.09) 0%, transparent 60%),
-      radial-gradient(ellipse 55% 45% at 85% 60%, rgba(61, 214, 140, 0.06) 0%, transparent 65%),
-      radial-gradient(ellipse 55% 45% at 15% 85%, rgba(255, 181, 154, 0.08) 0%, transparent 65%),
-      radial-gradient(ellipse 60% 40% at 60% 100%, rgba(255, 106, 43, 0.1) 0%, transparent 65%);
+      radial-gradient(ellipse 50% 40% at 10% 5%, rgba(210, 157, 82, 0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 40% at 90% 10%, rgba(7, 108, 199, 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 60%, rgba(59, 170, 239, 0.07) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 15% 85%, rgba(246, 201, 115, 0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 40% at 60% 100%, rgba(7, 108, 199, 0.14) 0%, transparent 65%);
   }
 
-  /* Scroll-following spotlight — identical mechanics to the About page. */
   .scroll-light {
     position: fixed;
     top: -30vh;
@@ -225,14 +208,24 @@ import Layout from '../layouts/Layout.astro';
     height: 1600px;
     margin-left: -800px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 106, 43, 0.13) 0%, rgba(255, 106, 43, 0.04) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(210, 157, 82, 0.11) 0%, rgba(210, 157, 82, 0.035) 40%, transparent 70%);
     pointer-events: none;
     z-index: 0;
     will-change: transform;
     transform: translate3d(0, 0, 0);
   }
 
-  /* Pop-in entrance system, shared with the rest of the site. */
+  /* Metallic gold: headline text, and a brighter slice for buttons so navy text stays readable */
+  .gold-text {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(100deg, #664725 0%, #D29D52 40%, #F6C973 65%, #D29D52 100%);
+  }
+  .gold-btn {
+    background-image: linear-gradient(100deg, #B8853F 0%, #D29D52 35%, #F6C973 65%, #D29D52 100%);
+  }
+
   .pop-card {
     opacity: 0;
     transform: translateY(40px) scale(0.92);
