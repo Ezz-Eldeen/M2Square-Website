@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { Image } from 'astro:assets';
 import logoImage from '../assets/Logo.png';
 import faviconImage from '../assets/favicon.png';
+import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -28,13 +29,39 @@ const orgSchema = {
   logo: `${SITE}${logoImage.src}`,
 };
 
-// Normalize path to ignore trailing slashes
+// Current locale, driven by Astro's native i18n routing (set in astro.config.mjs)
+const lang = (Astro.currentLocale ?? 'en') as Lang;
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+const t = useTranslations(lang);
+const otherLang: Lang = lang === 'en' ? 'ar' : 'en';
+
+// Strip the /ar prefix (if present) to get the "base" path, e.g. /ar/about -> /about
 const rawPath = Astro.url.pathname;
-const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, -1) : rawPath;
+const basePath = (rawPath.replace(/^\/ar/, '') || '/').replace(/\/$/, '') || '/';
+
+// Locale-aware link builder — always resolves to the correct /ar/* or root path
+// Custom locale path builder
+const localePath = (path: string) => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  if (lang === 'en') {
+    return cleanPath === '/' ? '/' : cleanPath;
+  }
+  return cleanPath === '/' ? '/ar' : `/ar${cleanPath}`;
+};
+
+const switchHref = otherLang === 'ar'
+  ? (basePath === '/' ? '/ar' : `/ar${basePath}`)
+  : basePath;
+
+const navLinks = [
+  { key: 'nav.home' as const, path: '/' },
+  { key: 'nav.about' as const, path: '/about' },
+  { key: 'nav.contact' as const, path: '/contact' },
+];
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang} dir={dir}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
@@ -61,7 +88,7 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
   <!-- Navigation Bar -->
   <nav class="fixed top-0 w-full z-50 bg-[#03111F]/90 backdrop-blur-md border-b border-[#D29D52]/15 transition-all duration-300">
     <div class="flex justify-between items-center h-28 px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto">
-      <a class="flex items-center gap-2 font-display text-headline-sm font-bold tracking-tight" href="/">
+      <a class="flex items-center gap-2 font-display text-headline-sm font-bold tracking-tight" href={localePath('/')}>
         <Image
           src={logoImage}
           alt="M-Square Logo"
@@ -73,30 +100,39 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
 
       <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-lg items-center">
-        <li>
-          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/' ? 'text-[#D29D52] font-semibold border-b-2 border-[#D29D52] pb-1' : 'text-white/60 hover:text-[#3BAAEF]'}`} href="/">
-            Home
-          </a>
-        </li>
-        <li>
-          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/about' ? 'text-[#D29D52] font-semibold border-b-2 border-[#D29D52] pb-1' : 'text-white/60 hover:text-[#3BAAEF]'}`} href="/about">
-            About Us
-          </a>
-        </li>
-        <li>
-          <a class={`font-display text-body-md transition-colors duration-200 ${currentPath === '/contact' ? 'text-[#D29D52] font-semibold border-b-2 border-[#D29D52] pb-1' : 'text-white/60 hover:text-[#3BAAEF]'}`} href="/contact">
-            Contact Us
-          </a>
-        </li>
+        {navLinks.map((link) => (
+          <li>
+            <a
+              class={`font-display text-body-md transition-colors duration-200 ${basePath === link.path ? 'text-[#D29D52] font-semibold border-b-2 border-[#D29D52] pb-1' : 'text-white/60 hover:text-[#3BAAEF]'}`}
+              href={localePath(link.path)}
+            >
+              {t(link.key)}
+            </a>
+          </li>
+        ))}
       </ul>
 
-      <div class="hidden md:flex items-center gap-md">
+      <div class="hidden md:flex items-center gap-sm">
         <a
-          href="/contact"
+          href={switchHref}
+          lang={otherLang}
+          dir={otherLang === 'ar' ? 'rtl' : 'ltr'}
+          aria-label={otherLang === 'ar' ? 'Switch to Arabic' : 'Switch to English'}
+          class="group flex items-center gap-1.5 font-label-md font-semibold px-md py-xs rounded-xl border border-[#D29D52]/35 text-[#D29D52]/90 hover:text-[#03111F] hover:border-[#D29D52] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#076CC7] focus:ring-offset-2 focus:ring-offset-[#03111F]"
+          style="background: transparent;"
+          onmouseover="this.style.background='linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%)'"
+          onmouseout="this.style.background='transparent'"
+        >
+          <span class="material-symbols-outlined text-[18px] leading-none">language</span>
+          <span class="text-sm">{t('lang.switchTo')}</span>
+        </a>
+
+        <a
+          href={localePath('/contact')}
           class="font-label-md font-semibold px-md py-xs rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#076CC7] focus:ring-offset-2 focus:ring-offset-[#03111F] shadow-[0_0_20px_rgba(210,157,82,0.3)] hover:shadow-[0_0_30px_rgba(210,157,82,0.5)]"
           style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%); color: #03111F;"
         >
-          Get Started
+          {t('cta.getStarted')}
         </a>
       </div>
 
@@ -107,16 +143,28 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
 
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#03111F] border-t border-[#D29D52]/15 px-gutter-mobile py-md space-y-sm">
-      <a class="block font-display text-body-md text-white/60 hover:text-[#3BAAEF]" href="/">Home</a>
-      <a class="block font-display text-body-md text-white/60 hover:text-[#3BAAEF] pt-2" href="/about">About Us</a>
-      <a class="block font-display text-body-md text-white/60 hover:text-[#3BAAEF]" href="/contact">Contact Us</a>
+      {navLinks.map((link) => (
+        <a class="block font-display text-body-md text-white/60 hover:text-[#3BAAEF]" href={localePath(link.path)}>
+          {t(link.key)}
+        </a>
+      ))}
       <div class="pt-sm border-t border-[#D29D52]/15 flex flex-col gap-sm">
+        <a
+          href={switchHref}
+          lang={otherLang}
+          dir={otherLang === 'ar' ? 'rtl' : 'ltr'}
+          aria-label={otherLang === 'ar' ? 'Switch to Arabic' : 'Switch to English'}
+          class="flex items-center justify-center gap-1.5 font-label-md font-semibold py-xs rounded-xl border border-[#D29D52]/35 text-[#D29D52]"
+        >
+          <span class="material-symbols-outlined text-[18px] leading-none">language</span>
+          <span class="text-sm">{t('lang.switchTo')}</span>
+        </a>
         <a
           class="text-center font-label-md font-semibold py-xs rounded-xl"
           style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%); color: #03111F;"
-          href="/contact"
+          href={localePath('/contact')}
         >
-          Get Started
+          {t('cta.getStarted')}
         </a>
       </div>
     </div>
@@ -128,7 +176,7 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
   <footer class="w-full bg-[#03111F] border-t border-[#D29D52]/15 py-section-sm z-10 relative">
     <div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
       <div class="col-span-1 md:col-span-1">
-        <a class="flex items-center gap-2 mb-sm font-display text-headline-sm font-bold tracking-tight" href="/">
+        <a class="flex items-center gap-2 mb-sm font-display text-headline-sm font-bold tracking-tight" href={localePath('/')}>
           <Image
             src={logoImage}
             alt="M-Square Logo"
@@ -141,34 +189,34 @@ const currentPath = rawPath.endsWith('/') && rawPath !== '/' ? rawPath.slice(0, 
           </span>
         </a>
         <p class="font-display text-label-md text-white/40 mb-sm">
-          © 2021 M-Square.<br />
-          Precision in Digital Infrastructure.
+          {t('footer.copyright')}<br />
+          {t('footer.tagline')}
         </p>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">Solutions</h4>
+        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.solutions')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#digital-transformation">Digital Transformation</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#project-management">Project Management</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#e-taxes-solutions">E-Taxes Solutions</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#web-engineering">Web Development</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#mobile-apps">Mobile App Development</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/#vps-infrastructure">IT Infrastructure</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#digital-transformation`}>{t('footer.digitalTransformation')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#project-management`}>{t('footer.projectManagement')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#e-taxes-solutions`}>{t('footer.eTaxes')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#web-engineering`}>{t('footer.webDev')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#mobile-apps`}>{t('footer.mobileApps')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#vps-infrastructure`}>{t('footer.itInfrastructure')}</a></li>
         </ul>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">Company</h4>
+        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.company')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/about">About Us</a></li>
-          <li><a class="font-display text-label-md text-white hover:text-[#3BAAEF] transition-colors duration-200" href="/contact">Contact</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/about')}>{t('footer.aboutUs')}</a></li>
+          <li><a class="font-display text-label-md text-white hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/contact')}>{t('footer.contact')}</a></li>
           <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="mailto:sales@m-square.com">sales@m2-square.com</a></li>
         </ul>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">Legal</h4>
+        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.legal')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/privacy">Privacy Policy</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="/terms">Terms of Service</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/privacy')}>{t('footer.privacy')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/terms')}>{t('footer.terms')}</a></li>
         </ul>
       </div>
     </div>

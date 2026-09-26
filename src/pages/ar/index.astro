@@ -1,14 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ImageSlider from '../components/ImageSlider.astro';
+import Layout from '../../layouts/Layout.astro';
+import ImageSlider from '../../components/ImageSlider.astro';
 import { Image } from 'astro:assets';
 // ==========================================
 // CLIENT IMAGE IMPORTS (from src/assets)
 // ==========================================
-import alBelalImg from '../assets/AlBelal.jpeg';
-import gecoImg from '../assets/Geco.png';
-import alAsalaImg from '../assets/AlAsala.png';
-import elGhonemyImg from '../assets/ElGhonemy.png';
+import alBelalImg from '../../assets/AlBelal.jpeg';
+import gecoImg from '../../assets/Geco.png';
+import alAsalaImg from '../../assets/AlAsala.png';
+import elGhonemyImg from '../../assets/ElGhonemy.png';
 
 // Marquee Configuration & Client List
 const marqueeSpeed = '25s';
@@ -22,8 +22,8 @@ const clients = [
 ---
 
 <Layout
-  title="Services and Solutions - M2-Square"
-  description="M-Square builds AI-driven ERP systems, ETA e-invoicing, websites, mobile apps and IT infrastructure for businesses in Egypt. Start your project today."
+  title="الخدمات والحلول - إم-سكوير"
+  description="تبني إم-سكوير أنظمة تخطيط موارد مؤسسات مدعومة بالذكاء الاصطناعي، وفواتير إلكترونية متوافقة مع مصلحة الضرائب المصرية، ومواقع إلكترونية، وتطبيقات جوال، وبنية تحتية لتقنية المعلومات للشركات في مصر. ابدأ مشروعك اليوم."
 >
   <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#0a2038_0%,_#06172a_35%,_#03111F_65%,_#020a12_100%)]">
     <!-- Ambient mesh background -->
@@ -47,19 +47,19 @@ const clients = [
 
       <!-- Hero Text Content -->
       <div class="reveal-card max-w-4xl relative z-10 flex flex-col items-start w-full">
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold leading-[0.95] tracking-tight mb-6">
-          Systems
-          <span class="hero-gradient-text block bg-clip-text text-transparent">built to last.</span>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.35] tracking-tight mb-6">
+          أنظمة
+          <span class="hero-gradient-text block bg-clip-text text-transparent pb-2">مبنية لتدوم.</span>
         </h1>
         <p class="text-base sm:text-lg text-[#9FB2C6] max-w-2xl leading-relaxed">
-          Digitize and future-proof your business operations, with AI-driven solutions and smart automation.
+          اجعل عملياتك رقمية ومستعدة للمستقبل، بالاعتماد على حلول الذكاء الاصطناعي والتشغيل الآلي الذكي.
         </p>
       </div>
     </section>
 
     <!-- 2. IMAGE SLIDER SECTION -->
     <section id="services-slider" class="relative z-10 max-w-[1440px] mx-auto px-6 py-8">
-      <ImageSlider />
+      <ImageSlider lang="ar" />
     </section>
 
 <!-- Partners & Clients Box Container -->
@@ -72,7 +72,7 @@ const clients = [
     <!-- Section Title inside the box -->
     <div class="text-center mb-6 px-4">
       <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#D29D52] bg-[#D29D52]/10 px-3 py-1 rounded-full border border-[#D29D52]/25">
-        Our Partners & Clients
+        شركاؤنا وعملاؤنا
       </span>
     </div>
 
@@ -158,20 +158,20 @@ const clients = [
     <div id="digital-transformation" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 01</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Deployed</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 01</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>مُفعّل</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Integrated ERP Solutions</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">حلول تخطيط موارد المؤسسات المتكاملة</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
-          AI-Driven Custom-made ERP solutions to digitize legacy systems, orchestrate cloud-native migrations, and automate business operations.
+          حلول تخطيط موارد مؤسسات مخصصة مدعومة بالذكاء الاصطناعي، لرقمنة الأنظمة القديمة، وتنسيق الانتقال إلى الحوسبة السحابية، و التشغيل الآلي لعمليات الأعمال.
         </p>
-        <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">Enterprise Resource Planning Platform</h3>
+        <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">منصة تخطيط موارد المؤسسات</h3>
         <div class="grid grid-cols-4 gap-2 mb-4">
           {[
-            ["settings", "Finance"],
-            ["account_balance", "Ledger"],
-            ["groups", "HR"],
-            ["warehouse", "Inventory"],
+            ["settings", "المالية"],
+            ["account_balance", "دفتر الأستاذ"],
+            ["groups", "الموارد البشرية"],
+            ["warehouse", "المخزون"],
           ].map(([icon, label]) => (
             <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#0a2540] border border-white/5 py-2 px-1 text-center">
               <span class="material-symbols-outlined text-[#3BAAEF] text-base">{icon}</span>
@@ -181,9 +181,9 @@ const clients = [
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">Integrate all departments</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Talk <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <span class="font-mono text-[10px] text-[#5F7891]">دمج جميع الأقسام</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          تواصل معنا <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -193,19 +193,18 @@ const clients = [
     <div id="e-taxes-solutions" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 02</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Direct Integration</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 02</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>تكامل مباشر</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">E-Taxes Solutions</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">حلول الضرائب الإلكترونية</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
-          Get a comprehensive E-Taxes software solution to seamlessly manage
-          and submit E-Invoices and E-reciepts to the Egyptian Tax Authority's portal (ETA) in compliance with the latest regulations.
+          احصل على حل برمجي شامل للضرائب الإلكترونية لإدارة وتقديم الفواتير والإيصالات الإلكترونية بسلاسة إلى بوابة مصلحة الضرائب المصرية (ETA) بما يتوافق مع أحدث اللوائح.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">Making taxes easy</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Comply <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <span class="font-mono text-[10px] text-[#5F7891]">نجعل الضرائب أسهل</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          احمِ أعمالك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -214,18 +213,18 @@ const clients = [
     <div id="web-engineering" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 03</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Optimized</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 03</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>مُحسَّن</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Create a Website</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">أنشئ موقعًا إلكترونيًا</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
-          Make your business stand out with a high-performance website or web application. We specialize in fast, responsive, AI-driven, and scalable web solutions that deliver an exceptional user experience across all devices.
+          ميّز أعمالك بموقع إلكتروني أو تطبيق ويب عالي الأداء. نتخصص في حلول ويب سريعة ومتجاوبة ومدعومة بالذكاء الاصطناعي وقابلة للتوسع، توفر تجربة استخدام استثنائية عبر جميع الأجهزة.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">Highly optimized for SEO </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Build <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <span class="font-mono text-[10px] text-[#5F7891]">محسَّن بشكل كبير لمحركات البحث </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          أنشئ موقعك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -234,18 +233,18 @@ const clients = [
     <div id="mobile-apps" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 04</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Cross-Platform</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 04</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>متعدد المنصات</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Mobile App Development</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">تطوير تطبيقات الجوال</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
-          Create a comprehensive software ecosystem with a mobile application that seamlessly integrates with your website and backend systems.
+          أنشئ منظومة برمجية متكاملة بتطبيق جوال يتكامل بسلاسة مع موقعك الإلكتروني وأنظمة الخلفية لديك.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
         <span class="font-mono text-[10px] text-[#5F7891]">iOS &middot; Android </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Launch <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          أطلق تطبيفك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -255,28 +254,28 @@ const clients = [
     <div id="project-management" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 05</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Agile Cadence</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 05</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>نهج أجايل</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">Project Management</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">إدارة المشاريع</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
-            Technical oversight for complex IT initiatives. We utilize Agile frameworks and precise resource allocation to keep delivery on track.
+            إشراف تقني على مبادرات تقنية المعلومات المعقدة. نستخدم أطر عمل أجايل وتوزيعًا دقيقًا للموارد للحفاظ على سير التسليم في الموعد المحدد.
         </p>
         <div class="grid grid-cols-2 gap-3 mb-4">
           <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">01. Plan & Execute</span>
-            <p class="text-[11px] text-[#9FB2C6]">Scope mapping and sprint execution with daily visibility.</p>
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">01. التخطيط والتنفيذ</span>
+            <p class="text-[11px] text-[#9FB2C6]">تحديد النطاق وتنفيذ السبرنتات مع متابعة يومية.</p>
           </div>
           <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">02. Monitor & Deliver</span>
-            <p class="text-[11px] text-[#9FB2C6]">Live burn-down tracking and staged rollout gates.</p>
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">02. المتابعة والتسليم</span>
+            <p class="text-[11px] text-[#9FB2C6]">متابعة حية لمخطط الإنجاز ومراحل طرح متدرجة.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">Strict timelines </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Join <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <span class="font-mono text-[10px] text-[#5F7891]">جداول زمنية صارمة </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          ابدأ مشروعك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -285,32 +284,32 @@ const clients = [
     <div id="vps-infrastructure" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">Practice 06</span>
-          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>Secure Cloud & Hardware</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 06</span>
+          <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>سحابة وأجهزة آمنة</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">IT Infrastructure</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">البنية التحتية لتقنية المعلومات</h2>
         <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
-          Complete physical and virtual infrastructure solutions to keep your business connected, secure, and fully operational around the clock.
+          حلول بنية تحتية مادية وافتراضية متكاملة لإبقاء أعمالك متصلة وآمنة وعاملة بكامل طاقتها على مدار الساعة.
         </p>
         <div class="grid grid-cols-2 gap-2 mb-4">
           <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">CCTV & Access</span>
-            <p class="text-[10px] text-[#9FB2C6]">Secure premises monitoring & access control.</p>
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">كاميرات المراقبة والدخول</span>
+            <p class="text-[10px] text-[#9FB2C6]">مراقبة أمنية للمنشآت والتحكم في الدخول.</p>
           </div>
           <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">Control Rooms</span>
-            <p class="text-[10px] text-[#9FB2C6]">Advanced monitoring command centers.</p>
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">غرف التحكم</span>
+            <p class="text-[10px] text-[#9FB2C6]">مراكز قيادة مراقبة متقدمة.</p>
           </div>
           <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5 col-span-2">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">Networking Solutions</span>
-            <p class="text-[10px] text-[#9FB2C6]">High-speed enterprise networks, routing, and reliable VPS hosting.</p>
+            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">حلول الشبكات</span>
+            <p class="text-[10px] text-[#9FB2C6]">شبكات مؤسسية عالية السرعة، وتوجيه، واستضافة VPS موثوقة.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">Hardware setups &middot; Physical Security </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/contact">
-          Deploy <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        <span class="font-mono text-[10px] text-[#5F7891]">تجهيزات الأجهزة &middot; الأمن المادي </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+          جهّز بنيتك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
@@ -325,18 +324,18 @@ const clients = [
 
         <div class="relative z-10 text-center px-6 py-12 sm:px-16 sm:py-16" style="display: block; width: 100%;">
 
-          <h2 class="cta-gradient-text text-3xl sm:text-5xl font-bold mb-6 mx-auto tracking-tight" style="display: block; width: 100%; max-width: 42rem;">
-            Pick a practice. Start the build.
+          <h2 class="cta-gradient-text text-3xl sm:text-5xl font-bold leading-[1.4] pb-2 mb-6 mx-auto tracking-tight" style="display: block; width: 100%; max-width: 42rem;">
+            اختر ممارسة. ابدأ البناء.
           </h2>
 
           <p class="text-[#9FB2C6] text-base sm:text-lg leading-relaxed mx-auto mb-8" style="display: block; width: 100%; max-width: 36rem; white-space: normal;">
-            Whichever problem you&rsquo;re solving &mdash; legacy migration, scope creep, compliance deadlines, or high-performance web platforms &mdash; we&rsquo;ve already shipped it.
+            أيًا كانت المشكلة التي تحلّها — ترحيل الأنظمة القديمة، توسّع النطاق، مواعيد الامتثال النهائية، أو منصات ويب عالية الأداء — فقد سبق أن أنجزناها.
           </p>
 
           <div style="display: block; width: 100%; text-align: center;">
-            <a href="/contact" class="shine-btn gold-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
-              <span class="relative z-10">Get Started Now</span>
-              <span class="material-symbols-outlined relative z-10 text-[18px]">arrow_forward</span>
+            <a href="/ar/contact" class="shine-btn gold-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+              <span class="relative z-10">ابدأ الآن</span>
+              <span class="material-symbols-outlined relative z-10 text-[18px]">arrow_back</span>
             </a>
           </div>
 

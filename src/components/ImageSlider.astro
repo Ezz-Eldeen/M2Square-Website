@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { useTranslations, type Lang } from '../i18n/utils';
 
 // ==========================================
 // SLIDER IMAGES — imported from src/assets/slider
@@ -28,51 +29,40 @@ const sliderHeight = "h-[600px] sm:h-[700px]"; // Adjust height for mobile/deskt
 const sliderAlignment = "mx-auto mt-[75px] mb-[5px]"; // shifted down another ~10%; total (75+5=80px) still unchanged from the original my-10, so no layout shift
 
 // ==========================================
+// LANGUAGE
+// Wired into the site's actual i18n system (src/i18n/ui.ts +
+// src/i18n/utils.ts) rather than a separate hardcoded array, so the
+// slider's copy lives in the same dictionary as your nav/footer strings.
+// Pass lang="ar" when using this component on an /ar/ page:
+//   <ImageSlider lang="ar" />
+// Defaults to "en" so any existing usage with no prop keeps working.
+// ==========================================
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const isRtl = lang === "ar";
+const t = useTranslations(lang);
 
 const slides = [
-  {
-    image: slider1Img,
-    tag: "ERP Systems",
-    title: "Digitize your business with a customized ERP system",
-    description: "We work directly with your team to set up a system that run smoothly"
-  },
-  {
-    image: slider5Img,
-    tag: "IT Project Management",
-    title: "Precision tracking from blueprint to launch.",
-    description: "Clear timelines and step-by-step execution so your projects always launch on schedule."
-  },
-  {
-    image: slider6Img,
-    tag: "E-Taxes Solutions",
-    title: "Full Integration with the Egyptian Tax Authority (ETA)",
-    description: "Integrate with our financial team and enjoy a seamless workflow managed through state-of-the-art software "
-  },
-  {
-    image: slider4Img,
-    tag: "Website Development",
-    title: "High-performance web systems",
-    description: "High-performance websites and web applications engineered for seamless, device-agnostic experiences."
-  },
-  {
-    image: slider7Img,
-    tag: "Mobile App Development",
-    title: "High-performance mobile applications",
-    description: "We build custom apps for phones and tablets that look great and work smoothly on all devices."
-  },
-  {
-    image: slider8Img,
-    tag: "IT Infrastructure",
-    title: "Secure Infrastructure & Smart Networking",
-    description: "Reliable virtual servers, high-speed networks, and advanced monitoring systems like CCTV and control rooms to keep your business safe and always online."
-  }
+  { image: slider1Img, tag: t('slider.erp.tag'), title: t('slider.erp.title'), description: t('slider.erp.description') },
+  { image: slider5Img, tag: t('slider.itpm.tag'), title: t('slider.itpm.title'), description: t('slider.itpm.description') },
+  { image: slider6Img, tag: t('slider.etax.tag'), title: t('slider.etax.title'), description: t('slider.etax.description') },
+  { image: slider4Img, tag: t('slider.web.tag'), title: t('slider.web.title'), description: t('slider.web.description') },
+  { image: slider7Img, tag: t('slider.mobile.tag'), title: t('slider.mobile.title'), description: t('slider.mobile.description') },
+  { image: slider8Img, tag: t('slider.infra.tag'), title: t('slider.infra.title'), description: t('slider.infra.description') },
 ];
 ---
 
 <!-- Position and Size applied via variables -->
 <div class={`${sliderMaxWidth} ${sliderAlignment} px-4 sm:px-6`}>
-  <div id="slider-container" class={`relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer bg-[#03111F]`}>
-    
+  <div
+    id="slider-container"
+    class={`hero-slider relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer bg-[#03111F] ${isRtl ? 'is-rtl' : ''}`}
+    dir={isRtl ? "rtl" : "ltr"}
+    lang={lang}
+  >
+
     <!-- Slides Container -->
     <div class="relative w-full h-full">
       {slides.map((slide, index) => (
@@ -94,7 +84,7 @@ const slides = [
 
           <!-- Text Content Overlay -->
           <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10 max-w-3xl z-20 pointer-events-none">
-            
+
             <!-- MASSIVE CATCHY TAG (Branded Gold Metallic Gradient) -->
             <div class="mb-3 inline-block">
               <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-[#664725] via-[#D29D52] to-[#F6C973] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(210,157,82,0.35)]">
@@ -118,13 +108,13 @@ const slides = [
       ))}
     </div>
 
-    <!-- Pagination Indicators / Dots -->
-    <div class="absolute bottom-6 right-6 z-30 flex items-center gap-2">
+    <!-- Pagination Indicators / Dots — mirrored to the opposite corner in RTL -->
+    <div class={`absolute bottom-6 z-30 flex items-center gap-2 ${isRtl ? 'left-6' : 'right-6'}`}>
       {slides.map((_, index) => (
         <button 
           class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#D29D52]' : 'w-2 bg-white/30'}`}
           data-index={index}
-          aria-label={`Go to slide ${index + 1}`}
+          aria-label={isRtl ? `الانتقال إلى الشريحة ${index + 1}` : `Go to slide ${index + 1}`}
         ></button>
       ))}
     </div>
@@ -148,7 +138,20 @@ const slides = [
   .animate-shine {
     animation: shine 5s ease infinite;
   }
+
+  /* Arabic text needs an Arabic-covering font — the rest of the site's
+     Tailwind font stack has no Arabic glyphs. Scoped to this slider only,
+     no effect when lang="en" (the default). */
+  .hero-slider.is-rtl {
+    font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  }
 </style>
+
+<!-- Loaded unconditionally but tiny; only actually used when is-rtl is present -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;900&display=swap"
+/>
 
 <!-- Pass the frontmatter slideSpeed directly into the client script using Astro -->
 <script define:vars={{ slideSpeed }}>
@@ -201,13 +204,16 @@ const slides = [
     if (!sliderContainer.dataset.listenerAttached) {
       sliderContainer.dataset.listenerAttached = "true";
 
+      const isRtlContainer = sliderContainer.classList.contains("is-rtl");
+
       sliderContainer.addEventListener("click", (e) => {
         if (e.target.closest("button")) return;
 
         const rect = sliderContainer.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
+        const clickedFirstHalf = clickX < rect.width / 2;
 
-        if (clickX < rect.width / 2) {
+        if (isRtlContainer ? !clickedFirstHalf : clickedFirstHalf) {
           prevSlide();
         } else {
           nextSlide();
