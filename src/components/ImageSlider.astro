@@ -6,11 +6,9 @@ import { useTranslations, type Lang } from '../i18n/utils';
 // SLIDER IMAGES — imported from src/assets/slider
 // ==========================================
 import slider1Img from '../assets/slider/slider1.jpg';
-import slider2Img from '../assets/slider/slider2.jpg';
-import slider3Img from '../assets/slider/slider3.jpg';
 import slider4Img from '../assets/slider/slider4.jpg';
-import slider5Img from '../assets/slider/Slider5.jpg';
-import slider6Img from '../assets/slider/Slider6.jpg';
+import slider5Img from '../assets/slider/slider5.jpg';
+import slider6Img from '../assets/slider/slider6.jpg';
 import slider7Img from '../assets/slider/slider7.jpg';
 import slider8Img from '../assets/slider/slider8.jpg';
 
@@ -58,7 +56,7 @@ const slides = [
 <div class={`${sliderMaxWidth} ${sliderAlignment} px-4 sm:px-6`}>
   <div
     id="slider-container"
-    class={`hero-slider relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer bg-[#03111F] ${isRtl ? 'is-rtl' : ''}`}
+    class={`hero-slider relative w-full ${sliderHeight} rounded-2xl overflow-hidden border border-white/10 shadow-2xl group cursor-pointer bg-[var(--color-bg)] ${isRtl ? 'is-rtl' : ''}`}
     dir={isRtl ? "rtl" : "ltr"}
     lang={lang}
   >
@@ -79,27 +77,27 @@ const slides = [
             widths={[480, 768, 1200, 1920]}
             sizes="100vw"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#03111F] via-[#03111F]/70 to-transparent pointer-events-none"></div>
-          <div class="absolute inset-0 bg-[#03111F]/30 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/70 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-[var(--color-bg)]/30 pointer-events-none"></div>
 
           <!-- Text Content Overlay -->
           <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10 max-w-3xl z-20 pointer-events-none">
 
-            <!-- MASSIVE CATCHY TAG (Branded Gold Metallic Gradient) -->
+            <!-- MASSIVE CATCHY TAG (Flat brand orange, matches the rest of the site) -->
             <div class="mb-3 inline-block">
-              <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight bg-gradient-to-r from-[#664725] via-[#D29D52] to-[#F6C973] bg-[length:200%_auto] bg-clip-text text-transparent animate-shine drop-shadow-[0_0_25px_rgba(210,157,82,0.35)]">
+              <span class="text-2xl sm:text-4xl font-black uppercase tracking-tight text-[var(--color-primary)] drop-shadow-[0_0_25px_rgba(255,106,43,0.35)]">
                 {slide.tag}
               </span>
             </div>
 
             <!-- Smaller Secondary Title -->
             <h3 class="text-base sm:text-xl font-semibold text-white/95 tracking-wide mb-2 flex items-center gap-2.5">
-              <span class="w-2 h-2 rounded-full bg-[#D29D52] animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
               {slide.title}
             </h3>
 
             <!-- Description -->
-            <p class="text-sm sm:text-base text-[#a9bbcd] leading-relaxed">
+            <p class="text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed">
               {slide.description}
             </p>
 
@@ -112,7 +110,7 @@ const slides = [
     <div class={`absolute bottom-6 z-30 flex items-center gap-2 ${isRtl ? 'left-6' : 'right-6'}`}>
       {slides.map((_, index) => (
         <button 
-          class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[#D29D52]' : 'w-2 bg-white/30'}`}
+          class={`h-2 rounded-full transition-all duration-300 indicator-dot ${index === 0 ? 'w-8 bg-[var(--color-primary)]' : 'w-2 bg-white/30'}`}
           data-index={index}
           aria-label={isRtl ? `الانتقال إلى الشريحة ${index + 1}` : `Go to slide ${index + 1}`}
         ></button>
@@ -123,22 +121,6 @@ const slides = [
 </div>
 
 <style>
-  @keyframes shine {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .animate-shine {
-    animation: shine 5s ease infinite;
-  }
-
   /* Arabic text needs an Arabic-covering font — the rest of the site's
      Tailwind font stack has no Arabic glyphs. Scoped to this slider only,
      no effect when lang="en" (the default). */
@@ -178,9 +160,9 @@ const slides = [
       dots.forEach((dot, i) => {
         if (i === index) {
           dot.classList.remove("w-2", "bg-white/30");
-          dot.classList.add("w-8", "bg-[#D29D52]");
+          dot.classList.add("w-8", "bg-[var(--color-primary)]");
         } else {
-          dot.classList.remove("w-8", "bg-[#D29D52]");
+          dot.classList.remove("w-8", "bg-[var(--color-primary)]");
           dot.classList.add("w-2", "bg-white/30");
         }
       });

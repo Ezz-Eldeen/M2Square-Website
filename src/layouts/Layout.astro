@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
+import '../styles/theme.css';
 import { Image } from 'astro:assets';
-import logoImage from '../assets/Logo.png';
+import logoImage from '../assets/logo.png';
 import faviconImage from '../assets/favicon.png';
 import { useTranslations, type Lang } from '../i18n/utils';
 
@@ -83,17 +84,17 @@ const navLinks = [
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 </head>
 
-<body class="bg-[#03111F] text-text-primary font-display antialiased selection:bg-[#D29D52]/30 selection:text-white overflow-x-hidden">
+<body class="bg-[var(--color-bg)] text-text-primary font-display antialiased selection:bg-[var(--color-primary)]/30 selection:text-white overflow-x-hidden">
 
   <!-- Navigation Bar -->
-  <nav class="fixed top-0 w-full z-50 bg-[#03111F]/90 backdrop-blur-md border-b border-[#D29D52]/15 transition-all duration-300">
+  <nav class="fixed top-0 w-full z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-primary)]/15 transition-all duration-300">
     <div class="flex justify-between items-center h-28 px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto">
       <a class="flex items-center gap-2 font-display text-headline-sm font-bold tracking-tight" href={localePath('/')}>
         <Image
           src={logoImage}
           alt="M-Square Logo"
           loading="eager"
-          class="h-[120px] w-auto object-contain drop-shadow-[0_0_15px_rgba(210,157,82,0.35)]"
+          class="h-[120px] w-auto object-contain drop-shadow-[0_0_15px_rgba(255,106,43,0.35)]"
           style="width: auto;"
         />
       </a>
@@ -103,7 +104,7 @@ const navLinks = [
         {navLinks.map((link) => (
           <li>
             <a
-              class={`font-display text-body-md transition-colors duration-200 ${basePath === link.path ? 'text-[#D29D52] font-semibold border-b-2 border-[#D29D52] pb-1' : 'text-white/60 hover:text-[#3BAAEF]'}`}
+              class={`font-display text-body-md transition-colors duration-200 ${basePath === link.path ? 'text-[var(--color-primary)] font-semibold border-b-2 border-[var(--color-primary)] pb-1' : 'text-white/60 hover:text-[var(--color-secondary)]'}`}
               href={localePath(link.path)}
             >
               {t(link.key)}
@@ -118,9 +119,9 @@ const navLinks = [
           lang={otherLang}
           dir={otherLang === 'ar' ? 'rtl' : 'ltr'}
           aria-label={otherLang === 'ar' ? 'Switch to Arabic' : 'Switch to English'}
-          class="group flex items-center gap-1.5 font-label-md font-semibold px-md py-xs rounded-xl border border-[#D29D52]/35 text-[#D29D52]/90 hover:text-[#03111F] hover:border-[#D29D52] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#076CC7] focus:ring-offset-2 focus:ring-offset-[#03111F]"
+          class="group flex items-center gap-1.5 font-label-md font-semibold px-md py-xs rounded-xl border border-[var(--color-primary)]/35 text-[var(--color-primary)]/90 hover:text-white hover:border-[var(--color-primary)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)]"
           style="background: transparent;"
-          onmouseover="this.style.background='linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%)'"
+          onmouseover="this.style.background='linear-gradient(135deg, #ff6a2b 0%, #ffb59a 60%, #ff6a2b 100%)'"
           onmouseout="this.style.background='transparent'"
         >
           <span class="material-symbols-outlined text-[18px] leading-none">language</span>
@@ -129,39 +130,37 @@ const navLinks = [
 
         <a
           href={localePath('/contact')}
-          class="font-label-md font-semibold px-md py-xs rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#076CC7] focus:ring-offset-2 focus:ring-offset-[#03111F] shadow-[0_0_20px_rgba(210,157,82,0.3)] hover:shadow-[0_0_30px_rgba(210,157,82,0.5)]"
-          style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%); color: #03111F;"
+          class="font-label-md font-semibold px-md py-xs rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)] shadow-[0_0_15px_rgba(255,106,43,0.25)]"
         >
           {t('cta.getStarted')}
         </a>
       </div>
 
-      <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-white/80 hover:text-[#D29D52] transition-colors duration-200 select-none">
+      <button id="menu-btn" aria-label="Toggle Menu" class="md:hidden text-white/80 hover:text-[var(--color-primary)] transition-colors duration-200 select-none">
         <span class="material-symbols-outlined text-[24px]">menu</span>
       </button>
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#03111F] border-t border-[#D29D52]/15 px-gutter-mobile py-md space-y-sm">
+    <div id="mobile-menu" class="hidden md:hidden bg-[var(--color-bg)] border-t border-[var(--color-primary)]/15 px-gutter-mobile py-md space-y-sm">
       {navLinks.map((link) => (
-        <a class="block font-display text-body-md text-white/60 hover:text-[#3BAAEF]" href={localePath(link.path)}>
+        <a class="block font-display text-body-md text-white/60 hover:text-[var(--color-secondary)]" href={localePath(link.path)}>
           {t(link.key)}
         </a>
       ))}
-      <div class="pt-sm border-t border-[#D29D52]/15 flex flex-col gap-sm">
+      <div class="pt-sm border-t border-[var(--color-primary)]/15 flex flex-col gap-sm">
         <a
           href={switchHref}
           lang={otherLang}
           dir={otherLang === 'ar' ? 'rtl' : 'ltr'}
           aria-label={otherLang === 'ar' ? 'Switch to Arabic' : 'Switch to English'}
-          class="flex items-center justify-center gap-1.5 font-label-md font-semibold py-xs rounded-xl border border-[#D29D52]/35 text-[#D29D52]"
+          class="flex items-center justify-center gap-1.5 font-label-md font-semibold py-xs rounded-xl border border-[var(--color-primary)]/35 text-[var(--color-primary)]"
         >
           <span class="material-symbols-outlined text-[18px] leading-none">language</span>
           <span class="text-sm">{t('lang.switchTo')}</span>
         </a>
-        <a
-          class="text-center font-label-md font-semibold py-xs rounded-xl"
-          style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%); color: #03111F;"
+        <a        
+          class="text-center font-label-md font-semibold py-xs rounded-xl bg-[var(--color-primary)] text-white"
           href={localePath('/contact')}
         >
           {t('cta.getStarted')}
@@ -173,7 +172,7 @@ const navLinks = [
   <slot />
 
   <!-- Footer -->
-  <footer class="w-full bg-[#03111F] border-t border-[#D29D52]/15 py-section-sm z-10 relative">
+  <footer class="w-full bg-[var(--color-bg)] border-t border-[var(--color-primary)]/15 py-section-sm z-10 relative">
     <div class="px-gutter-mobile md:px-gutter-desktop max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-lg">
       <div class="col-span-1 md:col-span-1">
         <a class="flex items-center gap-2 mb-sm font-display text-headline-sm font-bold tracking-tight" href={localePath('/')}>
@@ -181,10 +180,10 @@ const navLinks = [
             src={logoImage}
             alt="M-Square Logo"
             loading="lazy"
-            class="h-[92px] w-auto object-contain"
+            class="h-[140px] w-auto object-contain"
             style="width: auto;"
           />
-          <span style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">
+          <span style="background: linear-gradient(135deg, #ff6a2b 0%, #ffb59a 60%, #ff6a2b 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">
             M-Square
           </span>
         </a>
@@ -194,29 +193,29 @@ const navLinks = [
         </p>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.solutions')}</h4>
+        <h4 class="font-display text-label-md font-semibold text-[var(--color-primary)] mb-md">{t('footer.solutions')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#digital-transformation`}>{t('footer.digitalTransformation')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#project-management`}>{t('footer.projectManagement')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#e-taxes-solutions`}>{t('footer.eTaxes')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#web-engineering`}>{t('footer.webDev')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#mobile-apps`}>{t('footer.mobileApps')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={`${localePath('/')}#vps-infrastructure`}>{t('footer.itInfrastructure')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#digital-transformation`}>{t('footer.digitalTransformation')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#project-management`}>{t('footer.projectManagement')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#e-taxes-solutions`}>{t('footer.eTaxes')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#web-engineering`}>{t('footer.webDev')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#mobile-apps`}>{t('footer.mobileApps')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={`${localePath('/')}#vps-infrastructure`}>{t('footer.itInfrastructure')}</a></li>
         </ul>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.company')}</h4>
+        <h4 class="font-display text-label-md font-semibold text-[var(--color-primary)] mb-md">{t('footer.company')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/about')}>{t('footer.aboutUs')}</a></li>
-          <li><a class="font-display text-label-md text-white hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/contact')}>{t('footer.contact')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href="mailto:sales@m-square.com">sales@m2-square.com</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={localePath('/about')}>{t('footer.aboutUs')}</a></li>
+          <li><a class="font-display text-label-md text-white hover:text-[var(--color-secondary)] transition-colors duration-200" href={localePath('/contact')}>{t('footer.contact')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href="mailto:sales@m-square.com">sales@m2-square.com</a></li>
         </ul>
       </div>
       <div class="col-span-1">
-        <h4 class="font-display text-label-md font-semibold text-[#D29D52] mb-md">{t('footer.legal')}</h4>
+        <h4 class="font-display text-label-md font-semibold text-[var(--color-primary)] mb-md">{t('footer.legal')}</h4>
         <ul class="space-y-sm">
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/privacy')}>{t('footer.privacy')}</a></li>
-          <li><a class="font-display text-label-md text-white/50 hover:text-[#3BAAEF] transition-colors duration-200" href={localePath('/terms')}>{t('footer.terms')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={localePath('/privacy')}>{t('footer.privacy')}</a></li>
+          <li><a class="font-display text-label-md text-white/50 hover:text-[var(--color-secondary)] transition-colors duration-200" href={localePath('/terms')}>{t('footer.terms')}</a></li>
         </ul>
       </div>
     </div>

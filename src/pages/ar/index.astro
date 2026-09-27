@@ -25,7 +25,7 @@ const clients = [
   title="الخدمات والحلول - إم-سكوير"
   description="تبني إم-سكوير أنظمة تخطيط موارد مؤسسات مدعومة بالذكاء الاصطناعي، وفواتير إلكترونية متوافقة مع مصلحة الضرائب المصرية، ومواقع إلكترونية، وتطبيقات جوال، وبنية تحتية لتقنية المعلومات للشركات في مصر. ابدأ مشروعك اليوم."
 >
-  <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_#0a2038_0%,_#06172a_35%,_#03111F_65%,_#020a12_100%)]">
+  <main class="relative overflow-hidden text-white bg-[radial-gradient(ellipse_140%_80%_at_50%_-10%,_var(--color-bg-alt)_0%,_var(--color-bg-alt)_35%,_var(--color-bg)_65%,_var(--color-bg)_100%)]">
     <!-- Ambient mesh background -->
     <div class="mesh-bg absolute inset-0 pointer-events-none z-0"></div>
     <div class="bg-grid-services absolute inset-0 pointer-events-none z-0"></div>
@@ -51,7 +51,7 @@ const clients = [
           أنظمة
           <span class="hero-gradient-text block bg-clip-text text-transparent pb-2">مبنية لتدوم.</span>
         </h1>
-        <p class="text-base sm:text-lg text-[#9FB2C6] max-w-2xl leading-relaxed">
+        <p class="text-base sm:text-lg text-[var(--color-text-secondary)] max-w-2xl leading-relaxed">
           اجعل عملياتك رقمية ومستعدة للمستقبل، بالاعتماد على حلول الذكاء الاصطناعي والتشغيل الآلي الذكي.
         </p>
       </div>
@@ -64,14 +64,14 @@ const clients = [
 
 <!-- Partners & Clients Box Container -->
 <div class="max-w-6xl mx-auto px-4 sm:px-6 my-12">
-  <div class="relative bg-[#04131f] border border-white/10 rounded-2xl py-8 shadow-2xl overflow-hidden">
+  <div class="relative bg-[var(--color-surface)] border border-white/10 rounded-2xl py-8 shadow-2xl overflow-hidden">
 
     <!-- Subtle background accent glow -->
-    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D29D52]/10 blur-3xl pointer-events-none rounded-full"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-[var(--color-primary)]/10 blur-3xl pointer-events-none rounded-full"></div>
 
     <!-- Section Title inside the box -->
     <div class="text-center mb-6 px-4">
-      <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[#D29D52] bg-[#D29D52]/10 px-3 py-1 rounded-full border border-[#D29D52]/25">
+      <span class="text-xs sm:text-sm font-mono tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-3 py-1 rounded-full border border-[var(--color-primary)]/25">
         شركاؤنا وعملاؤنا
       </span>
     </div>
@@ -92,18 +92,18 @@ const clients = [
                     class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform"
                   />
                 ) : (
-                  <span class="material-symbols-outlined text-[#D29D52] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                  <span class="material-symbols-outlined text-[var(--color-primary)] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
                 <span>{client.name}</span>
               </>
             );
 
             return client.url ? (
-              <a href={client.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#9FB2C6] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--color-text-secondary)] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
-              <div class="flex items-center gap-3 text-[#9FB2C6] font-mono text-base tracking-wider uppercase group">
+              <div class="flex items-center gap-3 text-[var(--color-text-secondary)] font-mono text-base tracking-wider uppercase group">
                 {innerContent}
               </div>
             );
@@ -122,18 +122,18 @@ const clients = [
                     class="w-20 h-20 object-contain rounded-sm group-hover:scale-110 transition-transform"
                   />
                 ) : (
-                  <span class="material-symbols-outlined text-[#D29D52] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
+                  <span class="material-symbols-outlined text-[var(--color-primary)] text-2xl group-hover:scale-110 transition-transform">{client.icon}</span>
                 )}
                 <span>{client.name}</span>
               </>
             );
 
             return client.url ? (
-              <a href={client.url} tabindex="-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[#9FB2C6] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
+              <a href={client.url} tabindex="-1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--color-text-secondary)] hover:text-white font-mono text-base tracking-wider uppercase transition-colors group">
                 {innerContent}
               </a>
             ) : (
-              <div class="flex items-center gap-3 text-[#9FB2C6] font-mono text-base tracking-wider uppercase group">
+              <div class="flex items-center gap-3 text-[var(--color-text-secondary)] font-mono text-base tracking-wider uppercase group">
                 {innerContent}
               </div>
             );
@@ -155,17 +155,17 @@ const clients = [
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
     <!-- PRACTICE 01: ERP  -->
-    <div id="digital-transformation" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="digital-transformation" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 01</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 01</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>مُفعّل</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">حلول تخطيط موارد المؤسسات المتكاملة</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">حلول تخطيط موارد المؤسسات المتكاملة</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-6">
           حلول تخطيط موارد مؤسسات مخصصة مدعومة بالذكاء الاصطناعي، لرقمنة الأنظمة القديمة، وتنسيق الانتقال إلى الحوسبة السحابية، و التشغيل الآلي لعمليات الأعمال.
         </p>
-        <h3 class="text-xs font-semibold text-[#F5F5F4] uppercase tracking-wider mb-3">منصة تخطيط موارد المؤسسات</h3>
+        <h3 class="text-xs font-semibold text-[var(--color-text)] uppercase tracking-wider mb-3">منصة تخطيط موارد المؤسسات</h3>
         <div class="grid grid-cols-4 gap-2 mb-4">
           {[
             ["settings", "المالية"],
@@ -173,16 +173,16 @@ const clients = [
             ["groups", "الموارد البشرية"],
             ["warehouse", "المخزون"],
           ].map(([icon, label]) => (
-            <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[#0a2540] border border-white/5 py-2 px-1 text-center">
-              <span class="material-symbols-outlined text-[#3BAAEF] text-base">{icon}</span>
-              <span class="text-[8px] leading-tight text-[#9FB2C6]">{label}</span>
+            <div class="module-tile flex flex-col items-center justify-center gap-1 rounded-xl bg-[var(--color-surface-alt)] border border-white/5 py-2 px-1 text-center">
+              <span class="material-symbols-outlined text-[var(--color-primary)] text-base">{icon}</span>
+              <span class="text-[8px] leading-tight text-[var(--color-text-secondary)]">{label}</span>
             </div>
           ))}
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">دمج جميع الأقسام</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">دمج جميع الأقسام</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           تواصل معنا <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -190,60 +190,60 @@ const clients = [
 
 
     <!-- PRACTICE 02: E-TAXES SOLUTIONS -->
-    <div id="e-taxes-solutions" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="e-taxes-solutions" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 02</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 02</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>تكامل مباشر</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">حلول الضرائب الإلكترونية</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">حلول الضرائب الإلكترونية</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-4">
           احصل على حل برمجي شامل للضرائب الإلكترونية لإدارة وتقديم الفواتير والإيصالات الإلكترونية بسلاسة إلى بوابة مصلحة الضرائب المصرية (ETA) بما يتوافق مع أحدث اللوائح.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">نجعل الضرائب أسهل</span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">نجعل الضرائب أسهل</span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           احمِ أعمالك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 03: WEB ENGINEERING -->
-    <div id="web-engineering" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="web-engineering" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 03</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 03</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>مُحسَّن</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">أنشئ موقعًا إلكترونيًا</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">أنشئ موقعًا إلكترونيًا</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-4">
           ميّز أعمالك بموقع إلكتروني أو تطبيق ويب عالي الأداء. نتخصص في حلول ويب سريعة ومتجاوبة ومدعومة بالذكاء الاصطناعي وقابلة للتوسع، توفر تجربة استخدام استثنائية عبر جميع الأجهزة.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">محسَّن بشكل كبير لمحركات البحث </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">محسَّن بشكل كبير لمحركات البحث </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           أنشئ موقعك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 04: MOBILE APP DEVELOPMENT -->
-    <div id="mobile-apps" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="mobile-apps" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 04</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 04</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>متعدد المنصات</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">تطوير تطبيقات الجوال</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">تطوير تطبيقات الجوال</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-4">
           أنشئ منظومة برمجية متكاملة بتطبيق جوال يتكامل بسلاسة مع موقعك الإلكتروني وأنظمة الخلفية لديك.
         </p>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">iOS &middot; Android </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">iOS &middot; Android </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           أطلق تطبيفك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -251,64 +251,64 @@ const clients = [
 
 
     <!-- PRACTICE 05: PROJECT MANAGEMENT -->
-    <div id="project-management" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="project-management" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 05</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 05</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>نهج أجايل</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">إدارة المشاريع</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">إدارة المشاريع</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-6">
             إشراف تقني على مبادرات تقنية المعلومات المعقدة. نستخدم أطر عمل أجايل وتوزيعًا دقيقًا للموارد للحفاظ على سير التسليم في الموعد المحدد.
         </p>
         <div class="grid grid-cols-2 gap-3 mb-4">
-          <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">01. التخطيط والتنفيذ</span>
-            <p class="text-[11px] text-[#9FB2C6]">تحديد النطاق وتنفيذ السبرنتات مع متابعة يومية.</p>
+          <div class="bg-[var(--color-surface-alt)] p-3 rounded-xl border border-white/5">
+            <span class="text-[var(--color-primary)] font-mono text-xs font-bold block mb-1">01. التخطيط والتنفيذ</span>
+            <p class="text-[11px] text-[var(--color-text-secondary)]">تحديد النطاق وتنفيذ السبرنتات مع متابعة يومية.</p>
           </div>
-          <div class="bg-[#0a2540] p-3 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-1">02. المتابعة والتسليم</span>
-            <p class="text-[11px] text-[#9FB2C6]">متابعة حية لمخطط الإنجاز ومراحل طرح متدرجة.</p>
+          <div class="bg-[var(--color-surface-alt)] p-3 rounded-xl border border-white/5">
+            <span class="text-[var(--color-primary)] font-mono text-xs font-bold block mb-1">02. المتابعة والتسليم</span>
+            <p class="text-[11px] text-[var(--color-text-secondary)]">متابعة حية لمخطط الإنجاز ومراحل طرح متدرجة.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">جداول زمنية صارمة </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">جداول زمنية صارمة </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           ابدأ مشروعك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
     </div>
 
     <!-- PRACTICE 06: VPS SERVICES & IT INFRASTRUCTURE -->
-    <div id="vps-infrastructure" class="glow-card relative bg-[#061a2e]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+    <div id="vps-infrastructure" class="glow-card relative bg-[var(--color-surface)]/90 border border-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-center mb-4">
-          <span class="font-mono text-xs uppercase tracking-widest text-[#D29D52]">الممارسة 06</span>
+          <span class="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">الممارسة 06</span>
           <span class="text-[10px] font-mono text-[#3DD68C] flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#3DD68C]"></span>سحابة وأجهزة آمنة</span>
         </div>
-        <h2 class="text-xl sm:text-2xl font-bold text-[#F5F5F4] mb-3">البنية التحتية لتقنية المعلومات</h2>
-        <p class="text-[#9FB2C6] text-sm sm:text-base leading-relaxed mb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text)] mb-3">البنية التحتية لتقنية المعلومات</h2>
+        <p class="text-[var(--color-text-secondary)] text-sm sm:text-base leading-relaxed mb-4">
           حلول بنية تحتية مادية وافتراضية متكاملة لإبقاء أعمالك متصلة وآمنة وعاملة بكامل طاقتها على مدار الساعة.
         </p>
         <div class="grid grid-cols-2 gap-2 mb-4">
-          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">كاميرات المراقبة والدخول</span>
-            <p class="text-[10px] text-[#9FB2C6]">مراقبة أمنية للمنشآت والتحكم في الدخول.</p>
+          <div class="bg-[var(--color-surface-alt)] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[var(--color-primary)] font-mono text-xs font-bold block mb-0.5">كاميرات المراقبة والدخول</span>
+            <p class="text-[10px] text-[var(--color-text-secondary)]">مراقبة أمنية للمنشآت والتحكم في الدخول.</p>
           </div>
-          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">غرف التحكم</span>
-            <p class="text-[10px] text-[#9FB2C6]">مراكز قيادة مراقبة متقدمة.</p>
+          <div class="bg-[var(--color-surface-alt)] p-2.5 rounded-xl border border-white/5">
+            <span class="text-[var(--color-primary)] font-mono text-xs font-bold block mb-0.5">غرف التحكم</span>
+            <p class="text-[10px] text-[var(--color-text-secondary)]">مراكز قيادة مراقبة متقدمة.</p>
           </div>
-          <div class="bg-[#0a2540] p-2.5 rounded-xl border border-white/5 col-span-2">
-            <span class="text-[#3BAAEF] font-mono text-xs font-bold block mb-0.5">حلول الشبكات</span>
-            <p class="text-[10px] text-[#9FB2C6]">شبكات مؤسسية عالية السرعة، وتوجيه، واستضافة VPS موثوقة.</p>
+          <div class="bg-[var(--color-surface-alt)] p-2.5 rounded-xl border border-white/5 col-span-2">
+            <span class="text-[var(--color-primary)] font-mono text-xs font-bold block mb-0.5">حلول الشبكات</span>
+            <p class="text-[10px] text-[var(--color-text-secondary)]">شبكات مؤسسية عالية السرعة، وتوجيه، واستضافة VPS موثوقة.</p>
           </div>
         </div>
       </div>
       <div class="border-t border-white/10 pt-3 flex items-center justify-between">
-        <span class="font-mono text-[10px] text-[#5F7891]">تجهيزات الأجهزة &middot; الأمن المادي </span>
-        <a class="inline-flex items-center gap-1 text-xs text-[#F5F5F4] hover:text-[#F6C973] transition-colors font-semibold group" href="/ar/contact">
+        <span class="font-mono text-[10px] text-[var(--color-text-tertiary)]">تجهيزات الأجهزة &middot; الأمن المادي </span>
+        <a class="inline-flex items-center gap-1 text-xs text-[var(--color-text)] hover:text-[var(--color-tertiary)] transition-colors font-semibold group" href="/ar/contact">
           جهّز بنيتك <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </a>
       </div>
@@ -319,7 +319,7 @@ const clients = [
 
     <!-- 7. CTA -->
     <section class="reveal-card relative z-10 px-6 mx-auto pb-20 max-w-[1440px]" style="width: 100%;">
-      <div class="cta-card relative rounded-3xl border border-[#D29D52]/25 overflow-hidden" style="width: 100%; display: block;">
+      <div class="cta-card relative rounded-3xl border border-[var(--color-primary)]/25 overflow-hidden" style="width: 100%; display: block;">
         <div class="cta-ring" aria-hidden="true"></div>
 
         <div class="relative z-10 text-center px-6 py-12 sm:px-16 sm:py-16" style="display: block; width: 100%;">
@@ -328,12 +328,12 @@ const clients = [
             اختر ممارسة. ابدأ البناء.
           </h2>
 
-          <p class="text-[#9FB2C6] text-base sm:text-lg leading-relaxed mx-auto mb-8" style="display: block; width: 100%; max-width: 36rem; white-space: normal;">
+          <p class="text-[var(--color-text-secondary)] text-base sm:text-lg leading-relaxed mx-auto mb-8" style="display: block; width: 100%; max-width: 36rem; white-space: normal;">
             أيًا كانت المشكلة التي تحلّها — ترحيل الأنظمة القديمة، توسّع النطاق، مواعيد الامتثال النهائية، أو منصات ويب عالية الأداء — فقد سبق أن أنجزناها.
           </p>
 
           <div style="display: block; width: 100%; text-align: center;">
-            <a href="/ar/contact" class="shine-btn gold-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
+            <a href="/ar/contact" class="shine-btn gold-btn relative inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-white font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(255,106,43,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">ابدأ الآن</span>
               <span class="material-symbols-outlined relative z-10 text-[18px]">arrow_back</span>
             </a>
@@ -346,20 +346,13 @@ const clients = [
 </Layout>
 
 <style>
-  /* M-Square brand tokens
-     Blue #076CC7 · Gold #D29D52 · Midnight Navy #03111F */
-  :global(:root) {
-    --ms-blue: #076CC7;
-    --ms-gold: #D29D52;
-    --ms-navy: #03111F;
-    --ms-gold-metal: linear-gradient(100deg, #664725 0%, #D29D52 40%, #F6C973 65%, #D29D52 100%);
-    --ms-blue-metal: linear-gradient(100deg, #1A395C 0%, #076CC7 40%, #3BAAEF 65%, #1B4A84 100%);
-  }
+  /* Color palette is sourced from the shared tokens in src/styles/theme.css
+     (--color-primary, --color-secondary, --color-tertiary, etc.) */
 
   .mesh-bg {
     background:
-      radial-gradient(circle at 15% 20%, rgba(210, 157, 82, 0.12) 0%, transparent 40%),
-      radial-gradient(circle at 85% 15%, rgba(7, 108, 199, 0.18) 0%, transparent 35%);
+      radial-gradient(circle at 15% 20%, rgba(255, 106, 43, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(255, 181, 154, 0.10) 0%, transparent 35%);
   }
   .bg-grid-services {
     background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
@@ -367,17 +360,17 @@ const clients = [
     mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
   }
   .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px); z-index: 0; }
-  .hero-orb-a { top: 4rem; right: 8%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(7, 108, 199, 0.3) 0%, transparent 70%); }
-  .hero-orb-b { top: 18rem; right: 22%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(210, 157, 82, 0.2) 0%, transparent 70%); }
+  .hero-orb-a { top: 4rem; right: 8%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255, 181, 154, 0.22) 0%, transparent 70%); }
+  .hero-orb-b { top: 18rem; right: 22%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255, 106, 43, 0.2) 0%, transparent 70%); }
 
   /* Static metallic gold (no animation, to keep the LCP path cheap) */
   .hero-gradient-text {
-    background-image: var(--ms-gold-metal);
+    background-image: linear-gradient(100deg, var(--color-primary-hover) 0%, var(--color-primary) 40%, var(--color-tertiary) 65%, var(--color-primary) 100%);
     background-size: 100% 100%;
   }
   .cta-gradient-text {
     color: transparent; background-clip: text; -webkit-background-clip: text;
-    background-image: linear-gradient(90deg, #ffffff 0%, #F6C973 35%, #D29D52 60%, #3BAAEF 100%);
+    background-image: linear-gradient(90deg, #ffffff 0%, var(--color-tertiary) 35%, var(--color-primary) 60%, var(--color-secondary) 100%);
     background-size: 100% 100%;
   }
   .glow-card {
@@ -386,23 +379,27 @@ const clients = [
   }
   .glow-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(210, 157, 82, 0.45);
+    border-color: rgba(255, 106, 43, 0.45);
   }
   .reveal-card {
     opacity: 0; transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
-  .cta-card { background: linear-gradient(to bottom, #061a2e, #03111F); }
+  .cta-card { background: linear-gradient(to bottom, var(--color-surface), var(--color-bg)); }
   .cta-ring {
     position: absolute; inset: -2px; z-index: 0; border-radius: inherit; padding: 2px;
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.7; pointer-events: none;
-    background: conic-gradient(from 0deg, #664725, #D29D52, #F6C973, #D29D52, #1A395C, #076CC7, #3BAAEF, #1B4A84, #664725);
+    background: conic-gradient(from 0deg, var(--color-primary-hover), var(--color-primary), var(--color-tertiary), var(--color-primary), #1A395C, var(--color-secondary), var(--color-secondary), #1B4A84, var(--color-primary-hover));
   }
-  /* Button: brighter slice of the gold metal so navy text stays readable */
+  /* Flat CTA button — solid primary, hover to primary-hover */
   .gold-btn {
-    background-image: linear-gradient(100deg, #B8853F 0%, #D29D52 35%, #F6C973 65%, #D29D52 100%);
+    background-color: var(--color-primary);
+    transition: background-color 0.3s ease;
+  }
+  .gold-btn:hover {
+    background-color: var(--color-primary-hover);
   }
   .shine-btn::before {
     content: ''; position: absolute; inset: 0;

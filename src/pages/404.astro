@@ -13,20 +13,20 @@ import logoImg from '../assets/Logo.png';
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
   />
 
-  <main class="error-main relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-[#03111F] text-white">
+  <main class="error-main relative min-h-screen flex flex-col items-center justify-center px-6 pt-32 sm:pt-40 pb-16 overflow-hidden bg-[var(--color-bg)] text-white">
     <!-- Ambient glow background, same treatment as the rest of the site -->
     <div class="error-ambient" aria-hidden="true"></div>
 
     <!-- Drifting starfield, reused pattern from the about page -->
     <div class="error-starfield" aria-hidden="true">
-      <span class="star" style="top:12%; left:10%; --size:2px; --delay:0s; --dur:8s; --drift:16px; --tint:#F6C973;"></span>
-      <span class="star" style="top:20%; left:82%; --size:1.5px; --delay:1.2s; --dur:9s; --drift:10px; --tint:#D29D52;"></span>
-      <span class="star" style="top:34%; left:22%; --size:2px; --delay:0.5s; --dur:7.5s; --drift:14px; --tint:#3BAAEF;"></span>
-      <span class="star" style="top:46%; left:68%; --size:2.5px; --delay:2s; --dur:10s; --drift:18px; --tint:#F6C973;"></span>
-      <span class="star" style="top:60%; left:14%; --size:1.5px; --delay:0.8s; --dur:8.5s; --drift:12px; --tint:#D29D52;"></span>
+      <span class="star" style="top:12%; left:10%; --size:2px; --delay:0s; --dur:8s; --drift:16px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:20%; left:82%; --size:1.5px; --delay:1.2s; --dur:9s; --drift:10px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:34%; left:22%; --size:2px; --delay:0.5s; --dur:7.5s; --drift:14px; --tint:#71d2ff;"></span>
+      <span class="star" style="top:46%; left:68%; --size:2.5px; --delay:2s; --dur:10s; --drift:18px; --tint:#ffb59a;"></span>
+      <span class="star" style="top:60%; left:14%; --size:1.5px; --delay:0.8s; --dur:8.5s; --drift:12px; --tint:#ff6a2b;"></span>
       <span class="star" style="top:70%; left:88%; --size:2px; --delay:1.6s; --dur:7s; --drift:16px; --tint:#ffffff;"></span>
-      <span class="star" style="top:80%; left:40%; --size:2.5px; --delay:0.3s; --dur:9.5s; --drift:20px; --tint:#D29D52;"></span>
-      <span class="star" style="top:88%; left:60%; --size:1.5px; --delay:2.4s; --dur:8s; --drift:10px; --tint:#3BAAEF;"></span>
+      <span class="star" style="top:80%; left:40%; --size:2.5px; --delay:0.3s; --dur:9.5s; --drift:20px; --tint:#ff6a2b;"></span>
+      <span class="star" style="top:88%; left:60%; --size:1.5px; --delay:2.4s; --dur:8s; --drift:10px; --tint:#71d2ff;"></span>
     </div>
 
     <!-- Recolored, glowing logo standing in for the classic "404 astronaut" -->
@@ -37,19 +37,19 @@ import logoImg from '../assets/Logo.png';
       <img src={logoImg.src} alt="M2-Square" class="error-logo-img" />
     </div>
 
-    <span class="font-mono text-xs sm:text-sm text-[#D29D52] uppercase tracking-widest mb-4 mt-8">
+    <span class="font-mono text-xs sm:text-sm text-[var(--color-primary)] uppercase tracking-widest mb-4 mt-8">
       Error 404
     </span>
 
-    <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-4 text-center leading-tight max-w-2xl">
-      This <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D29D52] to-[#F6C973]">page</span> isn't in the ledger.
+    <h1 class="text-4xl sm:text-6xl font-bold text-[var(--color-text)] mb-4 text-center leading-tight max-w-2xl">
+      This <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-tertiary)]">page</span> isn't in the ledger.
     </h1>
 
-    <p class="error-desc text-[#A3A3AA] text-base sm:text-lg text-center mb-10 leading-relaxed">
+    <p class="error-desc text-[var(--color-text-secondary)] text-base sm:text-lg text-center mb-10 leading-relaxed">
       The page you're looking for doesn't exist or may have moved. Everything else is exactly where it should be.
     </p>
 
-    <a href="/" class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden" style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%);">
+    <a href="/" class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white font-semibold text-sm tracking-wide shadow-[0_0_15px_rgba(255,106,43,0.25)] hover:scale-105 transition-all duration-300 overflow-hidden">
       <span class="material-symbols-outlined text-lg relative z-10">arrow_back</span>
       <span class="relative z-10">Back to Homepage</span>
     </a>
@@ -83,15 +83,20 @@ import logoImg from '../assets/Logo.png';
   isolation: isolate;
 }
 
+/*
+  All colors below reference the shared tokens declared once in
+  src/styles/theme.css (imported globally via Layout.astro).
+*/
+
 .error-ambient {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 20%, rgba(210, 157, 82, 0.16) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(59, 170, 239, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(246, 201, 115, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 50% 20%, rgba(255, 106, 43, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 80%, rgba(113, 210, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 85% 85%, rgba(255, 181, 154, 0.08) 0%, transparent 60%);
 }
 
 .error-starfield {
@@ -133,7 +138,7 @@ import logoImg from '../assets/Logo.png';
   position: absolute;
   width: 220%;
   height: 220%;
-  background: radial-gradient(circle, rgba(210, 157, 82, 0.4) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 106, 43, 0.4) 0%, transparent 70%);
   border-radius: 50%;
   filter: blur(20px);
   animation: errorBreath 3s ease-in-out infinite;
@@ -145,14 +150,14 @@ import logoImg from '../assets/Logo.png';
   position: absolute;
   inset: -18px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(210, 157, 82, 0.5);
+  border: 1.5px dashed rgba(255, 106, 43, 0.5);
   animation: errorSpin 18s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
 .error-logo-ring-2 {
   inset: -36px;
-  border: 1px solid rgba(59, 170, 239, 0.25);
+  border: 1px solid rgba(113, 210, 255, 0.25);
   animation: errorSpinReverse 26s linear infinite;
 }
 
@@ -162,7 +167,7 @@ import logoImg from '../assets/Logo.png';
   height: 68%;
   object-fit: contain;
   z-index: 2;
-  filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 30px rgba(210, 157, 82, 0.6));
+  filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 30px rgba(255, 106, 43, 0.6));
   animation: errorLogoFloat 4s ease-in-out infinite;
 }
 
@@ -171,7 +176,7 @@ import logoImg from '../assets/Logo.png';
   position: absolute;
   width: 68%;
   height: 68%;
-  background: radial-gradient(circle, rgba(210, 157, 82, 0.9) 0%, rgba(246, 201, 115, 0.5) 55%, transparent 80%);
+  background: radial-gradient(circle, rgba(255, 106, 43, 0.9) 0%, rgba(255, 181, 154, 0.5) 55%, transparent 80%);
   mix-blend-mode: color;
   z-index: 3;
   pointer-events: none;
@@ -191,15 +196,15 @@ import logoImg from '../assets/Logo.png';
   to { transform: rotate(0deg); }
 }
 @keyframes errorLogoFloat {
-  0%, 100% { transform: translateY(0); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(210, 157, 82, 0.55)); }
-  50% { transform: translateY(-10px); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(210, 157, 82, 0.85)); }
+  0%, 100% { transform: translateY(0); filter: grayscale(1) brightness(1.5) contrast(1.15) drop-shadow(0 0 25px rgba(255, 106, 43, 0.55)); }
+  50% { transform: translateY(-10px); filter: grayscale(1) brightness(1.6) contrast(1.2) drop-shadow(0 0 45px rgba(255, 106, 43, 0.85)); }
 }
 
 .error-btn::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.45) 45%, transparent 60%);
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.35) 45%, transparent 60%);
   transform: translateX(-120%);
 }
 .error-btn:hover::before {

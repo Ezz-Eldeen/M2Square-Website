@@ -6,14 +6,14 @@ import Layout from '../../layouts/Layout.astro';
   title="شروط الخدمة - إم-سكوير"
   description="راجع الشروط التي تحكم استخدام موقع إم-سكوير الإلكتروني وبرنامج تخطيط موارد المؤسسات، بما في ذلك الحسابات، والاستخدام المقبول، والرسوم، وملكية البيانات، والمسؤولية، والقانون الحاكم."
 >
-  <main class="relative min-h-screen px-6 py-24 overflow-hidden bg-[#03111F] text-white">
+  <main class="relative min-h-screen px-6 py-24 overflow-hidden bg-[var(--color-bg)] text-white">
     <div class="legal-ambient" aria-hidden="true"></div>
 
     <div class="relative z-10 max-w-3xl mx-auto pt-10">
-      <span class="font-mono text-xs sm:text-sm text-[#D29D52] uppercase tracking-widest">
+      <span class="font-mono text-xs sm:text-sm text-[var(--color-primary)] uppercase tracking-widest">
         قانوني
       </span>
-      <h1 class="text-3xl sm:text-5xl font-bold text-[#F5F5F4] mt-3 mb-4">
+      <h1 class="text-3xl sm:text-5xl font-bold text-[var(--color-text)] mt-3 mb-4">
         شروط الخدمة
       </h1>
       <p class="text-[#A3A3AA] text-sm mb-10">
@@ -270,7 +270,7 @@ import Layout from '../../layouts/Layout.astro';
         </p>
         <p>
           إم-سكوير<br />
-          البريد الإلكتروني: <a href="mailto:legal@m2-square.com" class="text-[#D29D52] hover:text-[#F6C973] transition-colors">legal@m2-square.com</a><br />
+          البريد الإلكتروني: <a href="mailto:legal@m2-square.com" class="text-[var(--color-primary)] hover:text-[var(--color-tertiary)] transition-colors">legal@m2-square.com</a><br />
           العنوان: 8 شارع مصطفى كامل، عمارة المعمورة، سموحة، الإسكندرية، مصر
         </p>
 
@@ -286,12 +286,12 @@ import Layout from '../../layouts/Layout.astro';
     z-index: 0;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 55% 40% at 20% 0%, rgba(210, 157, 82, 0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 90% 80%, rgba(59, 170, 239, 0.07) 0%, transparent 60%);
+      radial-gradient(ellipse 55% 40% at 20% 0%, rgba(255, 106, 43, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 90% 80%, rgba(113, 210, 255, 0.07) 0%, transparent 60%);
   }
 
   .legal-body h2 {
-    color: #F5F5F4;
+    color: var(--color-text);
     font-weight: 700;
     font-size: 1rem;
     margin-top: 1.5rem;
@@ -309,6 +309,6 @@ import Layout from '../../layouts/Layout.astro';
     margin-bottom: 0.3rem;
   }
   .legal-body strong {
-    color: #F5F5F4;
+    color: var(--color-text);
   }
 </style>
