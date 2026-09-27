@@ -1,0 +1,34 @@
+/*
+  M-SQUARE COLOR TOKENS
+
+  Every page and component should reference these variables instead of
+  hardcoding hex values. To re-theme the entire site, change the values
+  here — nothing else needs to be touched.
+
+  Import this ONCE in Layout.astro (see instructions below) so every
+  page that uses <Layout> automatically gets it.
+*/
+
+:root {
+  /* Backgrounds */
+  --color-bg: #0a0a0c;           /* page background */
+  --color-bg-alt: #0d0d10;       /* alternating section background */
+  --color-surface: #131316;      /* cards, panels, inputs */
+  --color-surface-alt: #1c1c20;  /* icon tiles, nested surfaces */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+
+  /* Text */
+  --color-text: #F5F5F4;
+  --color-text-secondary: #A3A3AA;
+  --color-text-tertiary: #71717a;
+
+  /* Brand accents */
+  --color-primary: #ff6a2b;        /* orange — primary accent, CTAs */
+  --color-primary-hover: #ff8552;
+  --color-secondary: #71d2ff;      /* blue — secondary accent */
+  --color-tertiary: #ffb59a;       /* peach — tertiary accent */
+
+  /* Status (used sparingly — form success states, live indicators) */
+  --color-success: #3DD68C;
+}

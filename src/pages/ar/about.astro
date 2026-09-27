@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import logoImg from '../../assets/Logo.png';
+import logoImg from '../../assets/logo.png';
 ---
 
 <Layout
@@ -177,17 +177,19 @@ import logoImg from '../../assets/Logo.png';
 
 <style>
 .about-page {
-    /* M-Square brand: Blue #076CC7 · Gold #D29D52 · Midnight Navy #03111F */
-    --bg: #03111F;
-    --panel: #061a2e;
+    /* Color palette is sourced from the shared tokens in src/styles/theme.css
+       (--color-primary, --color-secondary, --color-tertiary, etc.) — these
+       local variables are just semantic aliases used throughout this page. */
+    --bg: var(--color-bg);
+    --panel: var(--color-surface);
     --border: rgba(255, 255, 255, 0.09);
-    --text-primary: #f5f7fa;
-    --text-secondary: #a9bbcd;
-    --text-tertiary: #7189a1;
-    --accent: #D29D52;
-    --accent-soft: #F6C973;
-    --blue: #076CC7;
-    --blue-light: #3BAAEF;
+    --text-primary: var(--color-text);
+    --text-secondary: var(--color-text-secondary);
+    --text-tertiary: var(--color-text-tertiary);
+    --accent: var(--color-primary);
+    --accent-soft: var(--color-tertiary);
+    --blue: var(--color-secondary);
+    --blue-light: var(--color-secondary);
 
     direction: rtl;
     background-color: var(--bg);
@@ -204,8 +206,8 @@ import logoImg from '../../assets/Logo.png';
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 50% 40% at 80% 0%, rgba(210, 157, 82, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 15% 65%, rgba(7, 108, 199, 0.16) 0%, transparent 65%);
+    radial-gradient(ellipse 50% 40% at 80% 0%, rgba(255, 106, 43, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 15% 65%, rgba(113, 210, 255, 0.16) 0%, transparent 65%);
 }
 
 .container {
@@ -243,7 +245,7 @@ import logoImg from '../../assets/Logo.png';
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 0.85rem;
-  border: 1px solid rgba(210, 157, 82, 0.3);
+  border: 1px solid rgba(255, 106, 43, 0.3);
   border-radius: 999px;
   background: var(--panel);
   font-size: 0.8125rem;
@@ -335,7 +337,7 @@ h1 {
   position: absolute;
   inset: -30%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(210, 157, 82, 0.32) 0%, rgba(7, 108, 199, 0.12) 45%, rgba(7, 108, 199, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 106, 43, 0.32) 0%, rgba(113, 210, 255, 0.12) 45%, rgba(113, 210, 255, 0) 70%);
   animation: fastBreath 2.5s ease-in-out infinite;
 }
 
@@ -386,7 +388,7 @@ h1 {
   border-radius: 1rem;
   transition: transform 0.3s ease;
 }
-.vm-card:hover { transform: translateY(-5px); border-color: rgba(210, 157, 82, 0.45); }
+.vm-card:hover { transform: translateY(-5px); border-color: rgba(255, 106, 43, 0.45); }
 
 .icon-wrapper {
   width: 60px;
@@ -460,7 +462,7 @@ h1 {
 
 .tech-tag {
   background: var(--bg);
-  border: 1px solid rgba(210, 157, 82, 0.3);
+  border: 1px solid rgba(255, 106, 43, 0.3);
   color: var(--text-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 50px;
