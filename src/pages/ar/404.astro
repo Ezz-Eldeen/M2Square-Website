@@ -1,9 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import logoImg from '../assets/Logo.png';
+import Layout from '../../layouts/Layout.astro';
+import { getLocalizedPath, type Lang } from '../../i18n/utils';
+import logoImg from '../../assets/Logo.png';
+
+const lang = (Astro.currentLocale ?? 'ar') as Lang;
+const homeHref = getLocalizedPath('/', lang);
 ---
 
-<Layout title="Page Not Found - M2-Square">
+<Layout title="الصفحة غير موجودة - إم-سكوير">
   <!-- Loads the icon font directly so the material-symbols-outlined span below
        actually renders as an icon instead of printing its raw ligature name -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,20 +42,20 @@ import logoImg from '../assets/Logo.png';
     </div>
 
     <span class="font-mono text-xs sm:text-sm text-[#D29D52] uppercase tracking-widest mb-4 mt-8">
-      Error 404
+      خطأ 404
     </span>
 
     <h1 class="text-4xl sm:text-6xl font-bold text-[#F5F5F4] mb-4 text-center leading-tight max-w-2xl">
-      This <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D29D52] to-[#F6C973]">page</span> isn't in the ledger.
+      هذه <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D29D52] to-[#F6C973]">الصفحة</span> غير مقيّدة في السجل.
     </h1>
 
     <p class="error-desc text-[#A3A3AA] text-base sm:text-lg text-center mb-10 leading-relaxed">
-      The page you're looking for doesn't exist or may have moved. Everything else is exactly where it should be.
+      الصفحة التي تبحث عنها غير موجودة أو ربما تم نقلها. كل شيء آخر في مكانه الصحيح تمامًا.
     </p>
 
-    <a href="/" class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden" style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%);">
-      <span class="material-symbols-outlined text-lg relative z-10">arrow_back</span>
-      <span class="relative z-10">Back to Homepage</span>
+    <a href={homeHref} class="error-btn relative inline-flex items-center gap-2 px-8 py-4 rounded-xl text-[#03111F] font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(210,157,82,0.4)] hover:scale-105 transition-transform duration-300 overflow-hidden" style="background: linear-gradient(135deg, #664725 0%, #D29D52 35%, #F6C973 60%, #D29D52 100%);">
+      <span class="material-symbols-outlined text-lg relative z-10">arrow_forward</span>
+      <span class="relative z-10">العودة إلى الصفحة الرئيسية</span>
     </a>
   </main>
 </Layout>
